@@ -3,7 +3,7 @@ class Program
 {
   static void Main(string[] args)
   {
-    Laberinto unLaberinto = new Laberinto(9, 5);
+    Laberinto unLaberinto = new Laberinto(10, 5);
     unLaberinto.CrearFilas();
     Personaje unPersonaje = new Personaje();
     Partida unaPartida = new Partida(unLaberinto.GetLaberinto(), unPersonaje);

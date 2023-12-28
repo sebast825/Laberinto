@@ -21,7 +21,16 @@ namespace Laberinto
          int ij = -1;
          for (int i = laberinto.GetLength(0) - 1; i >= 0; i--)
          {
-            Console.Write($"{i} | ");
+            if (i < 10)
+            {
+               Console.Write($"0{i} | ");
+
+            }
+            else
+            {
+               Console.Write($"{i} | ");
+
+            }
             for (int j = 0; j < laberinto.GetLength(1); j++)
             {
                if (j == personajeX && personajeY == i)
@@ -71,10 +80,10 @@ namespace Laberinto
                bool personajeMuere = PuedeCaminar();
                //Console.WriteLine($"personajeMuere: {personajeMuere}");
                if (personajeMuere)
-               {  
+               {
                   Console.WriteLine("Perdiste, intentalo nuevamente! Apreta Enter para re intentar");
                   Console.ReadLine();
-                  personaje.CambiarPosicion(laberinto.GetLength(1) / 2,0);
+                  personaje.CambiarPosicion(laberinto.GetLength(1) / 2, 0);
 
                }
                Console.WriteLine("");
@@ -91,7 +100,7 @@ namespace Laberinto
       }
       public bool PuedeCaminar()
       {
-         if(verificarVictoria()) return false;
+         if (verificarVictoria()) return false;
          //Console.WriteLine($"laberinto {laberinto[personaje.GetPosiY(), personaje.GetPosiX()]}, {personaje.GetPosiX()},{personaje.GetPosiY()}");
          return (laberinto[personaje.GetPosiY(), personaje.GetPosiX()] == 0) ? true : false;
 
