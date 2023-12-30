@@ -33,7 +33,7 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 2, 3 };
+         int[] posiInicia = new int[2] { 2, 2 };
          //posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
@@ -63,7 +63,7 @@ namespace Laberinto
       }
       public bool ValidarDireccion(int direccion)
       {
-         bool esValido = validarDerecha();
+         bool esValido = ValidarDerecha();
          /*
                   switch (direccion)
                   {
@@ -75,23 +75,23 @@ namespace Laberinto
          return esValido;
       }
 
-      public bool validarDerecha()
+      public bool ValidarDerecha()
       {
 
-         int fila = posiActual[0] - 1;
-         int columna = posiActual[1] + 1;
+         int fila = GetFilaActual() - 1;
+         int proxColumna = GetColumnaActual() + 1;
          for (int i = fila; i <= fila + 2; i++)
          {
-            for (int j = columna; j < columna + 1; j++)
+            for (int j = proxColumna; j < proxColumna + 1; j++)
             {
-               //Console.WriteLine($"entra: {i},{j}");
+               Console.WriteLine($"entra: {i},{j}");
                if (laberinto[i, j] == 1) return false;
 
                //verifica una 2da columna para la misma fila y solo si no se sale de la matriz
 
-               if (fila + 1 == i && j == columna && columna + 1 != laberinto.GetLength(1))
+               if (GetFilaActual() == i && j == proxColumna && proxColumna + 1 != laberinto.GetLength(1))
                {
-                  //Console.WriteLine($"entraa: {i},{j+1}");
+                  Console.WriteLine($"entraa: {i},{j + 1}");
 
                   if (laberinto[i, j + 1] == 1) return false;
                }
@@ -102,7 +102,7 @@ namespace Laberinto
          return true;
       }
 
-
+     
       public bool ReturnBool()
       {
          return rnd.Next(0, 2) == 0;
