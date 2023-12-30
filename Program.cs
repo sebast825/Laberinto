@@ -8,7 +8,7 @@ class Program
     Personaje unPersonaje = new Personaje();
     Partida unaPartida = new Partida(unLaberinto.GetLaberinto(), unPersonaje);
 //unaPartida.MostrarLaberinto();
-unLaberinto.MostrarMatriz();
+//unLaberinto.MostrarMatriz();
 
 //unaPartida.Iniciar();
   }
