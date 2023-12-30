@@ -80,6 +80,9 @@ namespace Laberinto
 
          int fila = GetFilaActual() - 1;
          int proxColumna = GetColumnaActual() + 1;
+         //x si esta en la ultima columna
+         if(proxColumna == laberinto.GetLength(1)) return false;
+
          for (int i = fila; i <= fila + 2; i++)
          {
             for (int j = proxColumna; j < proxColumna + 1; j++)
@@ -87,10 +90,10 @@ namespace Laberinto
                //Console.WriteLine($"entra: {i},{j}");
                if (laberinto[i, j] == 1) return false;
 
-               //verifica una 2da columna para la misma fila y solo si no se sale de la matriz
-
+               //verifica una 2da columna para la misma fila 
                if (GetFilaActual() == i && j == proxColumna)
                {
+                  //en caso de que salga de la matriz no pasa nada
                   try
                   {
                      //Console.WriteLine($"entraa: {i},{j + 1}");
