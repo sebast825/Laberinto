@@ -6,7 +6,7 @@ namespace Laberinto
    internal class Laberinto
    {
       private int[,] laberinto;
-      Random rnd;
+      Random rnd = null!;
 
       public Laberinto(int filas, int columnas)
       {
@@ -37,7 +37,7 @@ namespace Laberinto
 
             }
          }
-         CambiarCasillasLaterales(fila, sePuedePisar);
+         //CambiarCasillasLaterales(fila, sePuedePisar);
 
 
          CrearRestoDeFilas();
@@ -66,6 +66,7 @@ namespace Laberinto
                if (laberinto[i - 1, j] == 1)
                {
                   tieneUno[index] = j;
+                  Console.Write($"- {index} - ");
                   index++;
                }
             }
@@ -77,25 +78,17 @@ namespace Laberinto
 
             bool sigueDerecho = ReturnBool();
             int fila = i;
-            int columna = tieneUno[numAPisar];
-            Console.WriteLine(tieneUno.Count(num => num == 1));
+            int columna =  tieneUno[numAPisar];
+            //Console.WriteLine(tieneUno.Count(num => num == 1));
+            Console.WriteLine($"fila: {i}");
             if (index == 1)
             {
-               CambiarCasillasLaterales(fila, columna);
+               CambiarCasillasLaterales(fila,  columna);
+                              Console.WriteLine("entra");
+
+            }else{
+               Console.WriteLine("niope");
             }
-            //ya no sirve el console
-            //Console.WriteLine($"numAPisar: {numAPisar}, index: {index},puedePisarIzquierda: {puedePisarIzquierda}");
-
-            //CambiarCasillasLaterales(i, numAPisar);
-
-            /*     Console.WriteLine($"fila {i}");
-
-                 foreach (int elem in tieneUno)
-                 {
-                    Console.Write($"{elem} -");
-                    //tieneUno[elem] = 0;
-                 }
-                 Console.WriteLine("");*/
 
          }
       }
@@ -117,23 +110,32 @@ namespace Laberinto
          CrearFilaDos();
 
       }
-      public void CambiarCasillasLaterales(int fila, int columna)
+      public void CambiarCasillasLaterales(int fila,  int columna)
       {
-         int puedePisarIzquierda = rnd.Next(0, 3);
-
+         int puedePisarIzquierda = rnd.Next(0, 2);
+         Console.Write(puedePisarIzquierda);
          //si esta x fuera del array
          try
          {
-            // Console.WriteLine($"valor columna: {columna}, fila {fila}");
-
             if (puedePisarIzquierda == 0)
             {
-               PisarIzquierda(fila, columna);
+               int columnaIzquierda = columna;
+               while (columnaIzquierda > 0 && ReturnBool())
+               {
+                  PisarIzquierda(fila, columnaIzquierda);
+                  columnaIzquierda--;
+               }
+
             }
             if (puedePisarIzquierda == 1)
             {
-               PisarDerecha(fila, columna);
-
+               int columnaDerecha = columna;
+               while (columnaDerecha < laberinto.GetLength(1) && ReturnBool())
+               {
+                  PisarDerecha(fila, columnaDerecha);
+                  
+                  columnaDerecha++;
+               }
 
             }
          }
@@ -143,26 +145,23 @@ namespace Laberinto
          }
       }
 
+   
+
+
       public void PisarIzquierda(int fila, int columna)
       {
          laberinto[fila, columna - 1] = 1;
          //Console.WriteLine($"pisa derecha, fila {i}");
+         //Console.WriteLine($" izq: {columna - 1}");
 
-         if ((columna - 1) < 0)
-         {
-            laberinto[fila, columna + 1] = 1;
 
-         }
       }
       public void PisarDerecha(int fila, int columna)
       {
          laberinto[fila, columna + 1] = 1;
-         //Console.WriteLine($"pisa izquierda, fila {i}");
+         //Console.WriteLine($"pisa derecha, columna {columna+1}");
 
-         if (laberinto[fila, columna + 1] > laberinto.GetLength(1))
-         {
-            laberinto[fila, columna - 1] = 1;
-         }
+
          //Console.WriteLine(laberinto[fila, columna + 1]);
       }
       public void MostrarMatriz()
