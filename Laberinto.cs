@@ -33,10 +33,11 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 2, 3 };
+         int[] posiInicia = new int[2] { 2, 2 };
          //posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
+         //ModificarLaberinto(3,2);
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
 
       }
@@ -63,7 +64,7 @@ namespace Laberinto
       }
       public bool ValidarDireccion(int direccion)
       {
-         bool esValido = ValidarDerecha();
+         bool esValido = ValidarIzquierda();
          /*
                   switch (direccion)
                   {
@@ -81,7 +82,7 @@ namespace Laberinto
          int fila = GetFilaActual() - 1;
          int proxColumna = GetColumnaActual() + 1;
          //x si esta en la ultima columna
-         if(proxColumna == laberinto.GetLength(1)) return false;
+         if (proxColumna == laberinto.GetLength(1)) return false;
 
          for (int i = fila; i <= fila + 2; i++)
          {
@@ -100,7 +101,41 @@ namespace Laberinto
                      if (laberinto[i, j + 1] == 1) return false;
 
                   }
-                  catch (Exception error){}
+                  catch (Exception error) { }
+               }
+            }
+
+
+         }
+         return true;
+      }
+      public bool ValidarIzquierda()
+      {
+
+         int fila = GetFilaActual() - 1;
+         int columnaAnterior = GetColumnaActual() - 1;
+         //x si esta en la primer columna
+         if (GetColumnaActual() == 0) return false;
+
+         for (int i = fila; i <= fila + 2; i++)
+         {
+            //(Console.WriteLine("asd");
+            for (int j = columnaAnterior; j > columnaAnterior -1; j--)
+            {
+               Console.WriteLine($"entra: {i},{j}");
+               if (laberinto[i, j] == 1) return false;
+
+               //verifica una 2da columna para la misma fila 
+               if (GetFilaActual() == i && j == columnaAnterior)
+               {
+                  //en caso de que salga de la matriz no pasa nada
+                  try
+                  {
+                     Console.WriteLine($"entraa: {i},{j - 1}");
+                     if (laberinto[i, j - 1] == 1) return false;
+
+                  }
+                  catch (Exception error) { }
                }
             }
 
@@ -109,7 +144,6 @@ namespace Laberinto
          return true;
       }
 
-    
 
       public bool ReturnBool()
       {

@@ -10,7 +10,7 @@ unLaberinto.SetPosicionInicial();
 bool posiValida = unLaberinto.ValidarDireccion(3);unLaberinto.MostrarMatriz();
 
 if(posiValida) {
-  unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual(),unLaberinto.GetColumnaActual()+1);
+  unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual(),unLaberinto.GetColumnaActual()-1,3);
 }
 Console.WriteLine("");
 unLaberinto.MostrarMatriz();
