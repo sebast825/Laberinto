@@ -33,7 +33,7 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 2, 2 };
+         int[] posiInicia = new int[2] { 2, 3 };
          //posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
@@ -84,16 +84,20 @@ namespace Laberinto
          {
             for (int j = proxColumna; j < proxColumna + 1; j++)
             {
-               Console.WriteLine($"entra: {i},{j}");
+               //Console.WriteLine($"entra: {i},{j}");
                if (laberinto[i, j] == 1) return false;
 
                //verifica una 2da columna para la misma fila y solo si no se sale de la matriz
 
-               if (GetFilaActual() == i && j == proxColumna && proxColumna + 1 != laberinto.GetLength(1))
+               if (GetFilaActual() == i && j == proxColumna)
                {
-                  Console.WriteLine($"entraa: {i},{j + 1}");
+                  try
+                  {
+                     //Console.WriteLine($"entraa: {i},{j + 1}");
+                     if (laberinto[i, j + 1] == 1) return false;
 
-                  if (laberinto[i, j + 1] == 1) return false;
+                  }
+                  catch (Exception error){}
                }
             }
 
@@ -102,7 +106,8 @@ namespace Laberinto
          return true;
       }
 
-     
+    
+
       public bool ReturnBool()
       {
          return rnd.Next(0, 2) == 0;
