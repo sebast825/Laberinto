@@ -40,18 +40,25 @@ namespace Laberinto
                      ia = i;
                      ij = j;*/
                   Console.BackgroundColor = ConsoleColor.Green;
-                  Console.Write($"{laberinto[i, j]} ");
+                  //Console.Write($"{laberinto[i, j]} ");
+                  Console.Write("P ");
                   Console.ResetColor();
                }
                else
-               {
+               {  
+                 
+                   
                   if (laberinto[i, j] == 1)
                   {
+                      if(i == 0){
                      Console.BackgroundColor = ConsoleColor.Red;
                      Console.Write($"{laberinto[i, j]} ");
+                      
+                     Console.ResetColor();}
+else{
+                        Console.Write("0 ");
 
-                     Console.ResetColor();
-                  }
+}                  }
                   else
                   {
                      Console.Write($"{laberinto[i, j]} ");

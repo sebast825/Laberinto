@@ -3,13 +3,14 @@ class Program
 {
   static void Main(string[] args)
   {
-    Laberinto unLaberinto = new Laberinto(10, 5);
+    Laberinto unLaberinto = new Laberinto(15, 15);
     unLaberinto.CrearFilas();
     Personaje unPersonaje = new Personaje();
     Partida unaPartida = new Partida(unLaberinto.GetLaberinto(), unPersonaje);
 //unaPartida.MostrarLaberinto();
-unaPartida.Iniciar();
-//unLaberinto.MostrarMatriz();
+unLaberinto.MostrarMatriz();
+
+//unaPartida.Iniciar();
   }
 }
 
