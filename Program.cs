@@ -12,6 +12,7 @@ bool posiValida = unLaberinto.ValidarDireccion(3);unLaberinto.MostrarMatriz();
 if(posiValida) {
   unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual(),unLaberinto.GetColumnaActual()+1);
 }
+Console.WriteLine("");
 unLaberinto.MostrarMatriz();
 /*
 int i = 0;

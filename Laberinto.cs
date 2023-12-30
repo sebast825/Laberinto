@@ -7,8 +7,8 @@ namespace Laberinto
    {
       private int[,] laberinto;
       Random rnd = null!;
-      public int[] posiInicial {get;set;}
-      public int[] posiActual{get;set;}
+      public int[] posiInicial { get; set; }
+      public int[] posiActual { get; set; }
       public Laberinto(int filas, int columnas)
       {
          laberinto = new int[filas, columnas];
@@ -22,16 +22,20 @@ namespace Laberinto
       {
          return laberinto;
       }
-      public int GetFilaActual(){
+      public int GetFilaActual()
+      {
          return posiActual[0];
       }
-       public int GetColumnaActual(){
+      public int GetColumnaActual()
+      {
          return posiActual[1];
       }
 
       public void SetPosicionInicial()
       {
-         posiInicial = CreatePosicionInicial();
+         int[] posiInicia = new int[2] { 2, 3 };
+         //posiInicial = CreatePosicionInicial();
+         posiInicial = posiInicia;
          posiActual = posiInicial;
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
 
@@ -76,22 +80,34 @@ namespace Laberinto
 
          int fila = posiActual[0] - 1;
          int columna = posiActual[1] + 1;
-         for (int i = fila; i < fila + 1; i++)
+         for (int i = fila; i <= fila + 2; i++)
          {
             for (int j = columna; j < columna + 1; j++)
             {
+               //Console.WriteLine($"entra: {i},{j}");
                if (laberinto[i, j] == 1) return false;
+
+               //verifica una 2da columna para la misma fila y solo si no se sale de la matriz
+
+               if (fila + 1 == i && j == columna && columna + 1 != laberinto.GetLength(1))
+               {
+                  //Console.WriteLine($"entraa: {i},{j+1}");
+
+                  if (laberinto[i, j + 1] == 1) return false;
+               }
             }
+
+
          }
          return true;
       }
-  
+
 
       public bool ReturnBool()
       {
          return rnd.Next(0, 2) == 0;
       }
- 
+
       public void MostrarMatriz()
       {
          //ES PARA MOSTRAR LA AMTRIZ AL FINAL, NO BORRAR :)
