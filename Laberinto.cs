@@ -241,15 +241,29 @@ namespace Laberinto
          return true;
       }
 
+      public bool CeldaOcupada(int fila, int columna)
+      {
+         try{
+         return laberinto[fila, columna] == 1 ? true : false;
+
+         }catch(Exception error){
+                  Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine($"fila: {fila}, columna: {columna}");
+
+                  Console.ResetColor();
+            Console.WriteLine($"fila: {fila}, columna: {columna}");
+            return false;
+         }
+      }
       public bool EsFilaSuperior()
       {
          return GetFilaActual() == 0 ? true : false;
       }
       public bool EsFilaInferior()
       {
-         bool asd = GetFilaActual() == (laberinto.GetLength(0) - 1) ? true : false;
+         return GetFilaActual() == (laberinto.GetLength(0) - 1) ? true : false;
          // Console.WriteLine($"fila: {GetFilaActual()}, length: {laberinto.GetLength(0) - 1}");
-         return asd;
+
       }
       public bool ValidarIzquierda()
       {
@@ -301,48 +315,48 @@ namespace Laberinto
          return true;
       }
 
+  
       public bool ValidarArriba()
       {
 
          int fila = GetFilaActual();
-         int filaAnterior = fila - 1;
          int columna = GetColumnaActual();
-         //Console.WriteLine($"{columna},{laberinto.GetLength(1)}");
-         int proxColumna = GetColumnaActual() + 1;
-         //x si esta en la ultima columna
-         if (fila == 0) return false;
+         int[] posicionColumnas = new int[] { -1, 0, 1 };
 
-         //misma columna, fila arriba
-         if (laberinto[GetFilaActual() - 1, columna] == 1)
+
+         if (EsFilaSuperior())
          {
-            //   Console.WriteLine("entra 1");
-
             return false;
          }
-         //fila anterior, columna siguiente
-         if (columna < (laberinto.GetLength(1) - 1) && laberinto[filaAnterior, columna + 1] == 1)
+         if (fila > 1)
          {
-            //  Console.WriteLine("entra 2");
-            return false;
-         }
-         //fila anterior
-         if (columna >= 1 && laberinto[filaAnterior, columna - 1] == 1)
-         {
-            // Console.WriteLine("entra 3");
-
-            return false;
-         }
-         //dos filas  arriba
-         if (fila >= 2)
-         {
-            if (laberinto[GetFilaActual() - 2, columna] == 1)
+            if (CeldaOcupada(fila - 2, columna))
             {
-               //  Console.WriteLine("entra 4");
-
                return false;
             }
          }
 
+
+         if (columna == 0)
+         {
+
+            int[] posicionColumnasCero = new int[] { 0, 1 };
+            posicionColumnas = posicionColumnasCero;
+         }
+         else if (EsFilaInferior())
+         {
+
+            int[] posicionUltimaColumna = new int[] { -1, 0 };
+            posicionColumnas = posicionUltimaColumna;
+         }
+
+         foreach (int colum in posicionColumnas)
+         {
+            if (CeldaOcupada(fila - 1, columna + colum))
+            {
+               return false;
+            }
+         }
          return true;
       }
 
