@@ -7,14 +7,17 @@ class Program
   {
     Laberinto unLaberinto = new Laberinto(5, 5);
     unLaberinto.SetPosicionInicial();
-    bool posiValida = unLaberinto.ValidarDireccion(3); unLaberinto.MostrarMatriz();
+
+    unLaberinto.ElegirDireccion();
+    unLaberinto.MostrarMatriz();
+  /*  bool posiValida = unLaberinto.ValidarDireccion(3); unLaberinto.MostrarMatriz();
     Console.WriteLine(posiValida);
     if (posiValida)
     {
       unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual()+1, unLaberinto.GetColumnaActual() , 3);
     }
     Console.WriteLine("");
-    unLaberinto.MostrarMatriz();
+    unLaberinto.MostrarMatriz();*/
     /*
     int i = 0;
     while(i < 10){
