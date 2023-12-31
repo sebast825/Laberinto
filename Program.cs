@@ -17,17 +17,18 @@ class Program
       Console.WriteLine("");
       unLaberinto.MostrarMatriz();*/
 
-    /*
+   
+   /*
 
     //ES ESTOO
       unLaberinto.SetPosicionInicial();
+            unLaberinto.ModificarLaberinto(4, 14);
           unLaberinto.MostrarMatriz();
-    unLaberinto.ValidarDireccion(2);
+    unLaberinto.ValidarDireccion(0);
+    Console.WriteLine("");
           unLaberinto.MostrarMatriz();
-
-    */
-
-
+*/
+ 
 
     unLaberinto.SetPosicionInicial();
 
@@ -44,6 +45,8 @@ class Program
 
       i++;
     }
+
+    
     //unLaberinto.MostrarMatriz();
 
     /*  bool posiValida = unLaberinto.ValidarDireccion(3); unLaberinto.MostrarMatriz();

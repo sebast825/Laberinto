@@ -48,8 +48,8 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 4, 4 };
-         posiInicial = CreatePosicionInicial();
+         int[] posiInicia = new int[2] { 1, 4 };
+         //posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
          /*ModificarLaberinto(1, 4);
@@ -57,7 +57,6 @@ namespace Laberinto
 */
          //ModificarLaberinto(3, 4);
 
-         //ModificarLaberinto(1, 3);
 
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
 
@@ -241,17 +240,20 @@ namespace Laberinto
          return true;
       }
 
-      public bool CeldaOcupada(int fila, int columna)
+      public bool CeldaOcupada(int fila, int columna, string vieneDe)
       {
-         try{
-         return laberinto[fila, columna] == 1 ? true : false;
+         try
+         {
+            return laberinto[fila, columna] == 1 ? true : false;
 
-         }catch(Exception error){
-                  Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine($"fila: {fila}, columna: {columna}");
+         }
+         catch (Exception error)
+         {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine($"{vieneDe} | fila: {fila}, columna: {columna}");
 
-                  Console.ResetColor();
-            Console.WriteLine($"fila: {fila}, columna: {columna}");
+            Console.ResetColor();
+            Console.WriteLine(error);
             return false;
          }
       }
@@ -263,6 +265,13 @@ namespace Laberinto
       {
          return GetFilaActual() == (laberinto.GetLength(0) - 1) ? true : false;
          // Console.WriteLine($"fila: {GetFilaActual()}, length: {laberinto.GetLength(0) - 1}");
+
+      }
+      public int GetCantidadFilas(){
+         return (laberinto.GetLength(0)-1);
+      }
+      public bool EsUltimaColumna(){
+            return GetColumnaActual() == (laberinto.GetLength(1) - 1) ? true : false;
 
       }
       public bool ValidarIzquierda()
@@ -315,7 +324,7 @@ namespace Laberinto
          return true;
       }
 
-  
+
       public bool ValidarArriba()
       {
 
@@ -330,7 +339,7 @@ namespace Laberinto
          }
          if (fila > 1)
          {
-            if (CeldaOcupada(fila - 2, columna))
+            if (CeldaOcupada(fila - 2, columna,"arriba"))
             {
                return false;
             }
@@ -343,7 +352,7 @@ namespace Laberinto
             int[] posicionColumnasCero = new int[] { 0, 1 };
             posicionColumnas = posicionColumnasCero;
          }
-         else if (EsFilaInferior())
+         else if (EsUltimaColumna())
          {
 
             int[] posicionUltimaColumna = new int[] { -1, 0 };
@@ -352,7 +361,7 @@ namespace Laberinto
 
          foreach (int colum in posicionColumnas)
          {
-            if (CeldaOcupada(fila - 1, columna + colum))
+            if (CeldaOcupada(fila - 1, columna + colum,"arriba"))
             {
                return false;
             }
@@ -364,110 +373,43 @@ namespace Laberinto
       {
 
          int fila = GetFilaActual();
-
          int columna = GetColumnaActual();
-         int ultimaColumna = laberinto.GetLength(1) - 1;
-         int proxColumna = GetColumnaActual() + 1;
-         //x si esta en la ultima fila
-         Console.WriteLine($"fila {fila}, {laberinto.GetLength(1) - 1}");
-         if (fila == laberinto.GetLength(0) - 1) return false;
+         int[] posicionColumnas = new int[] { -1, 0, 1 };
 
-         try
+
+         if (EsFilaInferior())
          {
-            //misma columna, fila abajo
-            if (laberinto[fila + 1, columna] == 1)
+            Console.WriteLine("fila inferios");
+            return false;
+         }
+         else if (fila < GetCantidadFilas()-1)
+         {
+            if (CeldaOcupada(fila + 2, columna,"abajooo"))
             {
-               Console.WriteLine("entra 1");
-
                return false;
             }
          }
-         catch (Exception error)
+
+
+         if (columna == 0)
          {
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine("entra err 1");
 
-
-            Console.ResetColor();
-
+            int[] posicionColumnasCero = new int[] { 0, 1 };
+            posicionColumnas = posicionColumnasCero;
+         }
+         else if (EsUltimaColumna())
+         {
+            int[] posicionUltimaColumna = new int[] { -1, 0 };
+            posicionColumnas = posicionUltimaColumna;
          }
 
-
-         try
+         foreach (int colum in posicionColumnas)
          {
-
-            //columna anterior, fila abajo
-
-            if (columna >= 1 && laberinto[fila + 1, columna - 1] == 1)
+            if (CeldaOcupada(fila +1, columna + colum,"abajo"))
             {
-               Console.WriteLine("entra 2");
-
-               return false;
-            }
-
-         }
-         catch (Exception error)
-         {
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine("entra err2");
-
-
-            Console.ResetColor();
-
-         }
-
-         try
-         {
-            //columna siguiente, fila abajo
-
-            if (ultimaColumna == columna || laberinto[fila + 1, columna + 1] == 1)
-            {
-               Console.WriteLine("entra 3");
-
                return false;
             }
          }
-         catch (Exception error)
-         {
-            //Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine($"entra err 3, ultimaColumna: {ultimaColumna}, columna {columna} ");
-
-            try
-            {
-               Console.WriteLine(laberinto[fila - 1, columna + 1]);
-            }
-            catch (Exception)
-            { }
-            //Console.ResetColor();
-
-         }
-
-
-
-         try
-         {
-            //dos filas  abajo
-            if (fila + 1 <= ultimaColumna - 1)
-            {
-               if (laberinto[GetFilaActual() + 2, columna] == 1)
-               {
-                  Console.WriteLine("entra 4");
-
-                  return false;
-               }
-            }
-         }
-         catch (Exception error)
-         {
-            Console.BackgroundColor = ConsoleColor.Green;
-            Console.WriteLine("entra err 4");
-
-
-            Console.ResetColor();
-
-         }
-
-
          return true;
       }
 
