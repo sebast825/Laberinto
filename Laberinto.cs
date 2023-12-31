@@ -208,7 +208,7 @@ namespace Laberinto
             fila = GetFilaActual() + 1;
             complementoFilas = 0;
          }
-         if (EsFilaInferior())
+         if (EsUltimaFila())
          {
             complementoFilas = 0;
          }
@@ -261,17 +261,19 @@ namespace Laberinto
       {
          return GetFilaActual() == 0 ? true : false;
       }
-      public bool EsFilaInferior()
+      public bool EsUltimaFila()
       {
          return GetFilaActual() == (laberinto.GetLength(0) - 1) ? true : false;
          // Console.WriteLine($"fila: {GetFilaActual()}, length: {laberinto.GetLength(0) - 1}");
 
       }
-      public int GetCantidadFilas(){
-         return (laberinto.GetLength(0)-1);
+      public int GetCantidadFilas()
+      {
+         return (laberinto.GetLength(0) - 1);
       }
-      public bool EsUltimaColumna(){
-            return GetColumnaActual() == (laberinto.GetLength(1) - 1) ? true : false;
+      public bool EsUltimaColumna()
+      {
+         return GetColumnaActual() == (laberinto.GetLength(1) - 1) ? true : false;
 
       }
       public bool ValidarIzquierda()
@@ -288,7 +290,7 @@ namespace Laberinto
             fila = GetFilaActual() + 1;
             complementoFilas = 0;
          }
-         if (EsFilaInferior())
+         if (EsUltimaFila())
          {
             complementoFilas = 0;
          }
@@ -339,7 +341,7 @@ namespace Laberinto
          }
          if (fila > 1)
          {
-            if (CeldaOcupada(fila - 2, columna,"arriba"))
+            if (CeldaOcupada(fila - 2, columna, "arriba"))
             {
                return false;
             }
@@ -361,7 +363,7 @@ namespace Laberinto
 
          foreach (int colum in posicionColumnas)
          {
-            if (CeldaOcupada(fila - 1, columna + colum,"arriba"))
+            if (CeldaOcupada(fila - 1, columna + colum, "arriba"))
             {
                return false;
             }
@@ -376,36 +378,37 @@ namespace Laberinto
          int columna = GetColumnaActual();
          int[] posicionColumnas = new int[] { -1, 0, 1 };
 
-
-         if (EsFilaInferior())
+         // si es la ultima fila
+         if (EsUltimaFila())
          {
-            Console.WriteLine("fila inferios");
             return false;
          }
-         else if (fila < GetCantidadFilas()-1)
+         //si no tiene posibilidad de revisar 2 adelante
+         else if (fila < GetCantidadFilas() - 1)
          {
-            if (CeldaOcupada(fila + 2, columna,"abajooo"))
+            if (CeldaOcupada(fila + 2, columna, "abajooo"))
             {
                return false;
             }
          }
 
-
+         //si es la primer columna
          if (columna == 0)
          {
 
             int[] posicionColumnasCero = new int[] { 0, 1 };
             posicionColumnas = posicionColumnasCero;
          }
+         //si es la ultima columna
          else if (EsUltimaColumna())
          {
             int[] posicionUltimaColumna = new int[] { -1, 0 };
             posicionColumnas = posicionUltimaColumna;
          }
-
+         //itera
          foreach (int colum in posicionColumnas)
          {
-            if (CeldaOcupada(fila +1, columna + colum,"abajo"))
+            if (CeldaOcupada(fila + 1, columna + colum, "abajo"))
             {
                return false;
             }
