@@ -33,7 +33,7 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 4, 2 };
+         int[] posiInicia = new int[2] { 3, 2 };
          //posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
@@ -122,24 +122,24 @@ namespace Laberinto
       }
       public bool ValidarIzquierda()
       {
-         int fila = GetFilaActual() - 1;
+         int fila = GetFilaActual() ;
          int columnaAnterior = GetColumnaActual() - 1;
-         //con 2 recorre las 3 filas porque fila
-         int recorrerCantidadFilas = 2;
-         //x si esta en la primer columna
+         //en caso de que no sea limite superior o inferior de la matriz, tiene que recorrer 3 filas en vez de 2
+         int complementoFilas = 1;
+         //x si esta en la primer columna, no puede agregar un valor a la izquierda
          if (GetColumnaActual() == 0) return false;
 
          if (EsFilaSuperior())
          {
-            fila = GetFilaActual();
-            recorrerCantidadFilas = 1;
+            fila = GetFilaActual() +1;
+            complementoFilas = 0;
          }
          if (EsFilaInferior())
          {
-            recorrerCantidadFilas = 1;
+            complementoFilas = 0;
          }
 
-         for (int i = fila; i <= fila + recorrerCantidadFilas; i++)
+         for (int i = fila -1; i <= fila + complementoFilas; i++)
          {
             //(Console.WriteLine("asd");
             for (int j = columnaAnterior; j > columnaAnterior - 1; j--)
