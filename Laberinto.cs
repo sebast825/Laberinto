@@ -48,8 +48,8 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 4, 14 };
-         //posiInicial = CreatePosicionInicial();
+         int[] posiInicia = new int[2] { 4, 4 };
+         posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
          /*ModificarLaberinto(1, 4);
