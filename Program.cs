@@ -5,19 +5,54 @@ class Program
 {
   static void Main(string[] args)
   {
-    Laberinto unLaberinto = new Laberinto(5, 5);
-    unLaberinto.SetPosicionInicial();
+    Laberinto unLaberinto = new Laberinto(5, 15);
 
-    unLaberinto.ElegirDireccion();
-    unLaberinto.MostrarMatriz();
-  /*  bool posiValida = unLaberinto.ValidarDireccion(3); unLaberinto.MostrarMatriz();
-    Console.WriteLine(posiValida);
-    if (posiValida)
-    {
-      unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual()+1, unLaberinto.GetColumnaActual() , 3);
+    /*
+    bool posiValida = unLaberinto.ValidarDireccion(2); unLaberinto.MostrarMatriz();
+
+  if (posiValida)
+      {
+        unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual()+1, unLaberinto.GetColumnaActual() , 3);
+      }
+      Console.WriteLine("");
+      unLaberinto.MostrarMatriz();*/
+
+/*
+
+//ES ESTOO
+  unLaberinto.SetPosicionInicial();
+      unLaberinto.MostrarMatriz();
+unLaberinto.ValidarDireccion(2);
+      unLaberinto.MostrarMatriz();
+
+*/
+
+
+    
+  unLaberinto.SetPosicionInicial();
+
+    int i = 0;
+    bool sigue = true;
+    while (i < 30 && sigue)
+    {      Console.WriteLine($"iteration {i}");
+
+     sigue =  unLaberinto.ElegirDireccion();
+      unLaberinto.MostrarMatriz();
+      //Console.WriteLine($"{unLaberinto.GetColumnaActual()},{unLaberinto.GetFilaActual()}");
+      Console.WriteLine("");
+
+      i++;
     }
-    Console.WriteLine("");
-    unLaberinto.MostrarMatriz();*/
+
+
+    /*  bool posiValida = unLaberinto.ValidarDireccion(3); unLaberinto.MostrarMatriz();
+      Console.WriteLine(posiValida);
+      if (posiValida)
+      {
+        unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual()+1, unLaberinto.GetColumnaActual() , 3);
+      }
+      Console.WriteLine("");
+      unLaberinto.MostrarMatriz();*/
     /*
     int i = 0;
     while(i < 10){

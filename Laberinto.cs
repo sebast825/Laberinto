@@ -13,11 +13,17 @@ namespace Laberinto
       {
          laberinto = new int[filas, columnas];
          rnd = new Random();
+         posiActual = new int[2];
          // int [] direccionesDisponibles = new int []{0,1,2,3};
          //posiActual = GetPosicionInicial();
 
       }
 
+      public void ShowPosiActual(string direction)
+      {
+
+         Console.WriteLine($"{direction} | fila:{GetFilaActual()}, columna{GetColumnaActual()}");
+      }
       public int[,] GetLaberinto()
       {
          return laberinto;
@@ -30,25 +36,35 @@ namespace Laberinto
       {
          return posiActual[1];
       }
+      public void SetFilaActual(int fila)
+      {
+         posiActual[0] = fila;
+      }
+      public void SetColumnaActual(int columna)
+      {
+         posiActual[1] = columna;
+      }
+
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 2, 3 };
+         int[] posiInicia = new int[2] { 4, 14 };
          //posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
-         ModificarLaberinto(3, 3);
-         ModificarLaberinto(2, 2);
+         /*ModificarLaberinto(1, 4);
+         ModificarLaberinto(2, 3);
+*/
+         //ModificarLaberinto(3, 4);
 
-         ModificarLaberinto(2, 4);
-
-        // ModificarLaberinto(1, 3);
+         //ModificarLaberinto(1, 3);
 
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
 
       }
       public void ModificarLaberinto(int fila, int columna, int valor = 1)
       {
+
          laberinto[fila, columna] = valor;
       }
       public int[] CreatePosicionInicial()
@@ -67,7 +83,6 @@ namespace Laberinto
          int[] dirreccion = direccionesDisponibles;
 
          int elegirDireccin = rnd.Next(0, dirreccion.Length);
-         Console.WriteLine($"elegirdirec {elegirDireccin}");
          return dirreccion[elegirDireccin];
       }
       public bool ValidarDireccion(int direccion)
@@ -94,7 +109,6 @@ namespace Laberinto
                break;
 
          }
-         Console.WriteLine(esValido);
          return esValido;
       }
 
@@ -106,20 +120,43 @@ namespace Laberinto
          {
             //valida arriba
             case 0:
-               ModificarLaberinto(GetFilaActual() - 1, GetColumnaActual(), 3);
+               ShowPosiActual("arriba");
+               ModificarLaberinto(GetFilaActual() - 1, GetColumnaActual());
+               SetFilaActual(GetFilaActual() - 1);
+               SetColumnaActual(GetColumnaActual());
+               ShowPosiActual("arriba");
+
                break;
+
             case 1:
-               ModificarLaberinto(GetFilaActual(), GetColumnaActual() + 1, 3);
+               ShowPosiActual("derecha");
+
+               ModificarLaberinto(GetFilaActual(), GetColumnaActual() + 1);
+               SetFilaActual(GetFilaActual());
+               SetColumnaActual(GetColumnaActual() + 1);
+               ShowPosiActual("derecha");
 
                break;
+
             case 2:
-               ModificarLaberinto(GetFilaActual() + 1, GetColumnaActual(), 3);
+               ShowPosiActual("abajo");
+
+               ModificarLaberinto(GetFilaActual() + 1, GetColumnaActual());
+               SetFilaActual(GetFilaActual() + 1);
+               SetColumnaActual(GetColumnaActual());
+               ShowPosiActual("abajo");
 
                break;
+
             case 3:
-               ModificarLaberinto(GetFilaActual(), GetColumnaActual() - 1, 3);
+               ShowPosiActual("izquierda");
+               ModificarLaberinto(GetFilaActual(), GetColumnaActual() - 1);
+               SetFilaActual(GetFilaActual());
+               SetColumnaActual(GetColumnaActual() - 1);
+               ShowPosiActual("izquierda");
 
                break;
+
             default:
                Console.WriteLine("error");
                break;
@@ -128,7 +165,7 @@ namespace Laberinto
 
       }
 
-      public void ElegirDireccion()
+      public bool ElegirDireccion()
       {
          int[] direccionesDisponibles = new int[] { 0, 1, 2, 3 };
          int numDireccion = GetDireccionRandom(direccionesDisponibles);
@@ -141,16 +178,22 @@ namespace Laberinto
 
             if (direccionesDisponibles.Length == 0)
             {
-               Console.WriteLine("no da mas");
                break;
             }
             numDireccion = GetDireccionRandom(direccionesDisponibles);
             isValid = ValidarDireccion(numDireccion);
          }
-         Console.WriteLine("no hay numeritos");
          if (isValid)
          {
+
             SwichModificarLaberinto(numDireccion);
+            return true;
+         }
+         else
+         {
+            Console.WriteLine($"is valid: {isValid}");
+
+            return false;
          }
       }
       public bool ValidarDerecha()
@@ -307,49 +350,109 @@ namespace Laberinto
       {
 
          int fila = GetFilaActual();
-         int filaSiguiente = fila + 1;
+
          int columna = GetColumnaActual();
          int ultimaColumna = laberinto.GetLength(1) - 1;
-         //Console.WriteLine($"{ultimaColumna},{fila}");
          int proxColumna = GetColumnaActual() + 1;
-         //x si esta en la ultima columna
-         if (fila == ultimaColumna) return false;
+         //x si esta en la ultima fila
+         Console.WriteLine($"fila {fila}, {laberinto.GetLength(1) - 1}");
+         if (fila == laberinto.GetLength(0) - 1) return false;
 
-         //misma columna, fila abajo
-         if (laberinto[fila + 1, columna] == 1)
+         try
          {
-            // Console.WriteLine("entra 1");
-
-            return false;
-         }
-         //columna anterior, fila abajo
-
-         if (laberinto[fila + 1, columna - 1] == 1)
-         {
-            //Console.WriteLine("entra 2");
-
-            return false;
-         }
-         //columna siguiente, fila abajo
-
-         if (laberinto[fila + 1, columna + 1] == 1)
-         {
-            //Console.WriteLine("entra 3");
-
-            return false;
-         }
-
-
-         //dos filas  abajo
-         if (fila + 1 <= ultimaColumna - 1)
-         {
-            if (laberinto[GetFilaActual() + 2, columna] == 1)
+            //misma columna, fila abajo
+            if (laberinto[fila + 1, columna] == 1)
             {
-               // Console.WriteLine("entra 4");
+               Console.WriteLine("entra 1");
 
                return false;
             }
          }
+         catch (Exception error)
+         {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine("entra err 1");
+
+
+            Console.ResetColor();
+
+         }
+
+
+         try
+         {
+
+            //columna anterior, fila abajo
+
+            if (columna >= 1 && laberinto[fila + 1, columna - 1] == 1)
+            {
+               Console.WriteLine("entra 2");
+
+               return false;
+            }
+
+         }
+         catch (Exception error)
+         {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine("entra err2");
+
+
+            Console.ResetColor();
+
+         }
+
+         try
+         {
+            //columna siguiente, fila abajo
+
+            if (ultimaColumna == columna || laberinto[fila + 1, columna + 1] == 1)
+            {
+               Console.WriteLine("entra 3");
+
+               return false;
+            }
+         }
+         catch (Exception error)
+         {
+            //Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine($"entra err 3, ultimaColumna: {ultimaColumna}, columna {columna} ");
+
+            try
+            {
+               Console.WriteLine(laberinto[fila - 1, columna + 1]);
+            }
+            catch (Exception)
+            { }
+            //Console.ResetColor();
+
+         }
+
+
+
+         try
+         {
+            //dos filas  abajo
+            if (fila + 1 <= ultimaColumna - 1)
+            {
+               if (laberinto[GetFilaActual() + 2, columna] == 1)
+               {
+                  Console.WriteLine("entra 4");
+
+                  return false;
+               }
+            }
+         }
+         catch (Exception error)
+         {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.WriteLine("entra err 4");
+
+
+            Console.ResetColor();
+
+         }
+
 
          return true;
       }
