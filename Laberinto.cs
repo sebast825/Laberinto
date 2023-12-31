@@ -33,11 +33,11 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 3, 2 };
+         int[] posiInicia = new int[2] { 4, 2 };
          //posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
-         //ModificarLaberinto(3,2);
+         //ModificarLaberinto(3,3);
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
 
       }
@@ -64,7 +64,7 @@ namespace Laberinto
       }
       public bool ValidarDireccion(int direccion)
       {
-         bool esValido = ValidarIzquierda();
+         bool esValido = ValidarDerecha();
          /*
                   switch (direccion)
                   {
@@ -79,16 +79,25 @@ namespace Laberinto
       public bool ValidarDerecha()
       {
 
-         int fila = GetFilaActual() - 1;
+         int fila = GetFilaActual();
          int proxColumna = GetColumnaActual() + 1;
          //x si esta en la ultima columna
          if (proxColumna == laberinto.GetLength(1)) return false;
-
-         for (int i = fila; i <= fila + 2; i++)
+         int complementoFilas = 1;
+         if (EsFilaSuperior())
+         {
+            fila = GetFilaActual() + 1;
+            complementoFilas = 0;
+         }
+         if (EsFilaInferior())
+         {
+            complementoFilas = 0;
+         }
+         for (int i = fila - 1; i <= fila + complementoFilas; i++)
          {
             for (int j = proxColumna; j < proxColumna + 1; j++)
             {
-               //Console.WriteLine($"entra: {i},{j}");
+               Console.WriteLine($"entra: {i},{j}");
                if (laberinto[i, j] == 1) return false;
 
                //verifica una 2da columna para la misma fila 
@@ -97,7 +106,7 @@ namespace Laberinto
                   //en caso de que salga de la matriz no pasa nada
                   try
                   {
-                     //Console.WriteLine($"entraa: {i},{j + 1}");
+                     Console.WriteLine($"entraa: {i},{j + 1}");
                      if (laberinto[i, j + 1] == 1) return false;
 
                   }
@@ -122,7 +131,7 @@ namespace Laberinto
       }
       public bool ValidarIzquierda()
       {
-         int fila = GetFilaActual() ;
+         int fila = GetFilaActual();
          int columnaAnterior = GetColumnaActual() - 1;
          //en caso de que no sea limite superior o inferior de la matriz, tiene que recorrer 3 filas en vez de 2
          int complementoFilas = 1;
@@ -131,7 +140,7 @@ namespace Laberinto
 
          if (EsFilaSuperior())
          {
-            fila = GetFilaActual() +1;
+            fila = GetFilaActual() + 1;
             complementoFilas = 0;
          }
          if (EsFilaInferior())
@@ -139,7 +148,7 @@ namespace Laberinto
             complementoFilas = 0;
          }
 
-         for (int i = fila -1; i <= fila + complementoFilas; i++)
+         for (int i = fila - 1; i <= fila + complementoFilas; i++)
          {
             //(Console.WriteLine("asd");
             for (int j = columnaAnterior; j > columnaAnterior - 1; j--)
