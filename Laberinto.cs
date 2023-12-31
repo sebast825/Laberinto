@@ -38,11 +38,11 @@ namespace Laberinto
          posiInicial = posiInicia;
          posiActual = posiInicial;
          ModificarLaberinto(3, 3);
-         //ModificarLaberinto(2, 2);
+         ModificarLaberinto(2, 2);
 
          ModificarLaberinto(2, 4);
 
-         ModificarLaberinto(1, 3);
+        // ModificarLaberinto(1, 3);
 
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
 
@@ -106,14 +106,14 @@ namespace Laberinto
          {
             //valida arriba
             case 0:
-               ModificarLaberinto(GetFilaActual() + 1, GetColumnaActual(), 3);
+               ModificarLaberinto(GetFilaActual() - 1, GetColumnaActual(), 3);
                break;
             case 1:
                ModificarLaberinto(GetFilaActual(), GetColumnaActual() + 1, 3);
 
                break;
             case 2:
-               ModificarLaberinto(GetFilaActual() - 1, GetColumnaActual(), 3);
+               ModificarLaberinto(GetFilaActual() + 1, GetColumnaActual(), 3);
 
                break;
             case 3:
