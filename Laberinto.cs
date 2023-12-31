@@ -33,7 +33,7 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 2, 2 };
+         int[] posiInicia = new int[2] { 4, 2 };
          //posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
@@ -109,19 +109,42 @@ namespace Laberinto
          }
          return true;
       }
+
+      public bool EsFilaSuperior()
+      {
+         return GetFilaActual() == 0 ? true : false;
+      }
+      public bool EsFilaInferior()
+      {
+         bool asd = GetFilaActual() == (laberinto.GetLength(0) - 1) ? true : false;
+         Console.WriteLine($"fila: {GetFilaActual()}, length: {laberinto.GetLength(0) - 1}");
+         return asd;
+      }
       public bool ValidarIzquierda()
       {
-
          int fila = GetFilaActual() - 1;
          int columnaAnterior = GetColumnaActual() - 1;
+         //con 2 recorre las 3 filas porque fila
+         int recorrerCantidadFilas = 2;
          //x si esta en la primer columna
          if (GetColumnaActual() == 0) return false;
 
-         for (int i = fila; i <= fila + 2; i++)
+         if (EsFilaSuperior())
+         {
+            fila = GetFilaActual();
+            recorrerCantidadFilas = 1;
+         }
+         if (EsFilaInferior())
+         {
+            recorrerCantidadFilas = 1;
+         }
+
+         for (int i = fila; i <= fila + recorrerCantidadFilas; i++)
          {
             //(Console.WriteLine("asd");
-            for (int j = columnaAnterior; j > columnaAnterior -1; j--)
+            for (int j = columnaAnterior; j > columnaAnterior - 1; j--)
             {
+
                Console.WriteLine($"entra: {i},{j}");
                if (laberinto[i, j] == 1) return false;
 
