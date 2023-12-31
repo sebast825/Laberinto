@@ -11,7 +11,7 @@ class Program
     Console.WriteLine(posiValida);
     if (posiValida)
     {
-      unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual()-1, unLaberinto.GetColumnaActual() , 3);
+      unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual()+1, unLaberinto.GetColumnaActual() , 3);
     }
     Console.WriteLine("");
     unLaberinto.MostrarMatriz();

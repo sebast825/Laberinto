@@ -33,11 +33,11 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 2, 4 };
+         int[] posiInicia = new int[2] { 2, 3 };
          //posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
-         ModificarLaberinto(0, 4);
+         ModificarLaberinto(3, 3);
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
 
       }
@@ -64,7 +64,7 @@ namespace Laberinto
       }
       public bool ValidarDireccion(int direccion)
       {
-         bool esValido = ValidarArriba();
+         bool esValido = ValidarAbajo();
          /*
                   switch (direccion)
                   {
@@ -226,6 +226,56 @@ namespace Laberinto
          return true;
       }
 
+ public bool ValidarAbajo()
+      {
+
+         int fila = GetFilaActual();
+         int filaSiguiente = fila + 1;
+         int columna = GetColumnaActual();
+         int ultimaColumna = laberinto.GetLength(1)-1;
+         Console.WriteLine($"{ultimaColumna},{fila}");
+         int proxColumna = GetColumnaActual() + 1;
+         //x si esta en la ultima columna
+         if (fila == ultimaColumna) return false;
+
+         //misma columna, fila abajo
+         if (laberinto[fila + 1, columna] == 1)
+         {
+            Console.WriteLine("entra 1");
+
+            return false;
+         }
+                  //columna anterior, fila abajo
+
+        if (laberinto[fila + 1, columna-1] == 1)
+         {
+            Console.WriteLine("entra 2");
+
+            return false;
+         }
+                           //columna siguiente, fila abajo
+
+          if (laberinto[fila + 1, columna +1] == 1)
+         {
+            Console.WriteLine("entra 3");
+
+            return false;
+         }
+
+
+            //dos filas  abajo
+         if (fila+1 <= ultimaColumna-1)
+         {
+            if (laberinto[GetFilaActual() + 2, columna] == 1)
+            {
+               Console.WriteLine("entra 4");
+
+               return false;
+            }
+         }
+
+         return true;
+      }
 
       public bool ReturnBool()
       {
