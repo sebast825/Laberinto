@@ -33,11 +33,11 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {
-         int[] posiInicia = new int[2] { 4, 2 };
+         int[] posiInicia = new int[2] { 2, 4 };
          //posiInicial = CreatePosicionInicial();
          posiInicial = posiInicia;
          posiActual = posiInicial;
-         //ModificarLaberinto(3,3);
+         ModificarLaberinto(0, 4);
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
 
       }
@@ -64,7 +64,7 @@ namespace Laberinto
       }
       public bool ValidarDireccion(int direccion)
       {
-         bool esValido = ValidarDerecha();
+         bool esValido = ValidarArriba();
          /*
                   switch (direccion)
                   {
@@ -110,7 +110,9 @@ namespace Laberinto
                      if (laberinto[i, j + 1] == 1) return false;
 
                   }
-                  catch (Exception error) { }
+                  catch (Exception error)
+                  {
+                  }
                }
             }
 
@@ -167,12 +169,60 @@ namespace Laberinto
                      if (laberinto[i, j - 1] == 1) return false;
 
                   }
-                  catch (Exception error) { }
+                  catch (Exception error)
+                  {
+                     Console.WriteLine("asd");
+                  }
                }
             }
 
 
          }
+         return true;
+      }
+
+      public bool ValidarArriba()
+      {
+
+         int fila = GetFilaActual();
+         int filaAnterior = fila - 1;
+         int columna = GetColumnaActual();
+         Console.WriteLine($"{columna},{laberinto.GetLength(1)}");
+         int proxColumna = GetColumnaActual() + 1;
+         //x si esta en la ultima columna
+         if (fila == 0) return false;
+
+         //misma columna, fila arriba
+         if (laberinto[GetFilaActual() - 1, columna] == 1)
+         {
+            Console.WriteLine("entra 1");
+
+            return false;
+         }
+         //fila anterior, columna siguiente
+         if (columna < (laberinto.GetLength(1) - 1) && laberinto[filaAnterior, columna + 1] == 1)
+         {
+            Console.WriteLine("entra 2");
+            return false;
+         }
+         //fila anterior
+         if (columna >= 1 && laberinto[filaAnterior, columna - 1] == 1)
+         {
+            Console.WriteLine("entra 3");
+
+            return false;
+         }
+            //dos filas  arriba
+         if (fila >= 2)
+         {
+            if (laberinto[GetFilaActual() - 2, columna] == 1)
+            {
+               Console.WriteLine("entra 4");
+
+               return false;
+            }
+         }
+
          return true;
       }
 

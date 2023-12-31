@@ -8,10 +8,10 @@ class Program
     Laberinto unLaberinto = new Laberinto(5, 5);
     unLaberinto.SetPosicionInicial();
     bool posiValida = unLaberinto.ValidarDireccion(3); unLaberinto.MostrarMatriz();
-
+    Console.WriteLine(posiValida);
     if (posiValida)
     {
-      unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual(), unLaberinto.GetColumnaActual() - 1, 3);
+      unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual()-1, unLaberinto.GetColumnaActual() , 3);
     }
     Console.WriteLine("");
     unLaberinto.MostrarMatriz();
