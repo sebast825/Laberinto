@@ -14,7 +14,7 @@ namespace Laberinto
          laberinto = new int[filas, columnas];
          rnd = new Random();
          posiActual = new int[2];
-          posiInicial = new int[2];
+         posiInicial = new int[2];
          // int [] direccionesDisponibles = new int []{0,1,2,3};
          //posiActual = GetPosicionInicial();
 
@@ -45,10 +45,12 @@ namespace Laberinto
       {
          posiActual[1] = columna;
       }
-      public void SetFilaInicial(int fila){
+      public void SetFilaInicial(int fila)
+      {
          posiInicial[0] = fila;
       }
-  public void SetColumnaInicial(int columna){
+      public void SetColumnaInicial(int columna)
+      {
          posiInicial[1] = columna;
       }
 
@@ -56,14 +58,14 @@ namespace Laberinto
       {// { 1, 4 }
          int[] posiIni = new int[2];
          posiIni = CreatePosicionInicial();
-        SetFilaInicial(posiIni[0]);
+         SetFilaInicial(posiIni[0]);
          SetColumnaInicial(posiIni[1]);
          SetFilaActual(posiInicial[0]);
          SetColumnaActual(posiInicial[1]);
-     
+
          //ModificarLaberinto(2, 3);
 
-      //ModificarLaberinto(3, 4);
+         //ModificarLaberinto(3, 4);
 
 
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
@@ -81,7 +83,8 @@ namespace Laberinto
 
          posiInicial[0] = rnd.Next(0, laberinto.GetLength(0));
          posiInicial[1] = rnd.Next(0, laberinto.GetLength(1));
-         foreach(int elem in posiInicial){
+         foreach (int elem in posiInicial)
+         {
             Console.WriteLine(elem);
          }
          return posiInicial;
@@ -124,7 +127,6 @@ namespace Laberinto
 
       public void SwichModificarLaberinto(int direccion)
       {
-
 
          switch (direccion)
          {
@@ -219,9 +221,9 @@ namespace Laberinto
             return false;
          }
          //si no tiene posibilidad de revisar 2 atras
-         else if (columna < GetCantidadColumnas()-1)
+         else if (columna < GetCantidadColumnas() - 1)
          {
-            if (CeldaOcupada(fila , columna+2, "derr"))
+            if (CeldaOcupada(fila, columna + 2, "derr"))
             {
                return false;
             }
@@ -243,7 +245,7 @@ namespace Laberinto
          //itera
          foreach (int fil in posicionFilas)
          {
-            if (CeldaOcupada(fila + fil, columna +1, "der"))
+            if (CeldaOcupada(fila + fil, columna + 1, "der"))
             {
                return false;
             }
@@ -278,12 +280,12 @@ namespace Laberinto
          // Console.WriteLine($"fila: {GetFilaActual()}, length: {laberinto.GetLength(0) - 1}");
 
       }
-      
+
       public int GetCantidadFilas()
       {
          return (laberinto.GetLength(0) - 1);
       }
-        public int GetCantidadColumnas()
+      public int GetCantidadColumnas()
       {
          return (laberinto.GetLength(1) - 1);
       }
@@ -294,7 +296,7 @@ namespace Laberinto
       }
       public bool ValidarIzquierda()
       {
-        
+
          int fila = GetFilaActual();
          int columna = GetColumnaActual();
          int[] posicionFilas = new int[] { -1, 0, 1 };
@@ -307,7 +309,7 @@ namespace Laberinto
          //si no tiene posibilidad de revisar 2 atras
          else if (columna > 1)
          {
-            if (CeldaOcupada(fila , columna-2, "izqqqq"))
+            if (CeldaOcupada(fila, columna - 2, "izqqqq"))
             {
                return false;
             }
@@ -329,15 +331,13 @@ namespace Laberinto
          //itera
          foreach (int fil in posicionFilas)
          {
-            if (CeldaOcupada(fila + fil, columna -1, "izq"))
+            if (CeldaOcupada(fila + fil, columna - 1, "izq"))
             {
                return false;
             }
          }
          return true;
       }
-
-
       public bool ValidarArriba()
       {
 
@@ -381,7 +381,6 @@ namespace Laberinto
          }
          return true;
       }
-
       public bool ValidarAbajo()
       {
 
