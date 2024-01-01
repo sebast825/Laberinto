@@ -1,52 +1,59 @@
 ﻿using System.Linq.Expressions;
-
+using System.Diagnostics;
 namespace Laberinto;
 class Program
 {
   static void Main(string[] args)
   {
-    Laberinto unLaberinto = new Laberinto(13, 15);
 
+
+    Celda unaCelda = new Celda(1, 2);
+    Console.WriteLine(unaCelda.GetColumna());
+    Console.WriteLine(unaCelda.GetFila());
+
+    Console.WriteLine(unaCelda.GetEsVisible());
+    unaCelda.SetEsVisible();
+    Console.WriteLine(unaCelda.GetEsVisible());
+
+    Console.WriteLine(unaCelda.GetPuedePisar());
+/*
+ Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();*/
+    Laberinto unLaberinto = new Laberinto(15, 15);
     /*
-    bool posiValida = unLaberinto.ValidarDireccion(2); unLaberinto.MostrarMatriz();
 
-  if (posiValida)
-      {
-        unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual()+1, unLaberinto.GetColumnaActual() , 3);
-      }
-      Console.WriteLine("");
-      unLaberinto.MostrarMatriz();*/
+     //ES ESTOO
+       unLaberinto.SetPosicionInicial();
+             unLaberinto.ModificarLaberinto(4, 14);
+           unLaberinto.MostrarMatriz();
+     unLaberinto.ValidarDireccion(0);
+     Console.WriteLine("");
+           unLaberinto.MostrarMatriz();
+ */
 
-   
-   /*
 
-    //ES ESTOO
-      unLaberinto.SetPosicionInicial();
-            unLaberinto.ModificarLaberinto(4, 14);
-          unLaberinto.MostrarMatriz();
-    unLaberinto.ValidarDireccion(0);
-    Console.WriteLine("");
-          unLaberinto.MostrarMatriz();
-*/
+    //ACA LO RECORRE
+    //para una matriz de 15 *15, en 30 vueltas tarda 449ms
+    /*  unLaberinto.SetPosicionInicial();
+
+       int i = 0;
+       bool sigue = true;
+       while (i < 30 && sigue)
+       {
+         Console.WriteLine($"iteration {i}");
+
+         sigue = unLaberinto.ElegirDireccion();
+         unLaberinto.MostrarMatriz();
+         //Console.WriteLine($"{unLaberinto.GetColumnaActual()},{unLaberinto.GetFilaActual()}");
+         Console.WriteLine("");
+
+         i++;
+       }*/
+       /*
+     stopwatch.Stop();
+        Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");
  
-
-    unLaberinto.SetPosicionInicial();
-
-    int i = 0;
-    bool sigue = true;
-    while (i < 70 && sigue)
-    {
-      Console.WriteLine($"iteration {i}");
-
-      sigue = unLaberinto.ElegirDireccion();
-      unLaberinto.MostrarMatriz();
-      //Console.WriteLine($"{unLaberinto.GetColumnaActual()},{unLaberinto.GetFilaActual()}");
-      Console.WriteLine("");
-
-      i++;
-    }
-
-    
+*/
     //unLaberinto.MostrarMatriz();
 
     /*  bool posiValida = unLaberinto.ValidarDireccion(3); unLaberinto.MostrarMatriz();
@@ -72,9 +79,9 @@ class Program
     Personaje unPersonaje = new Personaje();
     Partida unaPartida = new Partida(unLaberinto.GetLaberinto(), unPersonaje);
     //unaPartida.MostrarLaberinto();
-    unLaberinto.MostrarMatriz();*/
+    unLaberinto.MostrarMatriz();
 
-    //unaPartida.Iniciar();
+    //unaPartida.Iniciar();*/
   }
 }
 
