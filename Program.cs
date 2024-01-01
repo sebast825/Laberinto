@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using System.Diagnostics;
+using System.Globalization;
 namespace Laberinto;
 class Program
 {
@@ -7,21 +8,10 @@ class Program
   {
 
 
-    Celda unaCelda = new Celda(1, 2);
-    Console.WriteLine(unaCelda.GetColumna());
-    Console.WriteLine(unaCelda.GetFila());
+    Stopwatch stopwatch = new Stopwatch();
 
-    Console.WriteLine(unaCelda.GetEsVisible());
-    unaCelda.SetEsVisible();
-    Console.WriteLine(unaCelda.GetEsVisible());
-
-    Console.WriteLine(unaCelda.GetPuedePisar());
-
-
- /*Stopwatch stopwatch = new Stopwatch();
- 
-        stopwatch.Start();*/
-    Laberinto unLaberinto = new Laberinto(15, 15);
+    stopwatch.Start();
+    Laberinto unLaberinto = new Laberinto(25, 25);
     /*
 
      //ES ESTOO
@@ -37,25 +27,66 @@ class Program
     //ACA LO RECORRE
     //para una matriz de 15 *15, en 30 vueltas tarda 449ms
     unLaberinto.CrearCeldas();
-     unLaberinto.SetPosicionInicial();
-    
-       int i = 0;
-       bool sigue = true;
-       while (i < 70 && sigue)
-       {
-         Console.WriteLine($"iteration {i}");
+    unLaberinto.SetPosicionInicial();
 
-         sigue = unLaberinto.ElegirDireccion();
-         unLaberinto.MostrarMatriz();
-         //Console.WriteLine($"{unLaberinto.GetColumnaActual()},{unLaberinto.GetFilaActual()}");
-         Console.WriteLine("");
+    int j = 0;
 
-         i++;
-       }
-       /*
-     stopwatch.Stop();
-        Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");
- */
+    bool sigue = true;
+    while (j < 60)
+    {
+      int i = 0;
+      bool seAgrego = false;
+      while (i < 10 && sigue)
+      {
+        Console.WriteLine($"iteration {i}");
+
+        sigue = unLaberinto.ElegirDireccion();
+        if (sigue)
+        {
+
+          unLaberinto.SetCasillaOcupada(unLaberinto.GetLaberinto()[unLaberinto.GetFilaActual(), unLaberinto.GetColumnaActual()]);
+        }
+        else
+        {
+          if (unLaberinto.HayCasillasDisponibles())
+          {
+            if (!seAgrego)
+            {
+              unLaberinto.SetCasillaOcupada(unLaberinto.GetLaberinto()[unLaberinto.GetFilaInicial(), unLaberinto.GetFilaInicial()]);
+              seAgrego = true;
+
+            }
+            unLaberinto.CambiarRutaLaberinto();
+            sigue = true;
+          }
+
+
+        }
+        Console.WriteLine("");
+
+        i++;
+      }
+      j++;
+      i = 0;
+      if (unLaberinto.HayCasillasDisponibles())
+      {
+        unLaberinto.CambiarRutaLaberinto();
+      }
+      else
+      {
+        break;
+      }
+    }
+
+
+
+    unLaberinto.MostrarMatriz();
+
+
+    Console.WriteLine($"{unLaberinto.GetFilaActual()},{unLaberinto.GetColumnaActual()}");
+    stopwatch.Stop();
+    Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");
+
 
     //unLaberinto.MostrarMatriz();
 

@@ -9,29 +9,53 @@ namespace Laberinto
       Random rnd = null!;
       public int[] posiInicial { get; set; }
       public int[] posiActual { get; set; }
-      public List <Celda> casillasOcupadas{get;set;}
+      public List<Celda> casillasOcupadas { get; set; }
       public Laberinto(int filas, int columnas)
       {
          laberinto = new Celda[filas, columnas];
          rnd = new Random();
          posiActual = new int[2];
          posiInicial = new int[2];
-         casillasOcupadas = new List <Celda>();
+         casillasOcupadas = new List<Celda>();
          // int [] direccionesDisponibles = new int []{0,1,2,3};
          //posiActual = GetPosicionInicial();
 
       }
-      public void CrearCeldas(){
 
-         int filas = GetCantidadFilas()+1;
-         int columnas = GetCantidadColumnas()+1;
-          for (int i = 0; i < filas; i++)
-        {
-            for (int j = 0; j < columnas; j++)
+      public void SetCasillaOcupada(Celda celda)
+      {
+         casillasOcupadas.Add(celda);
+      }
+      public bool HayCasillasDisponibles()
+      {
+         return casillasOcupadas.Count > 0 ? true : false;
+      }
+      public void CambiarRutaLaberinto()
+      {
+         int posicion = GetRandom(casillasOcupadas.Count);
+
+         SetFilaActual(casillasOcupadas[posicion].GetFila());
+         SetColumnaActual(casillasOcupadas[posicion].GetColumna());
+         casillasOcupadas.RemoveAt(posicion);
+      }
+
+      public int GetRandom(int techo)
+      {
+         int num = rnd.Next(0, techo);
+         return num;
+      }
+      public void CrearCeldas()
+      {
+
+         int filas = GetCantidadFilas();
+         int columnas = GetCantidadColumnas();
+         for (int i = 0; i <= filas; i++)
+         {
+            for (int j = 0; j <= columnas; j++)
             {
-                laberinto[i, j] = new Celda(i,j); // Aquí puedes inicializar la celda con el valor que desees
+               laberinto[i, j] = new Celda(i, j);
             }
-        }
+         }
       }
       public void ShowPosiActual(string direction)
       {
@@ -49,6 +73,14 @@ namespace Laberinto
       public int GetColumnaActual()
       {
          return posiActual[1];
+      }
+       public int GetFilaInicial()
+      {
+         return posiInicial[0];
+      }
+      public int GetColumnaInicial()
+      {
+         return posiInicial[1];
       }
       public void SetFilaActual(int fila)
       {
@@ -69,8 +101,8 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {// { 1, 4 }
-         int[] posiIni = new int[2];
-         posiIni = CreatePosicionInicial();
+         int[] posiIni = new int[2] { 3,3 };
+         //posiIni = CreatePosicionInicial();
          SetFilaInicial(posiIni[0]);
          SetColumnaInicial(posiIni[1]);
          SetFilaActual(posiInicial[0]);
@@ -82,6 +114,7 @@ namespace Laberinto
 
 
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
+         
 
       }
       public void ModificarLaberinto(int fila, int columna, bool valor = true)
@@ -106,7 +139,7 @@ namespace Laberinto
       public int GetDireccionRandom(List<int> direccionesDisponibles)
       {
 
-         List <int> dirreccion = direccionesDisponibles;
+         List<int> dirreccion = direccionesDisponibles;
 
          int elegirDireccin = rnd.Next(0, dirreccion.Count);
          return dirreccion[elegirDireccin];
@@ -193,14 +226,14 @@ namespace Laberinto
       public bool ElegirDireccion()
       {
          //int[] direccionesDisponibles = new int[] { 0, 1, 2, 3 };
-         List<int> direccionesDisponibles = new List<int>(){ 0, 1, 2, 3 };
+         List<int> direccionesDisponibles = new List<int>() { 0, 1, 2, 3 };
          int numDireccion = GetDireccionRandom(direccionesDisponibles);
          bool isValid = ValidarDireccion(numDireccion);
          //direccionesDisponibles.Length >=  1 ||
          while (!isValid)
          {
             direccionesDisponibles.Remove(numDireccion);
-           // direccionesDisponibles = direccionesDisponibles.Where(n => n != numDireccion).ToArray();
+            // direccionesDisponibles = direccionesDisponibles.Where(n => n != numDireccion).ToArray();
 
             if (direccionesDisponibles.Count == 0)
             {
@@ -457,7 +490,17 @@ namespace Laberinto
             {
                if (laberinto[i, j].GetPuedePisar())
                {
-                  Console.BackgroundColor = ConsoleColor.Red;
+                  if (i == posiInicial[0] && j == posiInicial[1])
+                  {
+                     Console.BackgroundColor = ConsoleColor.Green;
+                  }else if(i == posiActual[0] && j == posiActual[1]){
+                     Console.BackgroundColor = ConsoleColor.Blue;
+
+                  }
+                  else
+                  {
+                     Console.BackgroundColor = ConsoleColor.Red;
+                  }
                   Console.Write($" 1 ");
 
                   Console.ResetColor();
