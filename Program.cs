@@ -5,7 +5,7 @@ class Program
 {
   static void Main(string[] args)
   {
-    Laberinto unLaberinto = new Laberinto(15, 5);
+    Laberinto unLaberinto = new Laberinto(7, 5);
 
     /*
     bool posiValida = unLaberinto.ValidarDireccion(2); unLaberinto.MostrarMatriz();

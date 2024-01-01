@@ -267,6 +267,7 @@ namespace Laberinto
          // Console.WriteLine($"fila: {GetFilaActual()}, length: {laberinto.GetLength(0) - 1}");
 
       }
+      
       public int GetCantidadFilas()
       {
          return (laberinto.GetLength(0) - 1);
@@ -278,50 +279,45 @@ namespace Laberinto
       }
       public bool ValidarIzquierda()
       {
+        
          int fila = GetFilaActual();
-         int columnaAnterior = GetColumnaActual() - 1;
-         //en caso de que no sea limite superior o inferior de la matriz, tiene que recorrer 3 filas en vez de 2
-         int complementoFilas = 1;
-         //x si esta en la primer columna, no puede agregar un valor a la izquierda
-         if (GetColumnaActual() == 0) return false;
+         int columna = GetColumnaActual();
+         int[] posicionFilas = new int[] { -1, 0, 1 };
 
-         if (EsFilaSuperior())
+         // si es la primer columna
+         if (columna == 0)
          {
-            fila = GetFilaActual() + 1;
-            complementoFilas = 0;
+            return false;
          }
-         if (EsUltimaFila())
+         //si no tiene posibilidad de revisar 2 atras
+         else if (columna > 1)
          {
-            complementoFilas = 0;
-         }
-
-         for (int i = fila - 1; i <= fila + complementoFilas; i++)
-         {
-            //(Console.WriteLine("asd");
-            for (int j = columnaAnterior; j > columnaAnterior - 1; j--)
+            if (CeldaOcupada(fila , columna-2, "izqqqq"))
             {
-
-               //Console.WriteLine($"entra: {i},{j}");
-               if (laberinto[i, j] == 1) return false;
-
-               //verifica una 2da columna para la misma fila 
-               if (GetFilaActual() == i && j == columnaAnterior)
-               {
-                  //en caso de que salga de la matriz no pasa nada
-                  try
-                  {
-                     //Console.WriteLine($"entraa: {i},{j - 1}");
-                     if (laberinto[i, j - 1] == 1) return false;
-
-                  }
-                  catch (Exception error)
-                  {
-                     //Console.WriteLine("asd");
-                  }
-               }
+               return false;
             }
+         }
 
+         //si es la primer fila
+         if (fila == 0)
+         {
 
+            int[] posicionColumnasCero = new int[] { 0, 1 };
+            posicionFilas = posicionColumnasCero;
+         }
+         //si es la ultima fila
+         else if (EsUltimaFila())
+         {
+            int[] posicionUltimaColumna = new int[] { -1, 0 };
+            posicionFilas = posicionUltimaColumna;
+         }
+         //itera
+         foreach (int fil in posicionFilas)
+         {
+            if (CeldaOcupada(fila + fil, columna -1, "izq"))
+            {
+               return false;
+            }
          }
          return true;
       }
