@@ -9,12 +9,14 @@ namespace Laberinto
       Random rnd = null!;
       public int[] posiInicial { get; set; }
       public int[] posiActual { get; set; }
+      public List <Celda> casillasOcupadas{get;set;}
       public Laberinto(int filas, int columnas)
       {
          laberinto = new Celda[filas, columnas];
          rnd = new Random();
          posiActual = new int[2];
          posiInicial = new int[2];
+         casillasOcupadas = new List <Celda>();
          // int [] direccionesDisponibles = new int []{0,1,2,3};
          //posiActual = GetPosicionInicial();
 
@@ -101,12 +103,12 @@ namespace Laberinto
          return posiInicial;
       }
 
-      public int GetDireccionRandom(int[] direccionesDisponibles)
+      public int GetDireccionRandom(List<int> direccionesDisponibles)
       {
 
-         int[] dirreccion = direccionesDisponibles;
+         List <int> dirreccion = direccionesDisponibles;
 
-         int elegirDireccin = rnd.Next(0, dirreccion.Length);
+         int elegirDireccin = rnd.Next(0, dirreccion.Count);
          return dirreccion[elegirDireccin];
       }
       public bool ValidarDireccion(int direccion)
@@ -190,16 +192,17 @@ namespace Laberinto
 
       public bool ElegirDireccion()
       {
-         int[] direccionesDisponibles = new int[] { 0, 1, 2, 3 };
+         //int[] direccionesDisponibles = new int[] { 0, 1, 2, 3 };
+         List<int> direccionesDisponibles = new List<int>(){ 0, 1, 2, 3 };
          int numDireccion = GetDireccionRandom(direccionesDisponibles);
          bool isValid = ValidarDireccion(numDireccion);
          //direccionesDisponibles.Length >=  1 ||
          while (!isValid)
          {
+            direccionesDisponibles.Remove(numDireccion);
+           // direccionesDisponibles = direccionesDisponibles.Where(n => n != numDireccion).ToArray();
 
-            direccionesDisponibles = direccionesDisponibles.Where(n => n != numDireccion).ToArray();
-
-            if (direccionesDisponibles.Length == 0)
+            if (direccionesDisponibles.Count == 0)
             {
                break;
             }
