@@ -5,7 +5,7 @@ class Program
 {
   static void Main(string[] args)
   {
-    Laberinto unLaberinto = new Laberinto(7, 5);
+    Laberinto unLaberinto = new Laberinto(13, 15);
 
     /*
     bool posiValida = unLaberinto.ValidarDireccion(2); unLaberinto.MostrarMatriz();
@@ -34,7 +34,7 @@ class Program
 
     int i = 0;
     bool sigue = true;
-    while (i < 30 && sigue)
+    while (i < 70 && sigue)
     {
       Console.WriteLine($"iteration {i}");
 

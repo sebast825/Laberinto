@@ -14,6 +14,7 @@ namespace Laberinto
          laberinto = new int[filas, columnas];
          rnd = new Random();
          posiActual = new int[2];
+          posiInicial = new int[2];
          // int [] direccionesDisponibles = new int []{0,1,2,3};
          //posiActual = GetPosicionInicial();
 
@@ -44,18 +45,25 @@ namespace Laberinto
       {
          posiActual[1] = columna;
       }
-
+      public void SetFilaInicial(int fila){
+         posiInicial[0] = fila;
+      }
+  public void SetColumnaInicial(int columna){
+         posiInicial[1] = columna;
+      }
 
       public void SetPosicionInicial()
-      {
-         int[] posiInicia = new int[2] { 1, 4 };
-         //posiInicial = CreatePosicionInicial();
-         posiInicial = posiInicia;
-         posiActual = posiInicial;
-         /*ModificarLaberinto(1, 4);
-         ModificarLaberinto(2, 3);
-*/
-         //ModificarLaberinto(3, 4);
+      {// { 1, 4 }
+         int[] posiIni = new int[2];
+         posiIni = CreatePosicionInicial();
+        SetFilaInicial(posiIni[0]);
+         SetColumnaInicial(posiIni[1]);
+         SetFilaActual(posiInicial[0]);
+         SetColumnaActual(posiInicial[1]);
+     
+         //ModificarLaberinto(2, 3);
+
+      //ModificarLaberinto(3, 4);
 
 
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
@@ -73,6 +81,9 @@ namespace Laberinto
 
          posiInicial[0] = rnd.Next(0, laberinto.GetLength(0));
          posiInicial[1] = rnd.Next(0, laberinto.GetLength(1));
+         foreach(int elem in posiInicial){
+            Console.WriteLine(elem);
+         }
          return posiInicial;
       }
 
@@ -199,43 +210,43 @@ namespace Laberinto
       {
 
          int fila = GetFilaActual();
-         int proxColumna = GetColumnaActual() + 1;
-         //x si esta en la ultima columna
-         if (proxColumna == laberinto.GetLength(1)) return false;
-         int complementoFilas = 1;
-         if (EsFilaSuperior())
+         int columna = GetColumnaActual();
+         int[] posicionFilas = new int[] { -1, 0, 1 };
+
+         // si es la ultima columna
+         if (EsUltimaColumna())
          {
-            fila = GetFilaActual() + 1;
-            complementoFilas = 0;
+            return false;
          }
-         if (EsUltimaFila())
+         //si no tiene posibilidad de revisar 2 atras
+         else if (columna < GetCantidadColumnas()-1)
          {
-            complementoFilas = 0;
-         }
-         for (int i = fila - 1; i <= fila + complementoFilas; i++)
-         {
-            for (int j = proxColumna; j < proxColumna + 1; j++)
+            if (CeldaOcupada(fila , columna+2, "derr"))
             {
-               //Console.WriteLine($"entra: {i},{j}");
-               if (laberinto[i, j] == 1) return false;
-
-               //verifica una 2da columna para la misma fila 
-               if (GetFilaActual() == i && j == proxColumna)
-               {
-                  //en caso de que salga de la matriz no pasa nada
-                  try
-                  {
-                     //Console.WriteLine($"entraa: {i},{j + 1}");
-                     if (laberinto[i, j + 1] == 1) return false;
-
-                  }
-                  catch (Exception error)
-                  {
-                  }
-               }
+               return false;
             }
+         }
 
+         //si es la primer fila
+         if (fila == 0)
+         {
 
+            int[] posicionFilaCero = new int[] { 0, 1 };
+            posicionFilas = posicionFilaCero;
+         }
+         //si es la ultima fila
+         else if (EsUltimaFila())
+         {
+            int[] posicionUltimaFila = new int[] { -1, 0 };
+            posicionFilas = posicionUltimaFila;
+         }
+         //itera
+         foreach (int fil in posicionFilas)
+         {
+            if (CeldaOcupada(fila + fil, columna +1, "der"))
+            {
+               return false;
+            }
          }
          return true;
       }
@@ -271,6 +282,10 @@ namespace Laberinto
       public int GetCantidadFilas()
       {
          return (laberinto.GetLength(0) - 1);
+      }
+        public int GetCantidadColumnas()
+      {
+         return (laberinto.GetLength(1) - 1);
       }
       public bool EsUltimaColumna()
       {
