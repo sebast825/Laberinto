@@ -16,8 +16,10 @@ class Program
     Console.WriteLine(unaCelda.GetEsVisible());
 
     Console.WriteLine(unaCelda.GetPuedePisar());
-/*
- Stopwatch stopwatch = new Stopwatch();
+
+
+ /*Stopwatch stopwatch = new Stopwatch();
+ 
         stopwatch.Start();*/
     Laberinto unLaberinto = new Laberinto(15, 15);
     /*
@@ -34,11 +36,12 @@ class Program
 
     //ACA LO RECORRE
     //para una matriz de 15 *15, en 30 vueltas tarda 449ms
-    /*  unLaberinto.SetPosicionInicial();
-
+    unLaberinto.CrearCeldas();
+     unLaberinto.SetPosicionInicial();
+    
        int i = 0;
        bool sigue = true;
-       while (i < 30 && sigue)
+       while (i < 70 && sigue)
        {
          Console.WriteLine($"iteration {i}");
 
@@ -48,12 +51,12 @@ class Program
          Console.WriteLine("");
 
          i++;
-       }*/
+       }
        /*
      stopwatch.Stop();
         Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");
- 
-*/
+ */
+
     //unLaberinto.MostrarMatriz();
 
     /*  bool posiValida = unLaberinto.ValidarDireccion(3); unLaberinto.MostrarMatriz();

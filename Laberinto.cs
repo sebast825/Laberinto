@@ -5,13 +5,13 @@ namespace Laberinto
 {
    internal class Laberinto
    {
-      private int[,] laberinto;
+      private Celda[,] laberinto;
       Random rnd = null!;
       public int[] posiInicial { get; set; }
       public int[] posiActual { get; set; }
       public Laberinto(int filas, int columnas)
       {
-         laberinto = new int[filas, columnas];
+         laberinto = new Celda[filas, columnas];
          rnd = new Random();
          posiActual = new int[2];
          posiInicial = new int[2];
@@ -19,13 +19,24 @@ namespace Laberinto
          //posiActual = GetPosicionInicial();
 
       }
+      public void CrearCeldas(){
 
+         int filas = GetCantidadFilas()+1;
+         int columnas = GetCantidadColumnas()+1;
+          for (int i = 0; i < filas; i++)
+        {
+            for (int j = 0; j < columnas; j++)
+            {
+                laberinto[i, j] = new Celda(i,j); // Aquí puedes inicializar la celda con el valor que desees
+            }
+        }
+      }
       public void ShowPosiActual(string direction)
       {
 
          Console.WriteLine($"{direction} | fila:{GetFilaActual()}, columna{GetColumnaActual()}");
       }
-      public int[,] GetLaberinto()
+      public Celda[,] GetLaberinto()
       {
          return laberinto;
       }
@@ -71,10 +82,10 @@ namespace Laberinto
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
 
       }
-      public void ModificarLaberinto(int fila, int columna, int valor = 1)
+      public void ModificarLaberinto(int fila, int columna, bool valor = true)
       {
 
-         laberinto[fila, columna] = valor;
+         laberinto[fila, columna].SetPuedePisar(valor);
       }
       public int[] CreatePosicionInicial()
       {
@@ -257,7 +268,7 @@ namespace Laberinto
       {
          try
          {
-            return laberinto[fila, columna] == 1 ? true : false;
+            return laberinto[fila, columna].GetPuedePisar();
 
          }
          catch (Exception error)
@@ -441,16 +452,16 @@ namespace Laberinto
             //Console.Write($"{i} | ");
             for (int j = 0; j < laberinto.GetLength(1); j++)
             {
-               if (laberinto[i, j] == 1)
+               if (laberinto[i, j].GetPuedePisar())
                {
                   Console.BackgroundColor = ConsoleColor.Red;
-                  Console.Write($"{laberinto[i, j]} ");
+                  Console.Write($" 1 ");
 
                   Console.ResetColor();
                }
                else
                {
-                  Console.Write($"{laberinto[i, j]} ");
+                  Console.Write($" 0 ");
 
                }
             }

@@ -7,28 +7,36 @@ namespace Laberinto
 
       private int fila { get; }
       private int columna { get; }
-      private bool puedePisar{get;}
-      private bool esVisible {get;set;} = false;
+      private bool puedePisar { get;set;}
+      private bool esVisible { get; set; } = false;
       public Celda(int fila, int columna, bool puedePisar = false)
       {
          this.fila = fila;
          this.columna = columna;
          this.puedePisar = puedePisar;
       }
-      public int GetFila(){
+      public int GetFila()
+      {
          return fila;
       }
-      public int GetColumna(){
+      public int GetColumna()
+      {
          return columna;
       }
-      public bool GetPuedePisar(){
+      public bool GetPuedePisar()
+      {
          return puedePisar;
       }
-      
-      public bool GetEsVisible(){
+      public void SetPuedePisar(bool puedePisar)
+      {
+         this.puedePisar = puedePisar;
+      }
+      public bool GetEsVisible()
+      {
          return esVisible;
       }
-      public void SetEsVisible(bool esVisible = true){
+      public void SetEsVisible(bool esVisible = true)
+      {
          this.esVisible = esVisible;
       }
    }
