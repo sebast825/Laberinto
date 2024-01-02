@@ -114,6 +114,8 @@ namespace Laberinto
          int[] posiIni = new int[2] { 3, 3 };
 
          Celda celdaInicio = laberinto[posiIni[0], posiIni[1]];
+         SetFilaActual(posiIni[0]);
+         SetColumnaActual(posiIni[1]);
          celdaInicio.SetEsInicio();
          posiInicial = celdaInicio;
          CambiarCeldaLaberinto(posiInicial.GetFila(), posiInicial.GetColumna());
@@ -536,7 +538,7 @@ namespace Laberinto
                      //agrega la coordenada de inicio para despues generar caminos alternativos, va aca porque si se agrega al final es menos probable que se utilize
                      if (!seAgregoCoordenadaInicio)
                      {
-                        SetCeldaOcupada(GetLaberinto()[posiInicial.GetFila(), posiInicial.GetColumna()]);
+                        SetCeldaOcupada(GetLaberinto()[posiInicial.GetFila(), posiInicial.GetFila()]);
                         seAgregoCoordenadaInicio = true;
 
                      }
