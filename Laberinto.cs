@@ -516,7 +516,7 @@ namespace Laberinto
                      if (!seAgregoCoordenadaInicio)
                      {
 
-                        SetCeldaOcupada(GetLaberinto()[posiInicial.GetFila(), posiInicial.GetFila()]);
+                        SetCeldaOcupada(GetLaberinto()[posiInicial.GetFila(), posiInicial.GetColumna()]);
                         seAgregoCoordenadaInicio = true;
 
                      }
