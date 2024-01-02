@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using System.Diagnostics;
 using System.Globalization;
+using System.Security.AccessControl;
 namespace Laberinto;
 class Program
 {
@@ -11,7 +12,7 @@ class Program
     Stopwatch stopwatch = new Stopwatch();
 
     stopwatch.Start();
-    Laberinto unLaberinto = new Laberinto(25, 25);
+    Laberinto unLaberinto = new Laberinto(10, 10);
     /*
 
      //ES ESTOO
@@ -29,60 +30,10 @@ class Program
     unLaberinto.CrearCeldas();
     unLaberinto.SetPosicionInicial();
 
-    int j = 0;
-
-    bool sigue = true;
-    while (j < 60)
-    {
-      int i = 0;
-      bool seAgrego = false;
-      while (i < 10 && sigue)
-      {
-        Console.WriteLine($"iteration {i}");
-
-        sigue = unLaberinto.ElegirDireccion();
-        if (sigue)
-        {
-
-          unLaberinto.SetCasillaOcupada(unLaberinto.GetLaberinto()[unLaberinto.GetFilaActual(), unLaberinto.GetColumnaActual()]);
-        }
-        else
-        {
-          if (unLaberinto.HayCasillasDisponibles())
-          {
-            if (!seAgrego)
-            {
-              unLaberinto.SetCasillaOcupada(unLaberinto.GetLaberinto()[unLaberinto.GetFilaInicial(), unLaberinto.GetFilaInicial()]);
-              seAgrego = true;
-
-            }
-            unLaberinto.CambiarRutaLaberinto();
-            sigue = true;
-          }
-
-
-        }
-        Console.WriteLine("");
-
-        i++;
-      }
-      j++;
-      i = 0;
-      if (unLaberinto.HayCasillasDisponibles())
-      {
-        unLaberinto.CambiarRutaLaberinto();
-      }
-      else
-      {
-        break;
-      }
-    }
-
-
+unLaberinto.CrearLaberinto();
 
     unLaberinto.MostrarMatriz();
-
-
+  unLaberinto.SetCeldaVictoria();
     Console.WriteLine($"{unLaberinto.GetFilaActual()},{unLaberinto.GetColumnaActual()}");
     stopwatch.Stop();
     Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");

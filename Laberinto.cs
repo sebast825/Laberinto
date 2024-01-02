@@ -9,34 +9,45 @@ namespace Laberinto
       Random rnd = null!;
       public int[] posiInicial { get; set; }
       public int[] posiActual { get; set; }
-      public List<Celda> casillasOcupadas { get; set; }
+            public int[] posiVictoria { get; set; }
+
+      public List<Celda> celdasOcupadas { get; set; }
+      public List<Celda> celdasSinSalida { get; set; }
+
       public Laberinto(int filas, int columnas)
       {
          laberinto = new Celda[filas, columnas];
          rnd = new Random();
          posiActual = new int[2];
          posiInicial = new int[2];
-         casillasOcupadas = new List<Celda>();
+         posiVictoria = new int[2];
+         celdasOcupadas = new List<Celda>();
+         celdasSinSalida = new List<Celda>();
+         
          // int [] direccionesDisponibles = new int []{0,1,2,3};
          //posiActual = GetPosicionInicial();
 
       }
 
-      public void SetCasillaOcupada(Celda celda)
+      public void SetCeldaOcupada(Celda celda)
       {
-         casillasOcupadas.Add(celda);
+         celdasOcupadas.Add(celda);
+      }
+      public void SetCeldaSinSalida(Celda celda)
+      {
+         celdasSinSalida.Add(celda);
       }
       public bool HayCasillasDisponibles()
       {
-         return casillasOcupadas.Count > 0 ? true : false;
+         return celdasOcupadas.Count > 0 ? true : false;
       }
       public void CambiarRutaLaberinto()
       {
-         int posicion = GetRandom(casillasOcupadas.Count);
+         int posicion = GetRandom(celdasOcupadas.Count);
 
-         SetFilaActual(casillasOcupadas[posicion].GetFila());
-         SetColumnaActual(casillasOcupadas[posicion].GetColumna());
-         casillasOcupadas.RemoveAt(posicion);
+         SetFilaActual(celdasOcupadas[posicion].GetFila());
+         SetColumnaActual(celdasOcupadas[posicion].GetColumna());
+         celdasOcupadas.RemoveAt(posicion);
       }
 
       public int GetRandom(int techo)
@@ -74,13 +85,29 @@ namespace Laberinto
       {
          return posiActual[1];
       }
-       public int GetFilaInicial()
+      public int GetFilaInicial()
       {
          return posiInicial[0];
       }
       public int GetColumnaInicial()
       {
          return posiInicial[1];
+      }
+         public int GetFilaVictoria()
+      {
+         return posiVictoria[0];
+      }
+      public int GetColumnaVictoria()
+      {
+         return posiVictoria[1];
+      }
+         public void SetFilaVictoria(int fila)
+      {
+         posiVictoria[0] = fila;
+      }
+      public void SetColumnaVictoria(int columna)
+      {
+         posiVictoria[1] = columna;
       }
       public void SetFilaActual(int fila)
       {
@@ -101,7 +128,7 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {// { 1, 4 }
-         int[] posiIni = new int[2] { 3,3 };
+         int[] posiIni = new int[2] { 3, 3 };
          //posiIni = CreatePosicionInicial();
          SetFilaInicial(posiIni[0]);
          SetColumnaInicial(posiIni[1]);
@@ -114,7 +141,7 @@ namespace Laberinto
 
 
          ModificarLaberinto(posiInicial[0], posiInicial[1]);
-         
+
 
       }
       public void ModificarLaberinto(int fila, int columna, bool valor = true)
@@ -178,40 +205,40 @@ namespace Laberinto
          {
             //valida arriba
             case 0:
-               ShowPosiActual("arriba");
+               //ShowPosiActual("arriba");
                ModificarLaberinto(GetFilaActual() - 1, GetColumnaActual());
                SetFilaActual(GetFilaActual() - 1);
                SetColumnaActual(GetColumnaActual());
-               ShowPosiActual("arriba");
+               //ShowPosiActual("arriba");
 
                break;
 
             case 1:
-               ShowPosiActual("derecha");
+               //ShowPosiActual("derecha");
 
                ModificarLaberinto(GetFilaActual(), GetColumnaActual() + 1);
                SetFilaActual(GetFilaActual());
                SetColumnaActual(GetColumnaActual() + 1);
-               ShowPosiActual("derecha");
+               //ShowPosiActual("derecha");
 
                break;
 
             case 2:
-               ShowPosiActual("abajo");
+               //ShowPosiActual("abajo");
 
                ModificarLaberinto(GetFilaActual() + 1, GetColumnaActual());
                SetFilaActual(GetFilaActual() + 1);
                SetColumnaActual(GetColumnaActual());
-               ShowPosiActual("abajo");
+               //ShowPosiActual("abajo");
 
                break;
 
             case 3:
-               ShowPosiActual("izquierda");
+               //ShowPosiActual("izquierda");
                ModificarLaberinto(GetFilaActual(), GetColumnaActual() - 1);
                SetFilaActual(GetFilaActual());
                SetColumnaActual(GetColumnaActual() - 1);
-               ShowPosiActual("izquierda");
+               //ShowPosiActual("izquierda");
 
                break;
 
@@ -250,8 +277,7 @@ namespace Laberinto
          }
          else
          {
-            Console.WriteLine($"is valid: {isValid}");
-
+            //Console.WriteLine($"is valid: {isValid}");
             return false;
          }
       }
@@ -493,7 +519,9 @@ namespace Laberinto
                   if (i == posiInicial[0] && j == posiInicial[1])
                   {
                      Console.BackgroundColor = ConsoleColor.Green;
-                  }else if(i == posiActual[0] && j == posiActual[1]){
+                  }
+                  else if (i == posiActual[0] && j == posiActual[1])
+                  {
                      Console.BackgroundColor = ConsoleColor.Blue;
 
                   }
@@ -515,5 +543,108 @@ namespace Laberinto
 
          }
       }
+
+      public void CrearLaberinto()
+
+      {
+
+         int j = 0, i = 0;
+         bool sigue = true, seAgregoCoordenadaInicio = false;
+
+         while (HayCasillasDisponibles() || j < 10)
+         {
+            while (i < 10 && sigue)
+            {
+               sigue = ElegirDireccion();
+               /*valida que la direccion elegida es valida, si lo es agrega la casilla a una lista para despues generar caminos alternativos*/
+               if (sigue)
+               {
+                  SetCeldaOcupada(GetLaberinto()[GetFilaActual(), GetColumnaActual()]);
+               }
+               else
+               {
+                  if (HayCasillasDisponibles())
+                  {
+                     //agrega la coordenada de inicio para despues generar caminos alternativos, va aca porque si se agrega al final es menos probable que se utilize
+                     if (!seAgregoCoordenadaInicio)
+                     {
+                        SetCeldaOcupada(GetLaberinto()[GetFilaInicial(), GetFilaInicial()]);
+                        seAgregoCoordenadaInicio = true;
+
+                     }
+                     SetCeldaSinSalida(GetLaberinto()[GetFilaActual(), GetColumnaActual()]);
+                     CambiarRutaLaberinto();
+                     sigue = true;
+                  }
+
+               }
+               Console.WriteLine("");
+
+               i++;
+
+            }
+
+            j++;
+            i = 0;
+            //modifica la ruta actual del laberinto, para darle mas variedad. Puede ser porque no habia una salida disponible para la ruta actual o porque despues de ciertas iteraciones cambia (while de i)
+            if (HayCasillasDisponibles())
+            {
+               CambiarRutaLaberinto();
+
+            }
+            else
+            {
+
+               break;
+            }
+         }
+      }
+ static int CalcularDistanciaManhattan(int fila1, int columna1, int fila2, int columna2)
+        {
+            return Math.Abs(fila1 - fila2) + Math.Abs(columna1 - columna2);
+        }
+      public void SetCeldaVictoria()
+      {
+         //int fila = GetCantidadFilas();
+         Celda celdaMasAlejada = celdasSinSalida[0];
+         int distanciaMaxima = int.MinValue;
+         for (int i = 0; i < celdasSinSalida.Count; i++) // Recorrer filas
+         {
+
+            Celda celdaActual = celdasSinSalida[i];
+            int distancia = CalcularDistanciaManhattan(GetFilaInicial(), GetColumnaInicial(), celdaActual.GetFila(),celdaActual.GetColumna());
+            if (distancia > distanciaMaxima)
+            {
+               distanciaMaxima = distancia;
+               celdaMasAlejada = celdaActual;
+            }
+
+         }
+  
+         SetFilaVictoria(celdaMasAlejada.GetFila());
+SetColumnaVictoria(celdaMasAlejada.GetColumna());
+      
+
+
+
+         /*
+         if ((fila / 2) < GetFilaInicial())
+         {
+            //el resultado tiene que aparecer x arriba
+            Console.WriteLine("es mayor");
+         }
+         else
+         {
+            //el resultado tiene que aparecer x abajo
+            Console.WriteLine("es menor");
+         }*/
+
+      }
+
+
+
+
+
    }
+
 }
