@@ -1,4 +1,6 @@
 using System.Dynamic;
+using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Laberinto
 {
@@ -57,6 +59,35 @@ namespace Laberinto
       public void SetEsVictoria(bool victoria = true)
       {
          this.esVictoria = victoria;
+      }
+      public void ImprimirPantalla()
+      {
+
+         if (puedePisar)
+         {
+            if (esInicio)
+            {
+               Console.BackgroundColor = ConsoleColor.Red;
+            }
+            else if (esVictoria)
+            {
+               Console.BackgroundColor = ConsoleColor.White;
+            }
+            else
+            {
+               Console.BackgroundColor = ConsoleColor.DarkGray;
+
+            }
+            Console.Write($" * ");
+
+         }
+         else
+         {
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+
+            Console.Write($" * ");
+
+         }
       }
    }
 

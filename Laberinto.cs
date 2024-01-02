@@ -476,44 +476,21 @@ namespace Laberinto
 
       public void MostrarMatriz()
       {
-         //ES PARA MOSTRAR LA AMTRIZ AL FINAL, NO BORRAR :)
-         //laberinto[i, j] = (i == laberinto.GetLength(0) - 1) ? 1 : 0;
-
          for (int i = 0; i < laberinto.GetLength(0); i++)
          {
             //Console.Write($"{i} | ");
             for (int j = 0; j < laberinto.GetLength(1); j++)
             {
-               if (laberinto[i, j].GetPuedePisar())
-               {
-                  if (i == posiInicial.GetFila() && j == posiInicial.GetColumna())
-                  {
-                     Console.BackgroundColor = ConsoleColor.Green;
-                  }
-                  else if (i == posiVictoria.GetFila() && j == posiVictoria.GetColumna())
-                  {
-                     Console.BackgroundColor = ConsoleColor.Blue;
+               laberinto[i, j].ImprimirPantalla();
 
-                  }
-                  else
-                  {
-                     Console.BackgroundColor = ConsoleColor.Red;
-                  }
-                  Console.Write($" 1 ");
-
-                  Console.ResetColor();
-               }
-               else
-               {
-                  Console.Write($" 0 ");
-
-               }
             }
-            Console.WriteLine("");
+            Console.ResetColor();
+
+            Console.WriteLine(" ");
 
          }
-      }
 
+      }
       public void CrearLaberinto()
 
       {
@@ -538,6 +515,7 @@ namespace Laberinto
                      //agrega la coordenada de inicio para despues generar caminos alternativos, va aca porque si se agrega al final es menos probable que se utilize
                      if (!seAgregoCoordenadaInicio)
                      {
+
                         SetCeldaOcupada(GetLaberinto()[posiInicial.GetFila(), posiInicial.GetFila()]);
                         seAgregoCoordenadaInicio = true;
 
@@ -591,8 +569,8 @@ namespace Laberinto
 
          }
          Celda celdaVicotira = laberinto[celdaMasAlejada.GetFila(), celdaMasAlejada.GetColumna()];
-     /*    celdaVicotira.SetEsVictoria();
-         posiVictoria = celdaVicotira;*/
+         /*    celdaVicotira.SetEsVictoria();
+             posiVictoria = celdaVicotira;*/
          SetCeldaVictoria(celdaVicotira);
 
          /*         posiVictoria(celdaMasAlejada.GetFila());
