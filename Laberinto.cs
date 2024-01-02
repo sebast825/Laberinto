@@ -7,7 +7,7 @@ namespace Laberinto
    {
       private Celda[,] laberinto;
       Random rnd = null!;
-      public int[] posiInicial { get; set; }
+      public Celda posiInicial { get; set; }
       public int[] posiActual { get; set; }
             public int[] posiVictoria { get; set; }
 
@@ -19,7 +19,6 @@ namespace Laberinto
          laberinto = new Celda[filas, columnas];
          rnd = new Random();
          posiActual = new int[2];
-         posiInicial = new int[2];
          posiVictoria = new int[2];
          celdasOcupadas = new List<Celda>();
          celdasSinSalida = new List<Celda>();
@@ -67,6 +66,7 @@ namespace Laberinto
                laberinto[i, j] = new Celda(i, j);
             }
          }
+         
       }
       public void ShowPosiActual(string direction)
       {
@@ -84,14 +84,6 @@ namespace Laberinto
       public int GetColumnaActual()
       {
          return posiActual[1];
-      }
-      public int GetFilaInicial()
-      {
-         return posiInicial[0];
-      }
-      public int GetColumnaInicial()
-      {
-         return posiInicial[1];
       }
          public int GetFilaVictoria()
       {
@@ -117,49 +109,27 @@ namespace Laberinto
       {
          posiActual[1] = columna;
       }
-      public void SetFilaInicial(int fila)
-      {
-         posiInicial[0] = fila;
-      }
-      public void SetColumnaInicial(int columna)
-      {
-         posiInicial[1] = columna;
-      }
-
       public void SetPosicionInicial()
       {// { 1, 4 }
          int[] posiIni = new int[2] { 3, 3 };
-         //posiIni = CreatePosicionInicial();
-         SetFilaInicial(posiIni[0]);
-         SetColumnaInicial(posiIni[1]);
-         SetFilaActual(posiInicial[0]);
-         SetColumnaActual(posiInicial[1]);
-
-         //ModificarLaberinto(2, 3);
-
-         //ModificarLaberinto(3, 4);
-
-
-         ModificarLaberinto(posiInicial[0], posiInicial[1]);
-
+      
+         Celda celdaInicio = laberinto[posiIni[0],posiIni[1]];
+         celdaInicio.SetEsInicio();
+         posiInicial = celdaInicio;
+          CambiarCeldaLaberinto(posiInicial.GetFila(), posiInicial.GetColumna());
 
       }
-      public void ModificarLaberinto(int fila, int columna, bool valor = true)
+      public void CambiarCeldaLaberinto(int fila, int columna, bool valor = true)
       {
-
          laberinto[fila, columna].SetPuedePisar(valor);
       }
       public int[] CreatePosicionInicial()
       {
          int[] posiInicial = new int[2];
 
-
          posiInicial[0] = rnd.Next(0, laberinto.GetLength(0));
          posiInicial[1] = rnd.Next(0, laberinto.GetLength(1));
-         foreach (int elem in posiInicial)
-         {
-            Console.WriteLine(elem);
-         }
+    
          return posiInicial;
       }
 
@@ -198,7 +168,7 @@ namespace Laberinto
          return esValido;
       }
 
-      public void SwichModificarLaberinto(int direccion)
+      public void SwichCambiarCeldaLaberinto(int direccion)
       {
 
          switch (direccion)
@@ -206,7 +176,7 @@ namespace Laberinto
             //valida arriba
             case 0:
                //ShowPosiActual("arriba");
-               ModificarLaberinto(GetFilaActual() - 1, GetColumnaActual());
+               CambiarCeldaLaberinto(GetFilaActual() - 1, GetColumnaActual());
                SetFilaActual(GetFilaActual() - 1);
                SetColumnaActual(GetColumnaActual());
                //ShowPosiActual("arriba");
@@ -216,7 +186,7 @@ namespace Laberinto
             case 1:
                //ShowPosiActual("derecha");
 
-               ModificarLaberinto(GetFilaActual(), GetColumnaActual() + 1);
+               CambiarCeldaLaberinto(GetFilaActual(), GetColumnaActual() + 1);
                SetFilaActual(GetFilaActual());
                SetColumnaActual(GetColumnaActual() + 1);
                //ShowPosiActual("derecha");
@@ -226,7 +196,7 @@ namespace Laberinto
             case 2:
                //ShowPosiActual("abajo");
 
-               ModificarLaberinto(GetFilaActual() + 1, GetColumnaActual());
+               CambiarCeldaLaberinto(GetFilaActual() + 1, GetColumnaActual());
                SetFilaActual(GetFilaActual() + 1);
                SetColumnaActual(GetColumnaActual());
                //ShowPosiActual("abajo");
@@ -235,7 +205,7 @@ namespace Laberinto
 
             case 3:
                //ShowPosiActual("izquierda");
-               ModificarLaberinto(GetFilaActual(), GetColumnaActual() - 1);
+               CambiarCeldaLaberinto(GetFilaActual(), GetColumnaActual() - 1);
                SetFilaActual(GetFilaActual());
                SetColumnaActual(GetColumnaActual() - 1);
                //ShowPosiActual("izquierda");
@@ -252,7 +222,6 @@ namespace Laberinto
 
       public bool ElegirDireccion()
       {
-         //int[] direccionesDisponibles = new int[] { 0, 1, 2, 3 };
          List<int> direccionesDisponibles = new List<int>() { 0, 1, 2, 3 };
          int numDireccion = GetDireccionRandom(direccionesDisponibles);
          bool isValid = ValidarDireccion(numDireccion);
@@ -260,7 +229,6 @@ namespace Laberinto
          while (!isValid)
          {
             direccionesDisponibles.Remove(numDireccion);
-            // direccionesDisponibles = direccionesDisponibles.Where(n => n != numDireccion).ToArray();
 
             if (direccionesDisponibles.Count == 0)
             {
@@ -272,7 +240,7 @@ namespace Laberinto
          if (isValid)
          {
 
-            SwichModificarLaberinto(numDireccion);
+            SwichCambiarCeldaLaberinto(numDireccion);
             return true;
          }
          else
@@ -516,7 +484,7 @@ namespace Laberinto
             {
                if (laberinto[i, j].GetPuedePisar())
                {
-                  if (i == posiInicial[0] && j == posiInicial[1])
+                  if (i == posiInicial.GetFila() && j == posiInicial.GetColumna())
                   {
                      Console.BackgroundColor = ConsoleColor.Green;
                   }
@@ -568,7 +536,7 @@ namespace Laberinto
                      //agrega la coordenada de inicio para despues generar caminos alternativos, va aca porque si se agrega al final es menos probable que se utilize
                      if (!seAgregoCoordenadaInicio)
                      {
-                        SetCeldaOcupada(GetLaberinto()[GetFilaInicial(), GetFilaInicial()]);
+                        SetCeldaOcupada(GetLaberinto()[posiInicial.GetFila(), posiInicial.GetColumna()]);
                         seAgregoCoordenadaInicio = true;
 
                      }
@@ -612,7 +580,7 @@ namespace Laberinto
          {
 
             Celda celdaActual = celdasSinSalida[i];
-            int distancia = CalcularDistanciaManhattan(GetFilaInicial(), GetColumnaInicial(), celdaActual.GetFila(),celdaActual.GetColumna());
+            int distancia = CalcularDistanciaManhattan(posiInicial.GetFila(), posiInicial.GetColumna(), celdaActual.GetFila(),celdaActual.GetColumna());
             if (distancia > distanciaMaxima)
             {
                distanciaMaxima = distancia;

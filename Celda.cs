@@ -9,6 +9,7 @@ namespace Laberinto
       private int columna { get; }
       private bool puedePisar { get;set;}
       private bool esVisible { get; set; } = false;
+      private bool esInicio { get; set; } = false;
       public Celda(int fila, int columna, bool puedePisar = false)
       {
          this.fila = fila;
@@ -38,6 +39,14 @@ namespace Laberinto
       public void SetEsVisible(bool esVisible = true)
       {
          this.esVisible = esVisible;
+      }
+       public bool GetEsInicio()
+      {
+         return esInicio;
+      }
+      public void SetEsInicio(bool esInicio = true)
+      {
+         this.esInicio = esInicio;
       }
    }
 

@@ -12,7 +12,7 @@ class Program
     Stopwatch stopwatch = new Stopwatch();
 
     stopwatch.Start();
-    Laberinto unLaberinto = new Laberinto(10, 10);
+    Laberinto unLaberinto = new Laberinto(10, 30);
     /*
 
      //ES ESTOO
