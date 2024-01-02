@@ -12,7 +12,7 @@ class Program
     Stopwatch stopwatch = new Stopwatch();
 
     stopwatch.Start();
-    Laberinto unLaberinto = new Laberinto(10, 30);
+    Laberinto unLaberinto = new Laberinto(10, 10);
     /*
 
      //ES ESTOO
@@ -31,9 +31,9 @@ class Program
     unLaberinto.SetPosicionInicial();
 
 unLaberinto.CrearLaberinto();
+  unLaberinto.SetCeldaVictoria();
 
     unLaberinto.MostrarMatriz();
-  unLaberinto.SetCeldaVictoria();
     Console.WriteLine($"{unLaberinto.GetFilaActual()},{unLaberinto.GetColumnaActual()}");
     stopwatch.Stop();
     Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");

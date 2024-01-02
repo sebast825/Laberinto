@@ -9,7 +9,7 @@ namespace Laberinto
       Random rnd = null!;
       public Celda posiInicial { get; set; }
       public int[] posiActual { get; set; }
-            public int[] posiVictoria { get; set; }
+      public Celda posiVictoria { get; set; }
 
       public List<Celda> celdasOcupadas { get; set; }
       public List<Celda> celdasSinSalida { get; set; }
@@ -19,15 +19,23 @@ namespace Laberinto
          laberinto = new Celda[filas, columnas];
          rnd = new Random();
          posiActual = new int[2];
-         posiVictoria = new int[2];
          celdasOcupadas = new List<Celda>();
          celdasSinSalida = new List<Celda>();
-         
+
          // int [] direccionesDisponibles = new int []{0,1,2,3};
          //posiActual = GetPosicionInicial();
 
       }
 
+      public void SetCeldaVictoria(Celda celdaVictoria)
+      {
+         celdaVictoria.SetEsVictoria();
+         SetPosiVictoria(celdaVictoria);
+      }
+      public void SetPosiVictoria(Celda celdaVictoria)
+      {
+         posiVictoria = celdaVictoria;
+      }
       public void SetCeldaOcupada(Celda celda)
       {
          celdasOcupadas.Add(celda);
@@ -66,7 +74,7 @@ namespace Laberinto
                laberinto[i, j] = new Celda(i, j);
             }
          }
-         
+
       }
       public void ShowPosiActual(string direction)
       {
@@ -85,21 +93,13 @@ namespace Laberinto
       {
          return posiActual[1];
       }
-         public int GetFilaVictoria()
+      public int GetFilaVictoria()
       {
-         return posiVictoria[0];
+         return posiVictoria.GetFila();
       }
       public int GetColumnaVictoria()
       {
-         return posiVictoria[1];
-      }
-         public void SetFilaVictoria(int fila)
-      {
-         posiVictoria[0] = fila;
-      }
-      public void SetColumnaVictoria(int columna)
-      {
-         posiVictoria[1] = columna;
+         return posiVictoria.GetColumna();
       }
       public void SetFilaActual(int fila)
       {
@@ -112,11 +112,11 @@ namespace Laberinto
       public void SetPosicionInicial()
       {// { 1, 4 }
          int[] posiIni = new int[2] { 3, 3 };
-      
-         Celda celdaInicio = laberinto[posiIni[0],posiIni[1]];
+
+         Celda celdaInicio = laberinto[posiIni[0], posiIni[1]];
          celdaInicio.SetEsInicio();
          posiInicial = celdaInicio;
-          CambiarCeldaLaberinto(posiInicial.GetFila(), posiInicial.GetColumna());
+         CambiarCeldaLaberinto(posiInicial.GetFila(), posiInicial.GetColumna());
 
       }
       public void CambiarCeldaLaberinto(int fila, int columna, bool valor = true)
@@ -129,7 +129,7 @@ namespace Laberinto
 
          posiInicial[0] = rnd.Next(0, laberinto.GetLength(0));
          posiInicial[1] = rnd.Next(0, laberinto.GetLength(1));
-    
+
          return posiInicial;
       }
 
@@ -488,7 +488,7 @@ namespace Laberinto
                   {
                      Console.BackgroundColor = ConsoleColor.Green;
                   }
-                  else if (i == posiActual[0] && j == posiActual[1])
+                  else if (i == posiVictoria.GetFila() && j == posiVictoria.GetColumna())
                   {
                      Console.BackgroundColor = ConsoleColor.Blue;
 
@@ -567,10 +567,10 @@ namespace Laberinto
             }
          }
       }
- static int CalcularDistanciaManhattan(int fila1, int columna1, int fila2, int columna2)
-        {
-            return Math.Abs(fila1 - fila2) + Math.Abs(columna1 - columna2);
-        }
+      static int CalcularDistanciaManhattan(int fila1, int columna1, int fila2, int columna2)
+      {
+         return Math.Abs(fila1 - fila2) + Math.Abs(columna1 - columna2);
+      }
       public void SetCeldaVictoria()
       {
          //int fila = GetCantidadFilas();
@@ -580,7 +580,7 @@ namespace Laberinto
          {
 
             Celda celdaActual = celdasSinSalida[i];
-            int distancia = CalcularDistanciaManhattan(posiInicial.GetFila(), posiInicial.GetColumna(), celdaActual.GetFila(),celdaActual.GetColumna());
+            int distancia = CalcularDistanciaManhattan(posiInicial.GetFila(), posiInicial.GetColumna(), celdaActual.GetFila(), celdaActual.GetColumna());
             if (distancia > distanciaMaxima)
             {
                distanciaMaxima = distancia;
@@ -588,11 +588,15 @@ namespace Laberinto
             }
 
          }
-  
-         SetFilaVictoria(celdaMasAlejada.GetFila());
-SetColumnaVictoria(celdaMasAlejada.GetColumna());
-      
+         Celda celdaVicotira = laberinto[celdaMasAlejada.GetFila(), celdaMasAlejada.GetColumna()];
+     /*    celdaVicotira.SetEsVictoria();
+         posiVictoria = celdaVicotira;*/
+         SetCeldaVictoria(celdaVicotira);
 
+         /*         posiVictoria(celdaMasAlejada.GetFila());
+         posiVictoria(celdaMasAlejada.GetColumna());
+
+         */
 
 
          /*

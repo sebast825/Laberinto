@@ -7,9 +7,11 @@ namespace Laberinto
 
       private int fila { get; }
       private int columna { get; }
-      private bool puedePisar { get;set;}
+      private bool puedePisar { get; set; }
       private bool esVisible { get; set; } = false;
       private bool esInicio { get; set; } = false;
+      private bool esVictoria { get; set; } = false;
+
       public Celda(int fila, int columna, bool puedePisar = false)
       {
          this.fila = fila;
@@ -40,13 +42,21 @@ namespace Laberinto
       {
          this.esVisible = esVisible;
       }
-       public bool GetEsInicio()
+      public bool GetEsInicio()
       {
          return esInicio;
       }
       public void SetEsInicio(bool esInicio = true)
       {
          this.esInicio = esInicio;
+      }
+      public bool GetEsVictoria()
+      {
+         return esVictoria;
+      }
+      public void SetEsVictoria(bool victoria = true)
+      {
+         this.esVictoria = victoria;
       }
    }
 
