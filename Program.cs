@@ -12,12 +12,14 @@ class Program
     Stopwatch stopwatch = new Stopwatch();
 
     stopwatch.Start();
-    Laberinto unLaberinto = new Laberinto(20, 20);
-    /*
+    Laberinto unLaberinto = new Laberinto(5, 10);
+  
 
      //ES ESTOO
+     /*
+      unLaberinto.CrearCeldas();
        unLaberinto.SetPosicionInicial();
-             unLaberinto.ModificarLaberinto(4, 14);
+             unLaberinto.CambiarCeldaLaberinto(4, 14);
            unLaberinto.MostrarMatriz();
      unLaberinto.ValidarDireccion(0);
      Console.WriteLine("");
@@ -27,25 +29,32 @@ class Program
 
     //ACA LO RECORRE
     //para una matriz de 15 *15, en 30 vueltas tarda 449ms
-    unLaberinto.CrearCeldas();
+/*    unLaberinto.CrearCeldas();
     unLaberinto.SetPosicionInicial();
 
 unLaberinto.CrearLaberinto();
   unLaberinto.SetCeldaVictoria();
 
-    unLaberinto.MostrarMatriz();
+    unLaberinto.MostrarMatriz();*/
     Console.WriteLine($"{unLaberinto.GetFilaActual()},{unLaberinto.GetColumnaActual()}");
     stopwatch.Stop();
     Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");
 
 
     //unLaberinto.MostrarMatriz();
+ /* unLaberinto.CrearCeldas();
+    unLaberinto.SetPosicionInicial();
+    unLaberinto.CrearLaberinto();
+  unLaberinto.SetCeldaVictoria();
 
-    /*  bool posiValida = unLaberinto.ValidarDireccion(3); unLaberinto.MostrarMatriz();
+      bool posiValida = unLaberinto.ValidarDireccion(3);
+       unLaberinto.MostrarMatriz();
       Console.WriteLine(posiValida);
       if (posiValida)
       {
-        unLaberinto.ModificarLaberinto(unLaberinto.GetFilaActual()+1, unLaberinto.GetColumnaActual() , 3);
+              Console.WriteLine("");
+
+        unLaberinto.CambiarCeldaLaberinto(unLaberinto.GetFilaActual()+1, unLaberinto.GetColumnaActual());
       }
       Console.WriteLine("");
       unLaberinto.MostrarMatriz();*/
@@ -58,15 +67,19 @@ unLaberinto.CrearLaberinto();
         }
     */
 
-    /*  unLaberinto.CrearFilas();
-   
+  unLaberinto.CrearCeldas();
+    unLaberinto.SetPosicionInicial();
+
+unLaberinto.CrearLaberinto();
+  unLaberinto.SetCeldaVictoria();
+
  
     Personaje unPersonaje = new Personaje();
-    Partida unaPartida = new Partida(unLaberinto.GetLaberinto(), unPersonaje);
+    Partida unaPartida = new Partida( unLaberinto,unPersonaje);
     //unaPartida.MostrarLaberinto();
-    unLaberinto.MostrarMatriz();
+    //unLaberinto.MostrarMatriz();
 
-    //unaPartida.Iniciar();*/
+    unaPartida.Iniciar();
   }
 }
 

@@ -13,6 +13,7 @@ namespace Laberinto
       private bool esVisible { get; set; } = false;
       private bool esInicio { get; set; } = false;
       private bool esVictoria { get; set; } = false;
+      private bool estaPersonaje { get; set; } = false;
 
       public Celda(int fila, int columna, bool puedePisar = false)
       {
@@ -60,6 +61,14 @@ namespace Laberinto
       {
          this.esVictoria = victoria;
       }
+      public bool GetEstaPersonaje()
+      {
+         return estaPersonaje;
+      }
+      public void SetEstaPersonaje(bool estaPersonaje)
+      {
+         this.estaPersonaje = estaPersonaje;
+      }
       public void ImprimirPantalla()
       {
 
@@ -69,7 +78,13 @@ namespace Laberinto
             {
                Console.BackgroundColor = ConsoleColor.Red;
             }
-            else if (esVictoria)
+          
+             if (estaPersonaje)
+            {
+               Console.BackgroundColor = ConsoleColor.Green;
+  
+            }
+              else if (esVictoria)
             {
                Console.BackgroundColor = ConsoleColor.White;
             }

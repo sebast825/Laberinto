@@ -1,3 +1,4 @@
+using System.Formats.Asn1;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 
@@ -27,6 +28,11 @@ namespace Laberinto
 
       }
 
+      public Celda GetCeldaInicio()
+      {
+
+         return posiInicial;
+      }
       public void SetCeldaVictoria(Celda celdaVictoria)
       {
          celdaVictoria.SetEsVictoria();
@@ -109,15 +115,18 @@ namespace Laberinto
       {
          posiActual[1] = columna;
       }
+
       public void SetPosicionInicial()
       {// { 1, 4 }
          int[] posiIni = new int[2] { 3, 3 };
 
          Celda celdaInicio = laberinto[posiIni[0], posiIni[1]];
+
          SetFilaActual(posiIni[0]);
          SetColumnaActual(posiIni[1]);
          celdaInicio.SetEsInicio();
          posiInicial = celdaInicio;
+         laberinto[posiIni[0], posiIni[1]].SetEstaPersonaje(true);
          CambiarCeldaLaberinto(posiInicial.GetFila(), posiInicial.GetColumna());
 
       }
@@ -476,6 +485,7 @@ namespace Laberinto
 
       public void MostrarMatriz()
       {
+       Console.Clear();  
          for (int i = 0; i < laberinto.GetLength(0); i++)
          {
             //Console.Write($"{i} | ");
@@ -592,7 +602,6 @@ namespace Laberinto
          }*/
 
       }
-
 
 
 

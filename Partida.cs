@@ -3,174 +3,151 @@ namespace Laberinto
 
    class Partida
    {
-      private int[,] laberinto;
+
+      private Laberinto laberinto;
       private Personaje personaje;
-
-      public Partida(int[,] laberinto, Personaje personaje)
+      Celda[,] matrizLaberinto;
+      public Partida(Laberinto laberinto, Personaje personaje)
       {
-         this.laberinto = laberinto;
+
          this.personaje = personaje;
+         this.laberinto = laberinto;
+         this.matrizLaberinto = laberinto.GetLaberinto();
 
       }
-      public void MostrarLaberinto()
-      {
-         int personajeX = personaje.GetPosiX();
-         int personajeY = personaje.GetPosiY();
-         int valor = -1;
-         int ia = -1;
-         int ij = -1;
-         for (int i = laberinto.GetLength(0) - 1; i >= 0; i--)
-         {
-            if (i < 10)
-            {
-               Console.Write($"0{i} | ");
 
-            }
-            else
-            {
-               Console.Write($"{i} | ");
-
-            }
-            for (int j = 0; j < laberinto.GetLength(1); j++)
-            {
-               if (j == personajeX && personajeY == i)
-               {
-                  /* pa ver que valor toma   
-                  valor = laberinto[i, j];
-                     ia = i;
-                     ij = j;*/
-                  Console.BackgroundColor = ConsoleColor.Green;
-                  //Console.Write($"{laberinto[i, j]} ");
-                  Console.Write("P ");
-                  Console.ResetColor();
-               }
-               else
-               {  
-                 
-                   
-                  if (laberinto[i, j] == 1)
-                  {
-                      if(i == 0){
-                     Console.BackgroundColor = ConsoleColor.Red;
-                     Console.Write($"{laberinto[i, j]} ");
-                      
-                     Console.ResetColor();}
-else{
-                        Console.Write("0 ");
-
-}                  }
-                  else
-                  {
-                     Console.Write($"{laberinto[i, j]} ");
-
-                  }
-               }
-
-            }
-            Console.WriteLine(" ");
-
-         }
-         //Console.WriteLine($"valor: {valor}, {ia}, {ij}");
-
-      }
       public void Iniciar()
       {
+         Celda celdaInicio = laberinto.GetCeldaInicio();
+
          bool ganar = false;
+         personaje.SetPosiX(celdaInicio.GetFila());
+         personaje.SetPosiY(celdaInicio.GetColumna());
          while (ganar == false)
          {
-            MostrarLaberinto();
+            laberinto.MostrarMatriz();
+            //MostrarLaberinto();
             bool validarMovimiento = false;
             do
             {
                char movimiento = personaje.ElegirMovimiento();
-               validarMovimiento = HayPared(validarMovimiento, movimiento);
-               bool personajeMuere = PuedeCaminar();
-               //Console.WriteLine($"personajeMuere: {personajeMuere}");
-               if (personajeMuere)
+               validarMovimiento = ValidarMovimiento(movimiento);
+               //bool personajeVive = PuedeCaminar();
+               //Console.WriteLine($"personajeVive: {personajeVive}");
+               laberinto.MostrarMatriz();
+
+               if (!validarMovimiento)
                {
                   Console.WriteLine("Perdiste, intentalo nuevamente! Apreta Enter para re intentar");
                   Console.ReadLine();
-                  personaje.CambiarPosicion(laberinto.GetLength(1) / 2, 0);
+                  //personaje.CambiarPosicion(3, 3);
 
                }
                Console.WriteLine("");
             }
 
-            while (!validarMovimiento);
+            while (!VerificarVictoria());
 
 
-            ganar = verificarVictoria();
+            ganar = true;
+
 
          }
          Console.WriteLine("ganaste!!");
 
       }
-      public bool PuedeCaminar()
-      {
-         if (verificarVictoria()) return false;
-         //Console.WriteLine($"laberinto {laberinto[personaje.GetPosiY(), personaje.GetPosiX()]}, {personaje.GetPosiX()},{personaje.GetPosiY()}");
-         return (laberinto[personaje.GetPosiY(), personaje.GetPosiX()] == 0) ? true : false;
 
-
-      }
-      public bool verificarVictoria()
+      public bool VerificarVictoria()
       {
-         return personaje.GetPosiY() >= laberinto.GetLength(0) ? true : false;
+         return matrizLaberinto[personaje.GetPosiX(), personaje.GetPosiY()].GetEsVictoria();
 
       }
 
-      //si se puede mover, cambia la posicion del personaje
-      public bool HayPared(bool validarMovimiento, char movimiento)
+
+
+      //MOVIMINETO DEL PERSONAJE
+      public bool SePuedeMover(int fila, int columna)
       {
-         int personajePosiX = personaje.GetPosiX();
-         int personajePosiY = personaje.GetPosiY();
+         return laberinto.GetLaberinto()[fila, columna].GetPuedePisar();
+      }
+      public bool ValidarMovimiento(char movimiento)
+      {
+         int personajeFila = personaje.GetPosiX();
+         int personajeColumna = personaje.GetPosiY();
+         bool esValido = false;
          switch (movimiento)
          {
             case 'w':
-               personaje.Mover(movimiento);
-               validarMovimiento = true;
-               break;
-            case 'd':
-               if ((personajePosiX + 1) < laberinto.GetLength(1))
+               if (personajeFila == 0) return false;
+               if (SePuedeMover(personajeFila - 1, personajeColumna))
                {
-                  personaje.Mover(movimiento);
-                  validarMovimiento = true;
+                  matrizLaberinto[personajeFila, personajeColumna].SetEstaPersonaje(false);
+                  personaje.SetPosiX(personajeFila - 1);
+                  matrizLaberinto[personajeFila - 1, personajeColumna].SetEstaPersonaje(true);
+                  esValido = true;
+               }
+               else
+               {
+                  esValido = false;
                }
                break;
-            case 's':
 
-               if ((personajePosiY - 1) >= 0)
+
+            case 'd':
+               if (personajeColumna == matrizLaberinto.GetLength(1) - 1) return false;
+
+               if (SePuedeMover(personajeFila, personajeColumna + 1))
                {
-                  personaje.Mover(movimiento);
-                  validarMovimiento = true;
+                  matrizLaberinto[personajeFila, personajeColumna].SetEstaPersonaje(false);
+                  personaje.SetPosiY(personajeColumna + 1);
+                  matrizLaberinto[personajeFila, personajeColumna + 1].SetEstaPersonaje(true);
+                  esValido = true;
                }
+               else
+               {
+                  esValido = false;
+               }
+               break;
+
+
+            case 's':
+               if (personajeFila == matrizLaberinto.GetLength(0) - 1) return false;
+
+               if (SePuedeMover(personajeFila + 1, personajeColumna))
+               {
+                  matrizLaberinto[personajeFila, personajeColumna].SetEstaPersonaje(false);
+                  personaje.SetPosiX(personajeFila + 1);
+                  matrizLaberinto[personajeFila + 1, personajeColumna].SetEstaPersonaje(true);
+                  esValido = true;
+               }
+               else
+               {
+                  esValido = false;
+               }
+
                break;
             case 'a':
-               if ((personajePosiX - 1) >= 0)
+               if (personajeColumna == 0) return false;
+
+               if (SePuedeMover(personajeFila, personajeColumna - 1))
                {
-                  personaje.Mover(movimiento);
-                  validarMovimiento = true;
+                  matrizLaberinto[personajeFila, personajeColumna].SetEstaPersonaje(false);
+                  personaje.SetPosiY(personajeColumna - 1);
+                  matrizLaberinto[personajeFila, personajeColumna - 1].SetEstaPersonaje(true);
+                  esValido = true;
+               }
+               else
+               {
+                  esValido = false;
                }
                break;
 
 
-         }
-         return validarMovimiento;
-      }
-      public bool SePuedeMovrer(int x)
-      {
-         bool validarMovimiento;
-         int personajePosiX = personaje.GetPosiX();
 
-         if ((personajePosiX - x) < 0 || (personajePosiX + x) > laberinto.GetLength(0))
-         {
-            validarMovimiento = false;
          }
-         else
-         {
-            validarMovimiento = true;
-         }
-         return validarMovimiento;
+         return esValido;
+
+
       }
    }
 }

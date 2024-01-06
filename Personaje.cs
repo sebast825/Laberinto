@@ -38,6 +38,14 @@ namespace Laberinto
       {
          return posiY;
       }
+      public void SetPosiY(int columna)
+      {
+         posiY = columna;
+      }
+      public void SetPosiX(int fila)
+      {
+         posiX = fila;
+      }
 
       public char ElegirMovimiento()
       {
