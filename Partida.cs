@@ -26,21 +26,17 @@ namespace Laberinto
          while (ganar == false)
          {
             laberinto.MostrarMatriz();
-            //MostrarLaberinto();
             bool validarMovimiento = false;
             do
             {
                char movimiento = personaje.ElegirMovimiento();
                validarMovimiento = ValidarMovimiento(movimiento);
-               //bool personajeVive = PuedeCaminar();
-               //Console.WriteLine($"personajeVive: {personajeVive}");
+            
                laberinto.MostrarMatriz();
 
                if (!validarMovimiento)
                {
-                  Console.WriteLine("Perdiste, intentalo nuevamente! Apreta Enter para re intentar");
-                  Console.ReadLine();
-                  //personaje.CambiarPosicion(3, 3);
+                  Console.WriteLine("No podes ir por ahi! ");
 
                }
                Console.WriteLine("");
