@@ -118,7 +118,7 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {// { 1, 4 }
-         int[] posiIni = new int[2] { 3, 3 };
+         int[] posiIni = new int[2] { 0, 0};
 
          Celda celdaInicio = laberinto[posiIni[0], posiIni[1]];
 
