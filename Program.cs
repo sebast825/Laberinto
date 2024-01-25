@@ -63,7 +63,7 @@ class Program
       }
 
     }*/
-    /*
+   
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
 
@@ -80,7 +80,7 @@ class Program
       unLaberinto.MostrarMatriz();
         stopwatch.Stop();
         Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");
-
+ /*
         unLaberinto.CrearLaberintoSecciones();*/
 
 

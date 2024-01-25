@@ -8,18 +8,17 @@ namespace Laberinto
    {
       private Celda[,] laberinto;
       Random rnd = null!;
-      public Celda posiInicial { get; set; }
-      public int[] posiActual { get; set; }
-      public Celda posiVictoria { get; set; }
-
-      public List<Celda> celdasOcupadas { get; set; }
-      public List<Celda> celdasSinSalida { get; set; }
+      private Celda posiInicial { get; set; }
+      private Celda posiVictoria { get; set; }
+        private Celda celdaActual { get; set; }
+      private List<Celda> celdasOcupadas { get; set; }
+      private List<Celda> celdasSinSalida { get; set; }
 
       public Laberinto(int filas, int columnas)
       {
          laberinto = new Celda[filas, columnas];
          rnd = new Random();
-         posiActual = new int[2];
+     
          celdasOcupadas = new List<Celda>();
          celdasSinSalida = new List<Celda>();
 
@@ -27,7 +26,16 @@ namespace Laberinto
          //posiActual = GetPosicionInicial();
 
       }
+      public Celda GetCeldaActual()
+      {
 
+         return celdaActual;
+      }
+         public void SetCeldaActual(Celda celdaActual)
+      {
+
+          this.celdaActual = celdaActual;
+      }
       public Celda GetCeldaInicio()
       {
 
@@ -102,11 +110,11 @@ namespace Laberinto
       }
       public int GetFilaActual()
       {
-         return posiActual[0];
+         return celdaActual.GetFila();
       }
       public int GetColumnaActual()
       {
-         return posiActual[1];
+         return celdaActual.GetColumna();
       }
       public int GetFilaVictoria()
       {
@@ -118,11 +126,12 @@ namespace Laberinto
       }
       public void SetFilaActual(int fila)
       {
-         posiActual[0] = fila;
+         celdaActual = laberinto[fila,celdaActual.GetColumna()];
       }
       public void SetColumnaActual(int columna)
       {
-         posiActual[1] = columna;
+                  celdaActual = laberinto[celdaActual.GetFila(),columna];
+
       }
 
       public void SetPosicionInicial()
@@ -131,8 +140,8 @@ namespace Laberinto
 
          Celda celdaInicio = laberinto[posiIni[0], posiIni[1]];
 
-         SetFilaActual(posiIni[0]);
-         SetColumnaActual(posiIni[1]);
+SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
+      
          celdaInicio.SetEsInicio();
          posiInicial = celdaInicio;
          laberinto[posiIni[0], posiIni[1]].SetEstaPersonaje(true);
