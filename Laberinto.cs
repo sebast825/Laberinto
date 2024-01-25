@@ -33,10 +33,19 @@ namespace Laberinto
 
          return posiInicial;
       }
+         public void SetCeldaInicio(Celda celdaInicio)
+      {
+
+          posiInicial = celdaInicio;
+      }
       public void SetCeldaVictoria(Celda celdaVictoria)
       {
          celdaVictoria.SetEsVictoria();
          SetPosiVictoria(celdaVictoria);
+      }
+      public Celda GetCeldaVictoria()
+      {
+        return posiVictoria;
       }
       public void SetPosiVictoria(Celda celdaVictoria)
       {
@@ -118,7 +127,7 @@ namespace Laberinto
 
       public void SetPosicionInicial()
       {// { 1, 4 }
-         int[] posiIni = new int[2] { 0, 0};
+         int[] posiIni = new int[2] { 0, 0 };
 
          Celda celdaInicio = laberinto[posiIni[0], posiIni[1]];
 
@@ -337,9 +346,17 @@ namespace Laberinto
       {
          return (laberinto.GetLength(0) - 1);
       }
+      public int GetCantidadFilas(Celda[,] matriz)
+      {
+         return (matriz.GetLength(0) - 1);
+      }
       public int GetCantidadColumnas()
       {
          return (laberinto.GetLength(1) - 1);
+      }
+      public int GetCantidadColumnas(Celda[,] matriz)
+      {
+         return (matriz.GetLength(1) - 1);
       }
       public bool EsUltimaColumna()
       {
@@ -485,7 +502,7 @@ namespace Laberinto
 
       public void MostrarMatriz()
       {
-       Console.Clear();  
+         //Console.Clear();
          for (int i = 0; i < laberinto.GetLength(0); i++)
          {
             //Console.Write($"{i} | ");
@@ -530,6 +547,7 @@ namespace Laberinto
                         seAgregoCoordenadaInicio = true;
 
                      }
+                     //Console.WriteLine("Entra carnal");
                      SetCeldaSinSalida(GetLaberinto()[GetFilaActual(), GetColumnaActual()]);
                      CambiarRutaLaberinto();
                      sigue = true;
@@ -603,7 +621,13 @@ namespace Laberinto
 
       }
 
-
+      public void GenerarLaberintoFuncional()
+      {
+         this.CrearCeldas();
+         this.SetPosicionInicial();
+         this.CrearLaberinto();
+         this.SetCeldaVictoria();
+      }
 
 
    }
