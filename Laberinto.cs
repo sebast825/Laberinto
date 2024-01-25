@@ -536,7 +536,7 @@ SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
 
          while (HayCasillasDisponibles() || j < 10)
          {
-            while (i < 10 && sigue)
+            while (i < 15 && sigue)
             {
                sigue = ElegirDireccion();
                /*valida que la direccion elegida es valida, si lo es agrega la casilla a una lista para despues generar caminos alternativos*/

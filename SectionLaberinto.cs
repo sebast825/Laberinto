@@ -27,8 +27,7 @@ namespace Laberinto
          List<int> listPuedePisar = ListaPosicionesVictoria();
          int posiVictoria = GetRandom(listPuedePisar.Count());
          this.SetCeldaVictoria(laberinto[GetCantidadFilas(),listPuedePisar[posiVictoria]]);
-         Console.WriteLine(posiVictoria);
-         Console.WriteLine(listPuedePisar.Count());
+ 
       }
 
 
