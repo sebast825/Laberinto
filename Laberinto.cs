@@ -522,7 +522,7 @@ SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
             }
             Console.ResetColor();
 
-            Console.WriteLine(" ");
+            Console.WriteLine("");
 
          }
 
@@ -563,7 +563,7 @@ SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
                   }
 
                }
-               Console.WriteLine("");
+         
 
                i++;
 

@@ -7,10 +7,10 @@ class Program
 {
   static void Main(string[] args)
   {
-/*
-    LaberintoDificil unLaberintoDificil = new LaberintoDificil(12,12);
 
-    unLaberintoDificil.CrearSeccionesHorizontal();*/
+    LaberintoDificil unLaberintoDificil = new LaberintoDificil(21,30);
+
+    unLaberintoDificil.CrearSeccionesHorizontal();
     //unLaberintoDificil.MostrarMatriz();
     /*
     int[,] matriz = new int[8, 8];
@@ -63,7 +63,7 @@ class Program
       }
 
     }*/
-   
+   /*
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
 
@@ -80,7 +80,7 @@ class Program
       unLaberinto.MostrarMatriz();
         stopwatch.Stop();
         Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");
- /*
+ 
         unLaberinto.CrearLaberintoSecciones();*/
 
 

@@ -1,16 +1,14 @@
+using System.Globalization;
+
 namespace Laberinto
 {
    internal class LaberintoDificil : Laberinto
    {
-      Celda[,] laberinto;
-      Laberinto laberintoUno;
-      Laberinto laberintoDos;
       public LaberintoDificil(int filas, int columnas) : base(filas, columnas)
       {
-         /*Celda[,] laberinto = this.GetLaberinto();
-         this.SetPosicionInicial();
-         
-      */
+
+
+
 
       }
 
@@ -41,25 +39,29 @@ namespace Laberinto
          //laberintoPrimerTercio.MostrarMatriz();
 
          //le paso todas las filas y el segundo tercio de las columnas a laberintoSegundoTercio
-         for (int i = 0; i < tercioDeFilas * 2; i++)
+
+         ActualizarCeldasLaberinto(tercioDeFilas *2, laberintoPrimerTercio, laberintoSegundoTercio);
+       /*  for (int i = 0; i < tercioDeFilas * 2; i++)
          {
-            for (int j = 0; j <= GetCantidadColumnas(); j++)
+            for (int j = 0; j < GetCantidadColumnas(); j++)
             {
                //Console.WriteLine($"desde ca{i},{j}");
-               Console.WriteLine($"{GetCantidadFilas(laberPrimero)},{i}");
-               if (i > GetCantidadFilas(laberPrimero)) { return; }
-               if (laberPrimero[i, j].GetPuedePisar())
+               if (i < GetCantidadFilas(laberPrimero) && laberPrimero[i, j].GetPuedePisar())
+
                {
+                  //Console.WriteLine($"{GetCantidadFilas(laberPrimero)},{i},{j}");
+
                   laberintoSegundoTercio.CambiarCeldaLaberinto(i, j);
 
                }
 
             }
-         }
-/*
-         laberintoUno = laberintoPrimerTercio;
-         laberintoDos = laberintoSegundoTercio;*/
-         
+
+         }*/
+         /*
+                  laberintoUno = laberintoPrimerTercio;
+                  laberintoDos = laberintoSegundoTercio;*/
+         laberintoSegundoTercio.SetCeldaActual(laberintoPrimerTercio.GetCeldaVictoria());
          laberintoSegundoTercio.SetFilaActual(laberintoPrimerTercio.GetFilaVictoria());
          laberintoSegundoTercio.SetColumnaActual(laberintoPrimerTercio.GetColumnaVictoria());
 
@@ -72,8 +74,9 @@ namespace Laberinto
          //laberintoSegundoTercio.SetPosicionInicial();
 
          //laberintoSegundoTercio.SetCeldaVictoria();
-         laberintoPrimerTercio.MostrarMatriz();
          laberintoSegundoTercio.CrearLaberinto();
+                  laberintoPrimerTercio.MostrarMatriz();
+
          Console.WriteLine("asd");
          laberintoSegundoTercio.MostrarMatriz();
 
@@ -96,9 +99,25 @@ namespace Laberinto
          return laberintoPrimerTercio;
 
       }
-      public void MostrarUno()
-      {
-         this.laberintoUno.MostrarMatriz();
+      public void ActualizarCeldasLaberinto(int filas, Laberinto laberintoReferencia, Laberinto laberintoActualizar){
+         for (int i = 0; i < filas; i++)
+         {
+            for (int j = 0; j <= GetCantidadColumnas(); j++)
+            {
+               //Console.WriteLine($"desde ca{i},{j}");
+               if (i <= laberintoReferencia.GetCantidadFilas() && laberintoReferencia.GetLaberinto()[i, j].GetPuedePisar())
+
+               {
+                  //Console.WriteLine($"{GetCantidadFilas(laberintoReferencia)},{i},{j}");
+
+                  laberintoActualizar.CambiarCeldaLaberinto(i, j);
+
+               }
+
+            }
+
+         }
+         
       }
    }
 
