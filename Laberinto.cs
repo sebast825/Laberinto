@@ -8,11 +8,11 @@ namespace Laberinto
    {
       private Celda[,] laberinto;
       Random rnd = null!;
-      private Celda posiInicial { get; set; }
-      private Celda posiVictoria { get; set; }
-        private Celda celdaActual { get; set; }
-      private List<Celda> celdasOcupadas { get; set; }
-      private List<Celda> celdasSinSalida { get; set; }
+      protected Celda posiInicial { get; set; }
+      protected Celda posiVictoria { get; set; }
+        protected Celda celdaActual { get; set; }
+      protected List<Celda> celdasOcupadas { get; set; }
+      protected List<Celda> celdasSinSalida { get; set; }
 
       public Laberinto(int filas, int columnas)
       {
@@ -584,11 +584,13 @@ SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
             }
          }
       }
-      static int CalcularDistanciaManhattan(int fila1, int columna1, int fila2, int columna2)
+
+    
+      public int CalcularDistanciaManhattan(int fila1, int columna1, int fila2, int columna2)
       {
          return Math.Abs(fila1 - fila2) + Math.Abs(columna1 - columna2);
       }
-      public void SetCeldaVictoria()
+      public virtual void SetCeldaVictoria()
       {
          //int fila = GetCantidadFilas();
          Celda celdaMasAlejada = celdasSinSalida[0];

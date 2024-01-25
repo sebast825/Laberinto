@@ -40,27 +40,12 @@ namespace Laberinto
 
          //le paso todas las filas y el segundo tercio de las columnas a laberintoSegundoTercio
 
-         ActualizarCeldasLaberinto(tercioDeFilas *2, laberintoPrimerTercio, laberintoSegundoTercio);
-       /*  for (int i = 0; i < tercioDeFilas * 2; i++)
-         {
-            for (int j = 0; j < GetCantidadColumnas(); j++)
-            {
-               //Console.WriteLine($"desde ca{i},{j}");
-               if (i < GetCantidadFilas(laberPrimero) && laberPrimero[i, j].GetPuedePisar())
-
-               {
-                  //Console.WriteLine($"{GetCantidadFilas(laberPrimero)},{i},{j}");
-
-                  laberintoSegundoTercio.CambiarCeldaLaberinto(i, j);
-
-               }
-
-            }
-
-         }*/
+         ActualizarCeldasLaberinto(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio);
+ 
          /*
                   laberintoUno = laberintoPrimerTercio;
                   laberintoDos = laberintoSegundoTercio;*/
+         laberintoSegundoTercio.SetPosicionInicial();
          laberintoSegundoTercio.SetCeldaActual(laberintoPrimerTercio.GetCeldaVictoria());
          laberintoSegundoTercio.SetFilaActual(laberintoPrimerTercio.GetFilaVictoria());
          laberintoSegundoTercio.SetColumnaActual(laberintoPrimerTercio.GetColumnaVictoria());
@@ -73,9 +58,11 @@ namespace Laberinto
          laberintoSegundoTercio.CambiarCeldaLaberinto(celdaVictoriaAnterior.GetFila(), celdaVictoriaAnterior.GetColumna());
          //laberintoSegundoTercio.SetPosicionInicial();
 
-         //laberintoSegundoTercio.SetCeldaVictoria();
+         Console.WriteLine(laberintoSegundoTercio.GetFilaActual());
+         //laberintoSegundoTercio.SetCeldaSinSalida(GetLaberinto()[laberintoSegundoTercio.GetFilaActual(), laberintoSegundoTercio.GetColumnaActual()]);
+         //laberintoSegundoTercio.CreateCeldaVictoria(laberintoSegundoTercio.GetCeldaActual());
          laberintoSegundoTercio.CrearLaberinto();
-                  laberintoPrimerTercio.MostrarMatriz();
+         laberintoPrimerTercio.MostrarMatriz();
 
          Console.WriteLine("asd");
          laberintoSegundoTercio.MostrarMatriz();
@@ -92,6 +79,8 @@ namespace Laberinto
 
 
       }
+
+     
       public Laberinto GenerarPrimeraParte(int filas, int columnas)
       {
          Laberinto laberintoPrimerTercio = new Laberinto(filas, columnas);
@@ -99,7 +88,8 @@ namespace Laberinto
          return laberintoPrimerTercio;
 
       }
-      public void ActualizarCeldasLaberinto(int filas, Laberinto laberintoReferencia, Laberinto laberintoActualizar){
+      public void ActualizarCeldasLaberinto(int filas, Laberinto laberintoReferencia, Laberinto laberintoActualizar)
+      {
          for (int i = 0; i < filas; i++)
          {
             for (int j = 0; j <= GetCantidadColumnas(); j++)
@@ -117,7 +107,7 @@ namespace Laberinto
             }
 
          }
-         
+
       }
    }
 
