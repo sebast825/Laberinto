@@ -24,49 +24,46 @@ namespace Laberinto
          //se le suma 1 porque el metodo esta echo para iterar la matriz, ya viene con el valor restado
          int tercioDeFilas = (GetCantidadFilas() + 1) / 3;
          //int tercioDeColumnas = (GetCantidadColumnas() + 1) / 3;
-         Laberinto laberintoPrimerTercio = GenerarPrimeraParte(tercioDeFilas, GetCantidadColumnas() + 1);
+         SectionLaberinto laberintoPrimerTercio = GenerarPrimeraParte(tercioDeFilas, GetCantidadColumnas() + 1);
          Celda[,] laberPrimero = laberintoPrimerTercio.GetLaberinto();
+         Celda celdaVictoriaAnterior = laberintoPrimerTercio.GetCeldaVictoria();
 
          //Console.WriteLine(GetCantidadFilas());
-         Laberinto laberintoSegundoTercio = new Laberinto(tercioDeFilas * 2, GetCantidadColumnas() + 1);
-         laberintoSegundoTercio.CrearCeldas();
+         SectionLaberinto laberintoSegundoTercio = new SectionLaberinto(tercioDeFilas * 2, GetCantidadColumnas() + 1);
 
-         // Console.WriteLine($"primer matriz {      GetCantidadFilas(laberintoPrimerTercio.GetLaberinto())},{GetCantidadColumnas(laberintoPrimerTercio.GetLaberinto())}; ");
-         //        Console.WriteLine($"primer matriz {      GetCantidadFilas(laberintoSegundoTercio.GetLaberinto())},{GetCantidadColumnas(laberintoSegundoTercio.GetLaberinto())}; ");
+         SectionLaberinto laberintoTercerTercio = new SectionLaberinto(GetCantidadFilas()+1, GetCantidadColumnas() + 1);
 
 
-         //laberintoSegundoTercio.MostrarMatriz();
-         //laberintoPrimerTercio.MostrarMatriz();
-
-         //le paso todas las filas y el segundo tercio de las columnas a laberintoSegundoTercio
-
-         ActualizarCeldasLaberinto(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio);
- 
+         LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio);
+         LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio);
          /*
-                  laberintoUno = laberintoPrimerTercio;
-                  laberintoDos = laberintoSegundoTercio;*/
-         laberintoSegundoTercio.SetPosicionInicial();
-         laberintoSegundoTercio.SetCeldaActual(laberintoPrimerTercio.GetCeldaVictoria());
-         laberintoSegundoTercio.SetFilaActual(laberintoPrimerTercio.GetFilaVictoria());
-         laberintoSegundoTercio.SetColumnaActual(laberintoPrimerTercio.GetColumnaVictoria());
+                  laberintoSegundoTercio.CrearCeldas();
+                  ActualizarCeldasLaberinto(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio);
 
-         Celda celdaVictoriaAnterior = laberintoPrimerTercio.GetCeldaVictoria();
-         laberintoSegundoTercio.SetCeldaInicio(celdaVictoriaAnterior);
 
+                  laberintoSegundoTercio.SetPosicionInicial();
+                  laberintoSegundoTercio.SetCeldaActual(laberintoPrimerTercio.GetCeldaVictoria());
+                  laberintoSegundoTercio.SetFilaActual(laberintoPrimerTercio.GetFilaVictoria());
+                  laberintoSegundoTercio.SetColumnaActual(laberintoPrimerTercio.GetColumnaVictoria());
+                  laberintoSegundoTercio.SetCeldaInicio(celdaVictoriaAnterior);
+                  laberintoSegundoTercio.CrearLaberinto();
+                  laberintoSegundoTercio.SetPosiVictoria();*/
          //hace que se puede pisar la celda de la victoria del laberinto anterior, asi al concatenarlo sigue el recorrido
-
-         laberintoSegundoTercio.CambiarCeldaLaberinto(celdaVictoriaAnterior.GetFila(), celdaVictoriaAnterior.GetColumna());
+         //laberintoSegundoTercio.CambiarCeldaLaberinto(celdaVictoriaAnterior.GetFila(), celdaVictoriaAnterior.GetColumna());
          //laberintoSegundoTercio.SetPosicionInicial();
 
          Console.WriteLine(laberintoSegundoTercio.GetFilaActual());
          //laberintoSegundoTercio.SetCeldaSinSalida(GetLaberinto()[laberintoSegundoTercio.GetFilaActual(), laberintoSegundoTercio.GetColumnaActual()]);
          //laberintoSegundoTercio.CreateCeldaVictoria(laberintoSegundoTercio.GetCeldaActual());
-         laberintoSegundoTercio.CrearLaberinto();
+
          laberintoPrimerTercio.MostrarMatriz();
 
          Console.WriteLine("asd");
-         laberintoSegundoTercio.MostrarMatriz();
 
+         laberintoSegundoTercio.MostrarMatriz();
+                  Console.WriteLine("asd");
+
+         laberintoTercerTercio.MostrarMatriz();
          // laberintoSegundoTercio.MostrarMatriz();
          /*     for (int i = 0; i < laberintoSegundoTercio.GetLaberinto().GetLength(0); i++)
              {
@@ -80,13 +77,18 @@ namespace Laberinto
 
       }
 
-     
-      public Laberinto GenerarPrimeraParte(int filas, int columnas)
-      {
-         Laberinto laberintoPrimerTercio = new Laberinto(filas, columnas);
-         laberintoPrimerTercio.GenerarLaberintoFuncional();
-         return laberintoPrimerTercio;
 
+      public SectionLaberinto GenerarPrimeraParte(int filas, int columnas)
+      {
+         SectionLaberinto laberintoPrimerTercio = new SectionLaberinto(filas, columnas);
+         //no uso este metodo porque setPosiVictoria es distinto
+         //laberintoPrimerTercio.GenerarLaberintoFuncional();
+
+         laberintoPrimerTercio.CrearCeldas();
+         laberintoPrimerTercio.SetPosicionInicial();
+         laberintoPrimerTercio.CrearLaberinto();
+         laberintoPrimerTercio.SetPosiVictoria();
+         return laberintoPrimerTercio;
       }
       public void ActualizarCeldasLaberinto(int filas, Laberinto laberintoReferencia, Laberinto laberintoActualizar)
       {
@@ -101,16 +103,26 @@ namespace Laberinto
                   //Console.WriteLine($"{GetCantidadFilas(laberintoReferencia)},{i},{j}");
 
                   laberintoActualizar.CambiarCeldaLaberinto(i, j);
-
                }
-
             }
-
          }
+      }
 
+      public void LaberintoSeccion(int filas, Laberinto laberintoReferencia, SectionLaberinto laberintoSegundoTercio)
+      {
+         laberintoSegundoTercio.CrearCeldas();
+         ActualizarCeldasLaberinto(filas, laberintoReferencia, laberintoSegundoTercio);
+
+         /*
+                  laberintoUno = laberintoPrimerTercio;
+                  laberintoDos = laberintoSegundoTercio;*/
+         laberintoSegundoTercio.SetPosicionInicial();
+         laberintoSegundoTercio.SetCeldaActual(laberintoReferencia.GetCeldaVictoria());
+         laberintoSegundoTercio.SetFilaActual(laberintoReferencia.GetFilaVictoria());
+         laberintoSegundoTercio.SetColumnaActual(laberintoReferencia.GetColumnaVictoria());
+         laberintoSegundoTercio.SetCeldaInicio(laberintoReferencia.GetCeldaVictoria());
+         laberintoSegundoTercio.CrearLaberinto();
+         laberintoSegundoTercio.SetPosiVictoria();
       }
    }
-
-
-
 }

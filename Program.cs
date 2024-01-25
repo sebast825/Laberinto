@@ -8,9 +8,11 @@ class Program
   static void Main(string[] args)
   {
 
-    LaberintoDificil unLaberintoDificil = new LaberintoDificil(21,30);
+    LaberintoDificil unLaberintoDificil = new LaberintoDificil(21,21);
 
     unLaberintoDificil.CrearSeccionesHorizontal();
+/*SectionLaberinto asd = new SectionLaberinto(21,21);
+    asd.CrearLaberintoDos();*/
     //unLaberintoDificil.MostrarMatriz();
     /*
     int[,] matriz = new int[8, 8];

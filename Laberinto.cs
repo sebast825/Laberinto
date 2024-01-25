@@ -6,7 +6,7 @@ namespace Laberinto
 {
    internal class Laberinto
    {
-      private Celda[,] laberinto;
+      protected Celda[,] laberinto;
       Random rnd = null!;
       protected Celda posiInicial { get; set; }
       protected Celda posiVictoria { get; set; }
