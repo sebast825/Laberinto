@@ -538,7 +538,9 @@ SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
 
          int j = 0, i = 0;
          bool sigue = true, seAgregoCoordenadaInicio = false;
-
+         foreach(Celda elem in celdasOcupadas){
+            Console.WriteLine($"{elem.GetFila()}, {elem.GetColumna()}");
+         }
          while (HayCasillasDisponibles() || j < 10)
          {
             while (i < 15 && sigue)

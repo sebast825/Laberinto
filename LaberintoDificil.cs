@@ -82,6 +82,9 @@ namespace Laberinto
          laberintoSegundoTercio.SetCeldaActual(laberintoReferencia.GetCeldaVictoria());
 
          laberintoSegundoTercio.SetCeldaInicio(laberintoReferencia.GetCeldaVictoria());
+         //le da mas versatilidad al crear la proxima seccion, porque las toma para crear nuevos caminos
+         SetCeldaOcupada(laberintoReferencia.GetCeldaVictoria());
+         laberintoSegundoTercio.AgregarCeldasOcupadas(laberintoReferencia.GetCantidadFilas());
          laberintoSegundoTercio.CrearLaberinto();
          //laberintoSegundoTercio.SetPosiVictoria();
          //ModificarFilaAnterior(laberintoReferencia.GetCantidadFilas(),laberintoSegundoTercio, laberintoReferencia);

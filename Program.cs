@@ -8,7 +8,7 @@ class Program
   static void Main(string[] args)
   {
 
-    LaberintoDificil unLaberintoDificil = new LaberintoDificil(27,27);
+    LaberintoDificil unLaberintoDificil = new LaberintoDificil(30,20);
 
     unLaberintoDificil.CrearSeccionesHorizontal();
 /*SectionLaberinto asd = new SectionLaberinto(27,27);
@@ -70,7 +70,7 @@ class Program
         stopwatch.Start();
 
 
-        Laberinto unLaberinto = new Laberinto(30, 30);
+        Laberinto unLaberinto = new Laberinto(0, 20);
         unLaberinto.CrearCeldas();
         unLaberinto.SetPosicionInicial();
         unLaberinto.CrearLaberinto();
