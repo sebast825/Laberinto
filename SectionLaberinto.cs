@@ -23,24 +23,40 @@ namespace Laberinto
          return listPuedePisar;
       }
 
-      public void SetPosiVictoria(){
+      public void SetPosiVictoria(bool secondHalf = true)
+      {
+
          List<int> listPuedePisar = ListaPosicionesVictoria();
-         int posiVictoria = GetRandom(listPuedePisar.Count());
-         this.SetCeldaVictoria(laberinto[GetCantidadFilas(),listPuedePisar[posiVictoria]]);
- 
+         int posiVictoria;
+         if (secondHalf)
+         {
+            //selecciona la 2da mitad de las opciones, es para que haya un sig sag entre las opciones
+            posiVictoria = GetRandom(listPuedePisar.Count() / 2 +1, listPuedePisar.Count());
+               Console.WriteLine($"true: {posiVictoria}");
+         }
+         else
+         {
+            posiVictoria = GetRandom(listPuedePisar.Count() / 4);
+               Console.WriteLine($"false: {posiVictoria}");
+
+         }
+      
+         this.SetCeldaVictoria(laberinto[GetCantidadFilas(), listPuedePisar[posiVictoria]]);
+
       }
 
 
 
-         public void CrearLaberintoDos(){
-       
+      public void CrearLaberintoDos()
+      {
+
          //laberintoPrimerTercio.GenerarLaberintoFuncional();
 
-            CrearCeldas();
+         CrearCeldas();
          SetPosicionInicial();
          CrearLaberinto();
          SetPosiVictoria();
          MostrarMatriz();
-   }
+      }
    }
 }

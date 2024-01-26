@@ -85,6 +85,11 @@ namespace Laberinto
          int num = rnd.Next(0, techo);
          return num;
       }
+        public int GetRandom(int piso, int techo)
+      {
+         int num = rnd.Next(piso, techo);
+         return num;
+      }
       public void CrearCeldas()
       {
 

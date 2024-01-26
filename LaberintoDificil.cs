@@ -18,9 +18,6 @@ namespace Laberinto
       {
          //crea las celdas para la totalidad del laberinto
          this.CrearCeldas();
-
-
-
          //se le suma 1 porque el metodo esta echo para iterar la matriz, ya viene con el valor restado
          int tercioDeFilas = (GetCantidadFilas() + 1) / 3;
          //int tercioDeColumnas = (GetCantidadColumnas() + 1) / 3;
@@ -28,51 +25,20 @@ namespace Laberinto
          Celda[,] laberPrimero = laberintoPrimerTercio.GetLaberinto();
          Celda celdaVictoriaAnterior = laberintoPrimerTercio.GetCeldaVictoria();
 
-         //Console.WriteLine(GetCantidadFilas());
          SectionLaberinto laberintoSegundoTercio = new SectionLaberinto(tercioDeFilas * 2, GetCantidadColumnas() + 1);
 
          SectionLaberinto laberintoTercerTercio = new SectionLaberinto(GetCantidadFilas() + 1, GetCantidadColumnas() + 1);
 
 
          LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio);
+         laberintoSegundoTercio.SetPosiVictoria(false);
+
+      
          LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio);
-         /*
-                  laberintoSegundoTercio.CrearCeldas();
-                  ActualizarCeldasLaberinto(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio);
 
-
-                  laberintoSegundoTercio.SetPosicionInicial();
-                  laberintoSegundoTercio.SetCeldaActual(laberintoPrimerTercio.GetCeldaVictoria());
-                  laberintoSegundoTercio.SetFilaActual(laberintoPrimerTercio.GetFilaVictoria());
-                  laberintoSegundoTercio.SetColumnaActual(laberintoPrimerTercio.GetColumnaVictoria());
-                  laberintoSegundoTercio.SetCeldaInicio(celdaVictoriaAnterior);
-                  laberintoSegundoTercio.CrearLaberinto();
-                  laberintoSegundoTercio.SetPosiVictoria();*/
-         //hace que se puede pisar la celda de la victoria del laberinto anterior, asi al concatenarlo sigue el recorrido
-         //laberintoSegundoTercio.CambiarCeldaLaberinto(celdaVictoriaAnterior.GetFila(), celdaVictoriaAnterior.GetColumna());
-         //laberintoSegundoTercio.SetPosicionInicial();
-
-         Console.WriteLine(laberintoSegundoTercio.GetFilaActual());
-         //laberintoSegundoTercio.SetCeldaSinSalida(GetLaberinto()[laberintoSegundoTercio.GetFilaActual(), laberintoSegundoTercio.GetColumnaActual()]);
-         //laberintoSegundoTercio.CreateCeldaVictoria(laberintoSegundoTercio.GetCeldaActual());
-
-         /*    laberintoPrimerTercio.MostrarMatriz();
-
-             Console.WriteLine("asd");
-
-             laberintoSegundoTercio.MostrarMatriz();
-                      Console.WriteLine("asd");*/
+         laberintoTercerTercio.SetCeldaVictoria();
 
          laberintoTercerTercio.MostrarMatriz();
-         // laberintoSegundoTercio.MostrarMatriz();
-         /*     for (int i = 0; i < laberintoSegundoTercio.GetLaberinto().GetLength(0); i++)
-             {
-                for (int j = 0; j <laberintoSegundoTercio.GetLaberinto().GetLength(1); j++)
-                {
-                  laberintoSegundoTercio.GetLaberinto()[i,j].ImprimirPantalla();
-
-                }
-             }*/
 
 
       }
@@ -112,34 +78,40 @@ namespace Laberinto
       {
          laberintoSegundoTercio.CrearCeldas();
          ActualizarCeldasLaberinto(filas, laberintoReferencia, laberintoSegundoTercio);
-
-         /*
-                  laberintoUno = laberintoPrimerTercio;
-                  laberintoDos = laberintoSegundoTercio;*/
-                           ModificarFilaAnterior(laberintoReferencia.GetCantidadFilas(),laberintoSegundoTercio);
-
          laberintoSegundoTercio.SetPosicionInicial();
          laberintoSegundoTercio.SetCeldaActual(laberintoReferencia.GetCeldaVictoria());
-         laberintoSegundoTercio.SetCeldaActual(laberintoReferencia.GetCeldaVictoria());
-         /*
-                  laberintoSegundoTercio.SetFilaActual(laberintoReferencia.GetFilaVictoria());
-                  laberintoSegundoTercio.SetColumnaActual(laberintoReferencia.GetColumnaVictoria());*/
+
          laberintoSegundoTercio.SetCeldaInicio(laberintoReferencia.GetCeldaVictoria());
          laberintoSegundoTercio.CrearLaberinto();
-         laberintoSegundoTercio.SetPosiVictoria();
+         //laberintoSegundoTercio.SetPosiVictoria();
+         //ModificarFilaAnterior(laberintoReferencia.GetCantidadFilas(),laberintoSegundoTercio, laberintoReferencia);
+
       }
 
       // esto es para que al unir los distintos mapas no quede un choclo de pared
-      public void ModificarFilaAnterior(int fila, SectionLaberinto laberintoSegundoTercio)
+      public void ModificarFilaAnterior(int fila, SectionLaberinto laberintoSegundoTercio, Laberinto laberintoReferencia)
       {
-         Console.WriteLine($"columna: {fila}");
+         Console.WriteLine("");
+         Console.WriteLine($"columna: {fila}- victoria: {laberintoReferencia.GetColumnaVictoria()}");
+
          Celda celda;
+         Celda celdaLabAnterior;
          for (int i = 0; i < laberintoSegundoTercio.GetCantidadColumnas(); i++)
          {
-            celda = laberintoSegundoTercio.GetLaberinto()[fila,i];
+            celdaLabAnterior = laberintoReferencia.GetLaberinto()[fila, i];
+            celda = laberintoSegundoTercio.GetLaberinto()[fila, i];
             //Console.Write($"{celda.GetPuedePisar()}- {i}- ");
-            if(celda.GetPuedePisar() && laberintoSegundoTercio.GetLaberinto()[fila-1,i].GetPuedePisar()){
-               laberintoSegundoTercio.CambiarCeldaLaberinto(fila,i,false);
+            //verifica que no sea un unico camino y que no sea necesario para ganar (al ganar xq toma la posi victoria para continuar con el siguiente tramo)
+            if (celda.GetPuedePisar() && !celdaLabAnterior.GetEsVictoria() && laberintoSegundoTercio.GetLaberinto()[fila - 1, i].GetPuedePisar())
+            {
+               laberintoSegundoTercio.CambiarCeldaLaberinto(fila, i, false);
+               //Console.WriteLine("modifica");
+               Console.Write($"{celda.GetPuedePisar()}, {celdaLabAnterior.GetEsVictoria()}- {i} modi| ");
+            }
+            else
+            {
+               Console.Write($"{celda.GetPuedePisar()}, {celdaLabAnterior.GetEsVictoria()}- {i} | ");
+
             }
          }
       }
