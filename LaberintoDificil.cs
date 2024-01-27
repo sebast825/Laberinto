@@ -30,14 +30,19 @@ namespace Laberinto
          SectionLaberinto laberintoTercerTercio = new SectionLaberinto(GetCantidadFilas() + 1, GetCantidadColumnas() + 1);
 
 
-         LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio);
-        laberintoSegundoTercio.SetPosiVictoria(false);
+         LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, 1);
+         laberintoSegundoTercio.SetPosiVictoria(false);
 
-      
-         LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio);
-
+         LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, 2);
+         //laberintoTercerTercio.SetPosiVictoria();
+         laberintoTercerTercio.SetCeldaInicio(laberintoTercerTercio.GetLaberinto()[0,0]);
          laberintoTercerTercio.SetCeldaVictoria();
+         /*  Console.WriteLine($"parte 2 ini- {laberintoSegundoTercio.GetCeldaInicio().GetFila()}, {laberintoSegundoTercio.GetCeldaInicio().GetColumna()}");
+        Console.WriteLine($"parte 2 win - {laberintoSegundoTercio.GetCeldaVictoria().GetFila()}, {laberintoSegundoTercio.GetCeldaVictoria().GetColumna()}");
 
+        Console.WriteLine($"parte 3 ini- {laberintoTercerTercio.GetCeldaInicio().GetFila()}, {laberintoTercerTercio.GetCeldaInicio().GetColumna()}");
+        Console.WriteLine($"parte 3 win - {laberintoTercerTercio.GetCeldaVictoria().GetFila()}, {laberintoTercerTercio.GetCeldaVictoria().GetColumna()}");
+*/
          laberintoTercerTercio.MostrarMatriz();
 
 
@@ -74,7 +79,7 @@ namespace Laberinto
          }
       }
 
-      public void LaberintoSeccion(int filas, Laberinto laberintoReferencia, SectionLaberinto laberintoModificar)
+      public void LaberintoSeccion(int filas, Laberinto laberintoReferencia, SectionLaberinto laberintoModificar, int queMitad)
       {
          laberintoModificar.CrearCeldas();
          ActualizarCeldasLaberinto(filas, laberintoReferencia, laberintoModificar);
@@ -83,9 +88,10 @@ namespace Laberinto
 
          laberintoModificar.SetCeldaInicio(laberintoReferencia.GetCeldaVictoria());
          //le da mas versatilidad al crear la proxima seccion, porque las toma para crear nuevos caminos
-                  laberintoModificar.AgregarCeldasOcupadas(laberintoReferencia.GetCantidadFilas());
+         laberintoModificar.AgregarCeldasOcupadas(laberintoReferencia.GetCantidadFilas(), queMitad);
 
-           laberintoModificar.SetCeldaOcupada(laberintoReferencia.GetCeldaVictoria());
+
+         //laberintoModificar.SetCeldaOcupada(laberintoReferencia.GetCeldaVictoria());
          //laberintoSegundoTercio.SetCeldaOcupada(laberintoReferencia.GetCeldaVictoria());
          laberintoModificar.CrearLaberinto();
          //laberintoSegundoTercio.SetPosiVictoria();
@@ -93,6 +99,6 @@ namespace Laberinto
 
       }
 
-    
+
    }
 }

@@ -597,9 +597,9 @@ SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
       }
       public virtual void SetCeldaVictoria()
       {
-         //int fila = GetCantidadFilas();
-         Celda celdaMasAlejada = celdasSinSalida[0];
+         Celda celdaMasAlejada = GetCeldaInicio();
          int distanciaMaxima = int.MinValue;
+
          for (int i = 0; i < celdasSinSalida.Count; i++) // Recorrer filas
          {
 
@@ -613,27 +613,8 @@ SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
 
          }
          Celda celdaVicotira = laberinto[celdaMasAlejada.GetFila(), celdaMasAlejada.GetColumna()];
-         /*    celdaVicotira.SetEsVictoria();
-             posiVictoria = celdaVicotira;*/
+  
          SetCeldaVictoria(celdaVicotira);
-
-         /*         posiVictoria(celdaMasAlejada.GetFila());
-         posiVictoria(celdaMasAlejada.GetColumna());
-
-         */
-
-
-         /*
-         if ((fila / 2) < GetFilaInicial())
-         {
-            //el resultado tiene que aparecer x arriba
-            Console.WriteLine("es mayor");
-         }
-         else
-         {
-            //el resultado tiene que aparecer x abajo
-            Console.WriteLine("es menor");
-         }*/
 
       }
 
