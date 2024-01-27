@@ -29,16 +29,67 @@ namespace Laberinto
 
          SectionLaberinto laberintoTercerTercio = new SectionLaberinto(GetCantidadFilas() + 1, GetCantidadColumnas() + 1);
 
-         laberintoPrimerTercio.SetPosiVictoria();
-         //con el 1 recorre la 2da mitad, con el 2 la 1er mitad, con el 0 todo
+         int option = 2;
+         switch (option)
+         {
+            //va por derecha
+            case 0:
+               laberintoPrimerTercio.SetPosiVictoriaSecondHalf();
+               //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
+
+               LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, 2);
+               //con true recorre la 2da mitad
+               laberintoSegundoTercio.SetPosiVictoriaSecondHalf();
+
+               LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, 2);
+               break;
+               //va por izquierda
+            case 1:
+               laberintoPrimerTercio.SetPosiVictoriaSecondHalf(false);
+               //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
+
+               LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, 1);
+               //con true recorre la 2da mitad
+               laberintoSegundoTercio.SetPosiVictoriaSecondHalf(false);
+
+               LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, 1);
+               break;
+               //aleatorio
+            case 2:
+               laberintoPrimerTercio.SetPosiVictoriaSecondHalf(GetRandomBool());
+               //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
+
+               LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, GetRandom(3));
+               //con true recorre la 2da mitad
+               laberintoSegundoTercio.SetPosiVictoriaSecondHalf(GetRandomBool());
+
+               LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, GetRandom(3));
+               break;
+               //zigZag
+            default:
+               laberintoPrimerTercio.SetPosiVictoriaSecondHalf();
+               //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
+
+               LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, 2);
+               //con true recorre la 2da mitad
+               laberintoSegundoTercio.SetPosiVictoriaSecondHalf(false);
+
+               LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, 1);
+               break;
+         }
+         /*
+         laberintoPrimerTercio.SetPosiVictoriaSecondHalf(false);
+         //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
 
          LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, 1);
          //con true recorre la 2da mitad
-         laberintoSegundoTercio.SetPosiVictoria(false);
+         laberintoSegundoTercio.SetPosiVictoriaSecondHalf(false);
 
-         LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, 2);
-         //laberintoTercerTercio.SetPosiVictoria(false);
-         
+         LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, 1);
+         //laberintoTercerTercio.SetPosiVictoriaSecondHalf(false);*/
+         laberintoPrimerTercio.MostrarMatriz();
+         Console.WriteLine(" ");
+         laberintoSegundoTercio.MostrarMatriz();
          laberintoTercerTercio.SetCeldaVictoria();
          /*  Console.WriteLine($"parte 2 ini- {laberintoSegundoTercio.GetCeldaInicio().GetFila()}, {laberintoSegundoTercio.GetCeldaInicio().GetColumna()}");
         Console.WriteLine($"parte 2 win - {laberintoSegundoTercio.GetCeldaVictoria().GetFila()}, {laberintoSegundoTercio.GetCeldaVictoria().GetColumna()}");
@@ -97,7 +148,7 @@ namespace Laberinto
          //laberintoModificar.SetCeldaOcupada(laberintoReferencia.GetCeldaVictoria());
          //laberintoSegundoTercio.SetCeldaOcupada(laberintoReferencia.GetCeldaVictoria());
          laberintoModificar.CrearLaberinto();
-         //laberintoSegundoTercio.SetPosiVictoria();
+         //laberintoSegundoTercio.SetPosiVictoriaSecondHalf();
          //ModificarFilaAnterior(laberintoReferencia.GetCantidadFilas(),laberintoSegundoTercio, laberintoReferencia);
 
       }

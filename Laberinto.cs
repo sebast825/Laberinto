@@ -85,6 +85,12 @@ namespace Laberinto
          int num = rnd.Next(0, techo);
          return num;
       }
+       public bool GetRandomBool()
+      {
+          bool randomBool = rnd.Next(0, 2) == 0;
+
+         return randomBool;
+      }
         public int GetRandom(int piso, int techo)
       {
          int num = rnd.Next(piso, techo);
@@ -541,7 +547,7 @@ SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
       
          while (HayCasillasDisponibles() || j < 10)
          {
-            while (i < 15 && sigue)
+            while (i < GetCantidadColumnas()/2 && sigue)
             {
                sigue = ElegirDireccion();
                /*valida que la direccion elegida es valida, si lo es agrega la casilla a una lista para despues generar caminos alternativos*/

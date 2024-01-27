@@ -44,12 +44,14 @@ namespace Laberinto
          switch (seccionColumnasARecorrer)
          {
             case 1:
-               //recorre la 2da mitad
-               comienzaEn = listPuedePisar.Count() / 2;
+              //recorre la 1er mitad
+               recorreHasta = listPuedePisar.Count() / 2 - 1;
                break;
             case 2:
-               //recorre la 1er mitad
-               recorreHasta = listPuedePisar.Count() / 2 - 1;
+
+                   //recorre la 2da mitad
+               comienzaEn = listPuedePisar.Count() / 2;
+         
                break;
             default:
                break;
@@ -68,7 +70,7 @@ namespace Laberinto
       {
          //List<int> listPuedePisar = ListaPosicionesDisponiblesUltimaFila(laberintoReferenciaCantidadFilas);
          Console.WriteLine($"agregar, ");
-         for (int i = 0; i <= laberintoReferencia.GetCantidadFilas(); i++)
+         for (int i = laberintoReferencia.GetCantidadFilas(); i <= laberintoReferencia.GetCantidadFilas(); i--)
          {
             if (laberintoReferencia.GetLaberinto()[laberintoReferencia.GetCantidadFilas(), i].GetPuedePisar())
             {
@@ -82,15 +84,15 @@ namespace Laberinto
       }
 
       //elegis de que lado es la posicion de victoria, izquierda o derecha
-      public void SetPosiVictoria(bool secondHalf = true)
+      public void SetPosiVictoriaSecondHalf(bool secondHalf = true)
       {
 
          List<int> listPuedePisar = ListaPosicionesDisponiblesUltimaFila();
-         int posiVictoria;
+         int posiVictoria = 0;
          if (secondHalf)
          {
             //selecciona la 2da mitad de las opciones, es para que haya un sig sag entre las opciones
-            posiVictoria = GetRandom(listPuedePisar.Count() / 4*2, listPuedePisar.Count());
+            posiVictoria = GetRandom(listPuedePisar.Count() / 3 * 2, listPuedePisar.Count());
          }
          else
          {
@@ -99,8 +101,15 @@ namespace Laberinto
 
 
          }
-
+      try{
          this.SetCeldaVictoria(laberinto[GetCantidadFilas(), listPuedePisar[posiVictoria]]);
+
+      }catch(Exception error){
+                 // this.SetCeldaVictoria(laberinto[GetCantidadFilas(), listPuedePisar[posiVictoria]-1]);
+
+         Console.WriteLine($"exception, {posiVictoria}");
+         Console.WriteLine(error);
+      }
 
       }
 
@@ -130,7 +139,7 @@ namespace Laberinto
          CrearCeldas();
          SetPosicionInicial();
          CrearLaberinto();
-         SetPosiVictoria();
+         SetPosiVictoriaSecondHalf();
          MostrarMatriz();
       }
    }
