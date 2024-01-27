@@ -27,7 +27,6 @@ namespace Laberinto
          List<int> listPuedePisar = new List<int>();
 
          int ulltimaFila = laberintoReferenciaCantidadFilas;
-         Console.WriteLine($"lista {laberintoReferenciaCantidadFilas}");
                for (int i = 0; i < GetCantidadColumnas(); i++)
          {
             if (laberinto[ulltimaFila, i].GetPuedePisar())
@@ -40,11 +39,27 @@ namespace Laberinto
       public void AgregarCeldasOcupadas(int laberintoReferenciaCantidadFilas)
       {
          List<int> listPuedePisar = ListaPosicionesDisponiblesUltimaFila(laberintoReferenciaCantidadFilas);
-         Console.WriteLine($"agregar, {listPuedePisar.Count()}");
          for (int i = 0; i < listPuedePisar.Count(); i++)
          {
             SetCeldaOcupada(GetLaberinto()[laberintoReferenciaCantidadFilas, listPuedePisar[i]]);
          }
+                         
+
+
+      }
+        public void AgregarCeldasOcupadas(Laberinto laberintoReferencia)
+      {
+         //List<int> listPuedePisar = ListaPosicionesDisponiblesUltimaFila(laberintoReferenciaCantidadFilas);
+        // Console.WriteLine($"agregar, {listPuedePisar.Count()}");
+         for (int i = 0; i <= laberintoReferencia.GetCantidadFilas(); i++)
+         {
+            if(laberintoReferencia.GetLaberinto()[laberintoReferencia.GetCantidadFilas(),i].GetPuedePisar()){
+            SetCeldaOcupada(GetLaberinto()[laberintoReferencia.GetCantidadFilas(), i]);
+
+            }
+         }
+                  //SetCeldaOcupada(laberintoReferencia.GetCeldaVictoria());
+
 
       }
       public void SetPosiVictoria(bool secondHalf = true)
