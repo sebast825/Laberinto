@@ -13,7 +13,7 @@ namespace Laberinto
          List<int> listPuedePisar = new List<int>();
 
          int ulltimaFila = GetCantidadFilas();
-         for (int i = 0; i < GetCantidadColumnas(); i++)
+         for (int i = 0; i <= GetCantidadColumnas(); i++)
          {
             if (laberinto[ulltimaFila, i].GetPuedePisar())
             {
@@ -39,27 +39,27 @@ namespace Laberinto
       public void AgregarCeldasOcupadas(int laberintoReferenciaCantidadFilas, int seccionColumnasARecorrer = 0)
       {
          List<int> listPuedePisar = ListaPosicionesDisponiblesUltimaFila(laberintoReferenciaCantidadFilas);
-int comienzaEn = 0;
-int recorreHasta = listPuedePisar.Count();
-          switch (seccionColumnasARecorrer)
-        {
+         int comienzaEn = 0;
+         int recorreHasta = listPuedePisar.Count();
+         switch (seccionColumnasARecorrer)
+         {
             case 1:
-            //recorre la 2da mitad
-                comienzaEn = listPuedePisar.Count()/2;
-                break;
+               //recorre la 2da mitad
+               comienzaEn = listPuedePisar.Count() / 2;
+               break;
             case 2:
-            //recorre la 1er mitad
-                 recorreHasta = listPuedePisar.Count()/2-1;
-                break;
+               //recorre la 1er mitad
+               recorreHasta = listPuedePisar.Count() / 2 - 1;
+               break;
             default:
                break;
-        }
+         }
 
          for (int i = comienzaEn; i < recorreHasta; i++)
          {
             SetCeldaOcupada(GetLaberinto()[laberintoReferenciaCantidadFilas, listPuedePisar[i]]);
          }
-         Console.WriteLine($"agregar, asd");
+        
 
 
 
@@ -90,12 +90,13 @@ int recorreHasta = listPuedePisar.Count();
          if (secondHalf)
          {
             //selecciona la 2da mitad de las opciones, es para que haya un sig sag entre las opciones
-            posiVictoria = GetRandom(listPuedePisar.Count() / 2 + 1, listPuedePisar.Count());
+            posiVictoria = GetRandom(listPuedePisar.Count() / 4*2, listPuedePisar.Count());
          }
          else
          {
             Console.WriteLine("entra acaaa");
             posiVictoria = GetRandom(listPuedePisar.Count() / 4);
+
 
          }
 
@@ -104,7 +105,23 @@ int recorreHasta = listPuedePisar.Count();
       }
 
 
+      public void SetCeldaVictoria(bool RightCorner = true)
+      {
+         List<int> listPuedePisar = ListaPosicionesDisponiblesUltimaFila();
+         int posiVictoria;
+         if (RightCorner)
+         {
+            posiVictoria = listPuedePisar.Last();
+            Console.WriteLine(posiVictoria);
+         }
+         else
+         {
+            posiVictoria = listPuedePisar[0];
+         }
 
+         this.SetCeldaVictoria(laberinto[GetCantidadFilas(), posiVictoria]);
+
+      }
       public void CrearLaberintoDos()
       {
 
