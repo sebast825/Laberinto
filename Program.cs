@@ -11,7 +11,7 @@ class Program
     Stopwatch stopwatch = new Stopwatch();
     stopwatch.Start();
 
-    LaberintoDificil unLaberintoDificil = new LaberintoDificil(20, 15);
+    LaberintoDificil unLaberintoDificil = new LaberintoDificil(40, 40);
     unLaberintoDificil.CrearSeccionesHorizontal();
 
     Personaje unPersonaje = new Personaje();
