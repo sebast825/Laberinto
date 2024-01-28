@@ -522,7 +522,7 @@ SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
 
       public void MostrarMatriz()
       {
-         //Console.Clear();
+         Console.Clear();
          for (int i = 0; i < laberinto.GetLength(0); i++)
          {
             //Console.Write($"{i} | ");
