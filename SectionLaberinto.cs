@@ -57,6 +57,7 @@ namespace Laberinto
 
                break;
             default:
+               comienzaEn = 0;
                break;
          }
 
