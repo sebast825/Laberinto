@@ -85,10 +85,7 @@ namespace Laberinto
          }
          else
          {
-            Console.WriteLine("entra acaaa");
             posiVictoria = GetRandom(listPuedePisar.Count() / 4);
-
-
          }
          try
          {
@@ -97,9 +94,6 @@ namespace Laberinto
          }
          catch (Exception error)
          {
-            // this.SetCeldaVictoria(laberinto[GetCantidadFilas(), listPuedePisar[posiVictoria]-1]);
-
-            Console.WriteLine($"exception, {posiVictoria}");
             Console.WriteLine(error);
          }
 
@@ -113,7 +107,6 @@ namespace Laberinto
          if (RightCorner)
          {
             posiVictoria = listPuedePisar.Last();
-            Console.WriteLine(posiVictoria);
          }
          else
          {

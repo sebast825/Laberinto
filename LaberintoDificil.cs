@@ -1,3 +1,4 @@
+using System.Diagnostics.Contracts;
 using System.Globalization;
 
 namespace Laberinto
@@ -20,7 +21,7 @@ namespace Laberinto
 
          SectionLaberinto laberintoTercerTercio = new SectionLaberinto(GetCantidadFilas() + 1, GetCantidadColumnas() + 1);
 
-         ConfiguracionLaberinto unaConfiguracion = ConfigurarLaberinto();
+         ConfiguracionLaberinto unaConfiguracion = ConfigurarLaberinto(ElegirConfiguracion());
 
 
          laberintoPrimerTercio.SetPosiVictoriaSecondHalf(unaConfiguracion.boolFirst);
@@ -35,7 +36,7 @@ namespace Laberinto
  
          laberintoTercerTercio.SetCeldaVictoria();
          laberinto = laberintoTercerTercio.GetLaberinto();
-         MostrarMatriz();
+         SetPosicionInicial();
 
 
       }
@@ -62,6 +63,18 @@ namespace Laberinto
          }
       }
 
+   public int ElegirConfiguracion(){
+      int numero = 0;
+      
+      if(GetCantidadFilas() < 19){
+         numero = GetRandom(4);
+         
+      }else{
+          numero = GetRandom(20);
+
+      }
+      return numero;
+   }
       public SectionLaberinto GenerarPrimeraParte(int filas, int columnas)
       {
          SectionLaberinto laberintoPrimerTercio = new SectionLaberinto(filas, columnas);
