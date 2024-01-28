@@ -8,6 +8,8 @@ namespace Laberinto
       {
       }
 
+
+      //se usa para el laberint actual
       public List<int> ListaPosicionesDisponiblesUltimaFila()
       {
          List<int> listPuedePisar = new List<int>();
@@ -22,6 +24,7 @@ namespace Laberinto
          }
          return listPuedePisar;
       }
+      //se usa para el laberinto anterior
       public List<int> ListaPosicionesDisponiblesUltimaFila(int laberintoReferenciaCantidadFilas)
       {
          List<int> listPuedePisar = new List<int>();
@@ -44,14 +47,14 @@ namespace Laberinto
          switch (seccionColumnasARecorrer)
          {
             case 1:
-              //recorre la 1er mitad
+               //recorre la 1er mitad
                recorreHasta = listPuedePisar.Count() / 2 - 1;
                break;
             case 2:
 
-                   //recorre la 2da mitad
+               //recorre la 2da mitad
                comienzaEn = listPuedePisar.Count() / 2;
-         
+
                break;
             default:
                break;
@@ -61,27 +64,12 @@ namespace Laberinto
          {
             SetCeldaOcupada(GetLaberinto()[laberintoReferenciaCantidadFilas, listPuedePisar[i]]);
          }
-        
 
 
-
-      }
-      public void AgregarCeldasOcupadas(Laberinto laberintoReferencia)
-      {
-         //List<int> listPuedePisar = ListaPosicionesDisponiblesUltimaFila(laberintoReferenciaCantidadFilas);
-         Console.WriteLine($"agregar, ");
-         for (int i = laberintoReferencia.GetCantidadFilas(); i <= laberintoReferencia.GetCantidadFilas(); i--)
-         {
-            if (laberintoReferencia.GetLaberinto()[laberintoReferencia.GetCantidadFilas(), i].GetPuedePisar())
-            {
-               SetCeldaOcupada(GetLaberinto()[laberintoReferencia.GetCantidadFilas(), i]);
-
-            }
-         }
-         //SetCeldaOcupada(laberintoReferencia.GetCeldaVictoria());
 
 
       }
+
 
       //elegis de que lado es la posicion de victoria, izquierda o derecha
       public void SetPosiVictoriaSecondHalf(bool secondHalf = true)
@@ -101,15 +89,18 @@ namespace Laberinto
 
 
          }
-      try{
-         this.SetCeldaVictoria(laberinto[GetCantidadFilas(), listPuedePisar[posiVictoria]]);
+         try
+         {
+            this.SetCeldaVictoria(laberinto[GetCantidadFilas(), listPuedePisar[posiVictoria]]);
 
-      }catch(Exception error){
-                 // this.SetCeldaVictoria(laberinto[GetCantidadFilas(), listPuedePisar[posiVictoria]-1]);
+         }
+         catch (Exception error)
+         {
+            // this.SetCeldaVictoria(laberinto[GetCantidadFilas(), listPuedePisar[posiVictoria]-1]);
 
-         Console.WriteLine($"exception, {posiVictoria}");
-         Console.WriteLine(error);
-      }
+            Console.WriteLine($"exception, {posiVictoria}");
+            Console.WriteLine(error);
+         }
 
       }
 

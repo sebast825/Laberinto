@@ -29,69 +29,17 @@ namespace Laberinto
 
          SectionLaberinto laberintoTercerTercio = new SectionLaberinto(GetCantidadFilas() + 1, GetCantidadColumnas() + 1);
 
-         int option = 3;
-         bool boolFirst, boolSecond = true;
-         int numSecond, numThird = 0;
-         switch (option)
-         {
-            //va por derecha
-            case 0:
-               boolFirst = true;
-               boolSecond = true;
-
-               numSecond = 2;
-               numThird = 2;
-
-               break;
-            //va por izquierda
-            case 1:
-
-               boolFirst = false;
-               boolSecond = false;
-
-               numSecond = 1;
-               numThird = 1;
-
-               break;
-            //aleatorio
-            case 2:
-               boolFirst = GetRandomBool();
-               boolSecond = GetRandomBool();
-
-               numSecond = GetRandom(3);
-               numThird = GetRandom(3);
-
-               break;
-            //lo hace lab normal
-            case 3:
-               boolFirst = GetRandomBool();
-               boolSecond = GetRandomBool();
-
-               numSecond = 0;
-               numThird = 0;
-
-               break;
-            //zigZag
-            default:
-               boolFirst = true;
-               boolSecond = false;
-
-               numSecond = 2;
-               numThird = 1;
+ConfiguracionLaberinto unaConfiguracion = ConfigurarLaberinto();
 
 
-               break;
-         }
-
-
-         laberintoPrimerTercio.SetPosiVictoriaSecondHalf(boolFirst);
+         laberintoPrimerTercio.SetPosiVictoriaSecondHalf(unaConfiguracion.boolFirst);
          //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
 
-         LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, numSecond);
+         LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, unaConfiguracion.numSecond);
          //con true recorre la 2da mitad
-         laberintoSegundoTercio.SetPosiVictoriaSecondHalf(boolSecond);
+         laberintoSegundoTercio.SetPosiVictoriaSecondHalf(unaConfiguracion.boolSecond);
 
-         LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, numThird);
+         LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, unaConfiguracion.numThird);
          /*
          laberintoPrimerTercio.SetPosiVictoriaSecondHalf(false);
          //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
@@ -116,7 +64,29 @@ namespace Laberinto
 
 
       }
+      private ConfiguracionLaberinto ConfigurarLaberinto(int option = 2)
+      {
+      
 
+         switch (option)
+         {
+            // va por derecha
+            case 0:
+               return new ConfiguracionLaberinto(true, true, 2, 2);
+            // va por izquierda
+            case 1:
+               return new ConfiguracionLaberinto(false, false, 1, 1);
+            // aleatorio
+            case 2:
+               return new ConfiguracionLaberinto(GetRandomBool(), GetRandomBool(), GetRandom(3), GetRandom(3));
+            // lo hace lab normal
+            case 3:
+               return new ConfiguracionLaberinto(GetRandomBool(), GetRandomBool(), 0, 0);
+            // zigZag
+            default:
+               return new ConfiguracionLaberinto(true, false, 2, 1);
+         }
+      }
 
       public SectionLaberinto GenerarPrimeraParte(int filas, int columnas)
       {
