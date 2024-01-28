@@ -29,54 +29,69 @@ namespace Laberinto
 
          SectionLaberinto laberintoTercerTercio = new SectionLaberinto(GetCantidadFilas() + 1, GetCantidadColumnas() + 1);
 
-         int option = 2;
+         int option = 3;
+         bool boolFirst, boolSecond = true;
+         int numSecond, numThird = 0;
          switch (option)
          {
             //va por derecha
             case 0:
-               laberintoPrimerTercio.SetPosiVictoriaSecondHalf();
-               //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
+               boolFirst = true;
+               boolSecond = true;
 
-               LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, 2);
-               //con true recorre la 2da mitad
-               laberintoSegundoTercio.SetPosiVictoriaSecondHalf();
+               numSecond = 2;
+               numThird = 2;
 
-               LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, 2);
                break;
-               //va por izquierda
+            //va por izquierda
             case 1:
-               laberintoPrimerTercio.SetPosiVictoriaSecondHalf(false);
-               //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
 
-               LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, 1);
-               //con true recorre la 2da mitad
-               laberintoSegundoTercio.SetPosiVictoriaSecondHalf(false);
+               boolFirst = false;
+               boolSecond = false;
 
-               LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, 1);
+               numSecond = 1;
+               numThird = 1;
+
                break;
-               //aleatorio
+            //aleatorio
             case 2:
-               laberintoPrimerTercio.SetPosiVictoriaSecondHalf(GetRandomBool());
-               //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
+               boolFirst = GetRandomBool();
+               boolSecond = GetRandomBool();
 
-               LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, GetRandom(3));
-               //con true recorre la 2da mitad
-               laberintoSegundoTercio.SetPosiVictoriaSecondHalf(GetRandomBool());
+               numSecond = GetRandom(3);
+               numThird = GetRandom(3);
 
-               LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, GetRandom(3));
                break;
-               //zigZag
+            //lo hace lab normal
+            case 3:
+               boolFirst = GetRandomBool();
+               boolSecond = GetRandomBool();
+
+               numSecond = 0;
+               numThird = 0;
+
+               break;
+            //zigZag
             default:
-               laberintoPrimerTercio.SetPosiVictoriaSecondHalf();
-               //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
+               boolFirst = true;
+               boolSecond = false;
 
-               LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, 2);
-               //con true recorre la 2da mitad
-               laberintoSegundoTercio.SetPosiVictoriaSecondHalf(false);
+               numSecond = 2;
+               numThird = 1;
 
-               LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, 1);
+
                break;
          }
+
+
+         laberintoPrimerTercio.SetPosiVictoriaSecondHalf(boolFirst);
+         //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
+
+         LaberintoSeccion(tercioDeFilas * 2, laberintoPrimerTercio, laberintoSegundoTercio, numSecond);
+         //con true recorre la 2da mitad
+         laberintoSegundoTercio.SetPosiVictoriaSecondHalf(boolSecond);
+
+         LaberintoSeccion(tercioDeFilas * 3, laberintoSegundoTercio, laberintoTercerTercio, numThird);
          /*
          laberintoPrimerTercio.SetPosiVictoriaSecondHalf(false);
          //con el 2 recorre la 2da mitad, con el 1 la 1er mitad, con el 0 todo
