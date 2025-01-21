@@ -36,10 +36,10 @@ namespace Laberinto
 
                if (!validarMovimiento)
                {
-                  Console.WriteLine("No podes ir por ahi! ");
+                  //Console.WriteLine("No podes ir por ahi! ");
 
                }
-               Console.WriteLine("");
+               //Console.WriteLine("");
             }
 
             while (!VerificarVictoria());

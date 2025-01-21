@@ -522,13 +522,15 @@ SetCeldaActual(laberinto[posiIni[0],posiIni[1]]);
 
       public void MostrarMatriz()
       {
-         Console.Clear();
+         //Console.Clear();
          for (int i = 0; i < laberinto.GetLength(0); i++)
          {
             //Console.Write($"{i} | ");
             for (int j = 0; j < laberinto.GetLength(1); j++)
             {
-               laberinto[i, j].ImprimirPantalla();
+                    Console.SetCursorPosition(j * 3, i);
+
+                    laberinto[i, j].ImprimirPantalla();
 
             }
             Console.ResetColor();

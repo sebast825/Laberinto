@@ -1,4 +1,4 @@
-using System.Dynamic;
+﻿using System.Dynamic;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 
@@ -69,7 +69,17 @@ namespace Laberinto
       {
          this.estaPersonaje = estaPersonaje;
       }
-      public void ImprimirPantalla()
+        public string ObtenerSimbolo()
+        {
+            if (!puedePisar) return "🟫"; // Pared
+            if (esInicio) return "🔴";    // Inicio
+            if (esVictoria) return "⭐";  // Salida o victoria
+            if (estaPersonaje) return "🟩"; // Posición del personaje
+            return "⬜";                  // Camino transitable
+        }
+
+
+        public void ImprimirPantalla()
       {
 
          if (puedePisar)

@@ -30,7 +30,7 @@ namespace Laberinto
          {
             //Console.WriteLine("");
 
-            Console.Write("Ingresar w/a/s/d: ");
+           // Console.Write("Ingresar w/a/s/d: ");
             char input = Console.ReadKey().KeyChar;
             input = char.ToLower(input);
 
@@ -42,7 +42,8 @@ namespace Laberinto
             }
             else
             {
-               Console.WriteLine("Direccion invalida!");
+                    //Console.WriteLine("Direccion invalida!");
+                    continue;
             }
          } while (true); // El bucle se ejecutará hasta que se ingrese un carácter válido
          return movimiento;
