@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Laberinto
 {
 
@@ -18,12 +20,24 @@ namespace Laberinto
 
       public void Iniciar()
       {
-         Celda celdaInicio = laberinto.GetCeldaInicio();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            HandleLaberinto();
+            stopwatch.Stop();
+
+            string timeToSeconds = (stopwatch.ElapsedMilliseconds / 1000).ToString();
+            msjeFinPartida(timeToSeconds);
+
+        }
+
+        public void HandleLaberinto()
+        {
+            Celda celdaInicio = laberinto.GetCeldaInicio();
 
             bool cancelarPartida = false;
-             personaje.SetPosiX(celdaInicio.GetFila());
-             personaje.SetPosiY(celdaInicio.GetColumna());
-         
+            personaje.SetPosiX(celdaInicio.GetFila());
+            personaje.SetPosiY(celdaInicio.GetColumna());
+
             bool validarMovimiento = false;
             do
             {
@@ -39,21 +53,27 @@ namespace Laberinto
 
             }
 
-            while ( !VerificarVictoria() && !cancelarPartida);
-            
+            while (!VerificarVictoria() && !cancelarPartida);
+        }
+
+        public void msjeFinPartida(string gameDuration)
+        {
+            Console.Write("\n");
+
             if (VerificarVictoria())
             {
-               
-                Console.WriteLine("Ganaste!!");
+
+                Console.WriteLine("Ganaste!!\n");
+                Console.WriteLine($"Duracion de la partida: {gameDuration} segundos.");
+
             }
             else
             {
                 Console.WriteLine("Has fializado la partida");
 
             }
-
+            Console.Write("\n");
         }
-
       public bool VerificarVictoria()
       {
          return matrizLaberinto[personaje.GetPosiX(), personaje.GetPosiY()].GetEsVictoria();

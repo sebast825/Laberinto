@@ -29,7 +29,6 @@ class Program
         if (!string.IsNullOrEmpty(input))
         {
             dificultad = input.ToUpper()[0];
-            Console.WriteLine($"Seleccionaste la dificultad: {dificultad}");
         }
 
 
@@ -61,8 +60,7 @@ class Program
         }
         //a partir de las 20 filas se habilita la opcion de zig zag
         Console.Clear();
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.Start();
+    
 
         LaberintoDificil unLaberintoDificil = new LaberintoDificil(columnas, filas);
         unLaberintoDificil.CrearSeccionesHorizontal();
@@ -72,8 +70,7 @@ class Program
         Partida unaPartida = new Partida(unLaberintoDificil, unPersonaje);
         unaPartida.Iniciar();
 
-        stopwatch.Stop();
-        Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");
+        
 
     }
 }
