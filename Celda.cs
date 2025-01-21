@@ -87,30 +87,39 @@ namespace Laberinto
             if (esInicio)
             {
                Console.BackgroundColor = ConsoleColor.Red;
-            }
-          
-             if (estaPersonaje)
+              // Console.ForegroundColor = ConsoleColor.Red;
+
+                }
+
+                if (estaPersonaje)
             {
                Console.BackgroundColor = ConsoleColor.Green;
-  
-            }
-              else if (esVictoria)
+                   Console.ForegroundColor = ConsoleColor.White;
+
+
+                }
+                else if (esVictoria)
             {
                Console.BackgroundColor = ConsoleColor.White;
-            }
-            else
+                 Console.ForegroundColor = ConsoleColor.Red;
+
+                }
+                else
             {
                Console.BackgroundColor = ConsoleColor.DarkGray;
+                Console.ForegroundColor = ConsoleColor.DarkGray;
 
-            }
-            Console.Write($" * ");
+
+                }
+                Console.Write($" * ");
 
          }
          else
          {
             Console.BackgroundColor = ConsoleColor.DarkCyan;
+              Console.ForegroundColor = ConsoleColor.White;
 
-            Console.Write($" * ");
+                Console.Write($" * ");
 
          }
       }

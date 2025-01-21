@@ -31,7 +31,7 @@ namespace Laberinto
             //Console.WriteLine("");
 
            // Console.Write("Ingresar w/a/s/d: ");
-            char input = Console.ReadKey().KeyChar;
+            char input = Console.ReadKey(true).KeyChar;
             input = char.ToLower(input);
 
             // Verificar si el input es un carácter válido

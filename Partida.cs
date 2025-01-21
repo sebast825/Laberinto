@@ -22,12 +22,13 @@ namespace Laberinto
       {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
+
             HandleLaberinto();
+
             stopwatch.Stop();
-
             string timeToSeconds = (stopwatch.ElapsedMilliseconds / 1000).ToString();
-            msjeFinPartida(timeToSeconds);
 
+            msjeFinPartida(timeToSeconds);
         }
 
         public void HandleLaberinto()

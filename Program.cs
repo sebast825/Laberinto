@@ -8,10 +8,12 @@ class Program
 {
   static void Main(string[] args)
   {
+        Console.WriteLine("Laberintos Aleatorios \n");
         do
         {
-           // Console.WriteLine("\nPresiona cualquier tecla para reiniciar o 'Esc' para salir...");
-
+            // Console.WriteLine("\nPresiona cualquier tecla para reiniciar o 'Esc' para salir...");
+            
+            Console.WriteLine("Para moverte utiliza las teclas W/A/S/D, si quieres finalizar la partida utiliza la letra 'R' \n");
             EjecutarApp();
 
         }
@@ -21,9 +23,9 @@ class Program
 
     static void EjecutarApp()
     {
-        Console.OutputEncoding = Encoding.UTF8;
+        Console.OutputEncoding = Encoding.UTF8;//es necesario si se cambia a otros caracteres 
 
-        Console.WriteLine("Selecciona la dificultad: F (Fácil), M (Media), D (Difícil), G (God):");
+        Console.WriteLine("Selecciona la dificultad: F (Fácil), M (Media), D (Difícil), G (God):\n");
         string input = Console.ReadLine();
         char dificultad = 'A';
         if (!string.IsNullOrEmpty(input))
