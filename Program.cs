@@ -8,29 +8,39 @@ class Program
 {
   static void Main(string[] args)
   {
+        do
+        {
+           // Console.WriteLine("\nPresiona cualquier tecla para reiniciar o 'Esc' para salir...");
+
+            EjecutarApp();
+
+        }
+        while (true); // Esc para salir
+
+    }
+
+    static void EjecutarApp()
+    {
         Console.OutputEncoding = Encoding.UTF8;
 
         Console.WriteLine("Selecciona la dificultad: F (Fácil), M (Media), D (Difícil), G (God):");
-        string input = Console.ReadLine(); // Lee el input completo como string
+        string input = Console.ReadLine();
         char dificultad = 'A';
-        if (!string.IsNullOrEmpty(input)) // Validar que el usuario haya ingresado algo
+        if (!string.IsNullOrEmpty(input))
         {
-            dificultad = input.ToUpper()[0]; // Tomar el primer carácter
+            dificultad = input.ToUpper()[0];
             Console.WriteLine($"Seleccionaste la dificultad: {dificultad}");
         }
-        else
-        {
-            Console.WriteLine("No ingresaste ninguna dificultad.");
-        }
 
-        int filas=0;
-        int columnas =0;
+
+        int filas = 0;
+        int columnas = 0;
 
         switch (dificultad)
         {
             case 'F':
                 filas = 10;
-                columnas = 20;
+                columnas = 10;
                 break;
             case 'M':
                 filas = 20;
@@ -49,31 +59,23 @@ class Program
                 columnas = 20;
                 break;
         }
-    //a partir de las 20 filas se habilita la opcion de zig zag
-    Stopwatch stopwatch = new Stopwatch();
-    stopwatch.Start();
+        //a partir de las 20 filas se habilita la opcion de zig zag
+        Console.Clear();
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
 
-    LaberintoDificil unLaberintoDificil = new LaberintoDificil(columnas, filas);
-    unLaberintoDificil.CrearSeccionesHorizontal();
+        LaberintoDificil unLaberintoDificil = new LaberintoDificil(columnas, filas);
+        unLaberintoDificil.CrearSeccionesHorizontal();
 
-    Personaje unPersonaje = new Personaje();
+        Personaje unPersonaje = new Personaje();
 
-    Partida unaPartida = new Partida(unLaberintoDificil, unPersonaje);
-    unaPartida.Iniciar();
+        Partida unaPartida = new Partida(unLaberintoDificil, unPersonaje);
+        unaPartida.Iniciar();
 
-    stopwatch.Stop();
-    Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");
+        stopwatch.Stop();
+        Console.WriteLine($"Tiempo transcurrido: {stopwatch.ElapsedMilliseconds} ms");
 
-    /*
-      Laberinto unLaberinto = new Laberinto(20, 20);
-      unLaberinto.CrearCeldas();
-      unLaberinto.SetPosicionInicial();
-      unLaberinto.CrearLaberinto();
-      unLaberinto.SetCeldaVictoria();
-      unLaberinto.MostrarMatriz();
-    */
-
-  }
+    }
 }
 
 

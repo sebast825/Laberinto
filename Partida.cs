@@ -20,38 +20,39 @@ namespace Laberinto
       {
          Celda celdaInicio = laberinto.GetCeldaInicio();
 
-         bool ganar = false;
-         personaje.SetPosiX(celdaInicio.GetFila());
-         personaje.SetPosiY(celdaInicio.GetColumna());
-         while (ganar == false)
-         {
-            laberinto.MostrarMatriz();
+            bool cancelarPartida = false;
+             personaje.SetPosiX(celdaInicio.GetFila());
+             personaje.SetPosiY(celdaInicio.GetColumna());
+         
             bool validarMovimiento = false;
             do
             {
-               char movimiento = personaje.ElegirMovimiento();
-               validarMovimiento = ValidarMovimiento(movimiento);
-            
-               laberinto.MostrarMatriz();
+                laberinto.MostrarMatriz();
+                char movimiento = personaje.ElegirMovimiento();
 
-               if (!validarMovimiento)
-               {
-                  //Console.WriteLine("No podes ir por ahi! ");
+                if (movimiento == 'r')
+                {
+                    cancelarPartida = true;
+                }
+                validarMovimiento = ValidarMovimiento(movimiento);
+                laberinto.MostrarMatriz();
 
-               }
-               //Console.WriteLine("");
             }
 
-            while (!VerificarVictoria());
+            while ( !VerificarVictoria() && !cancelarPartida);
+            
+            if (VerificarVictoria())
+            {
+               
+                Console.WriteLine("Ganaste!!");
+            }
+            else
+            {
+                Console.WriteLine("Has fializado la partida");
 
+            }
 
-            ganar = true;
-
-
-         }
-         Console.WriteLine("ganaste!!");
-
-      }
+        }
 
       public bool VerificarVictoria()
       {

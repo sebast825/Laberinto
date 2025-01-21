@@ -35,7 +35,7 @@ namespace Laberinto
             input = char.ToLower(input);
 
             // Verificar si el input es un carácter válido
-            if (input == 'w' || input == 'd' || input == 's' || input == 'a')
+            if (input == 'w' || input == 'd' || input == 's' || input == 'a' || input=='r')
             {
                movimiento = input;
                break; // Salir del bucle si el input es válido
