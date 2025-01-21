@@ -54,8 +54,7 @@
               "RelativeToolTip": "Partida.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAAQwDQAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T20:22:12.964Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T20:22:12.964Z"
             },
             {
               "$type": "Document",
@@ -65,7 +64,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwBcAAAAdAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-21T17:07:07.547Z",
               "EditorCaption": ""
@@ -80,8 +79,7 @@
               "RelativeToolTip": "Personaje.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAUwB4AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T20:21:52.817Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T20:21:52.817Z"
             },
             {
               "$type": "Document",
@@ -93,8 +91,7 @@
               "RelativeToolTip": "LaberintoDificil.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T20:21:49.956Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T20:21:49.956Z"
             },
             {
               "$type": "Document",
@@ -106,8 +103,7 @@
               "RelativeToolTip": "ConfiguracionLaberinto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T20:21:44.55Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T20:21:44.55Z"
             },
             {
               "$type": "Document",
@@ -119,8 +115,7 @@
               "RelativeToolTip": "Celda.cs",
               "ViewState": "AQIAAFYAAAAAAAAAAAAAAF4AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T20:00:55.895Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T20:00:55.895Z"
             },
             {
               "$type": "Document",
@@ -132,8 +127,7 @@
               "RelativeToolTip": "Laberinto.cs",
               "ViewState": "AQIAAIIAAAAAAAAAAAAQwHsAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T17:07:01.424Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T17:07:01.424Z"
             }
           ]
         }

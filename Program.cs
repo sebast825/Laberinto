@@ -8,7 +8,10 @@ class Program
 {
   static void Main(string[] args)
   {
-        Console.WriteLine("Laberintos Aleatorios \n");
+        string textoGrande = "Laberintos Aleatorios \n";
+        string textoAscii = Figgle.FiggleFonts.Standard.Render(textoGrande);
+        Console.WriteLine(textoAscii);
+        Console.WriteLine("Desarrollado por Sebastián Molina \n\n\n");
         do
         {
             // Console.WriteLine("\nPresiona cualquier tecla para reiniciar o 'Esc' para salir...");
