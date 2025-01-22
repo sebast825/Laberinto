@@ -40,7 +40,7 @@ namespace Laberinto
 
 
       }
-      private ConfiguracionLaberinto ConfigurarLaberinto(int option = 3)
+      private ConfiguracionLaberinto ConfigurarLaberinto(int option = 2)
       {
 
          switch (option)
