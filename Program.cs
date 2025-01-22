@@ -6,18 +6,17 @@ using System.Text;
 namespace Laberinto;
 class Program
 {
-  static void Main(string[] args)
-  {
-        Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+    static void Main(string[] args)
+    {
 
         string textoGrande = "Random Mazes \n";
         string textoAscii = Figgle.FiggleFonts.Standard.Render(textoGrande);
         Console.WriteLine(textoAscii);
         Console.WriteLine("Developed by Sebastián Molina \n\n\n");
+        Console.WriteLine("Recommendation: For the best experience, run the game in full-screen mode. This ensures that the entire labyrinth is visible for its correct functionality.\n");
+
         do
         {
-            // Console.WriteLine("\nPresiona cualquier tecla para reiniciar o 'Esc' para salir...");
-
             Console.WriteLine("To move, use the W/A/S/D keys. If you want to end the game, press the 'R' key.\n");
             EjecutarApp();
 
@@ -66,7 +65,7 @@ class Program
                 break;
         }
         //a partir de las 20 filas se habilita la opcion de zig zag
-        Console.Clear();    
+        Console.Clear();
 
         LaberintoDificil unLaberintoDificil = new LaberintoDificil(columnas, filas);
         unLaberintoDificil.CrearSeccionesHorizontal();
@@ -76,7 +75,7 @@ class Program
         Partida unaPartida = new Partida(unLaberintoDificil, unPersonaje);
         unaPartida.Iniciar();
 
-        
+
 
     }
 }

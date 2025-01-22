@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\laberintodificil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|solutionrelative:laberintodificil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\laberinto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|solutionrelative:laberinto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\partida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|solutionrelative:partida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\laberintodificil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|solutionrelative:laberintodificil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\personaje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\celda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|solutionrelative:celda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\laberinto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|solutionrelative:laberinto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\configuracionlaberinto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -52,26 +52,27 @@
               "RelativeDocumentMoniker": "Partida.cs",
               "ToolTip": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Partida.cs",
               "RelativeToolTip": "Partida.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAowDwAAAAJAAAA",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAxwBEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T20:22:12.964Z"
+              "WhenOpened": "2025-01-21T20:22:12.964Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAAowEYAAABCAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-21T17:07:07.547Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Personaje.cs",
               "DocumentMoniker": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Personaje.cs",
               "RelativeDocumentMoniker": "Personaje.cs",
@@ -83,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "LaberintoDificil.cs",
               "DocumentMoniker": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\LaberintoDificil.cs",
               "RelativeDocumentMoniker": "LaberintoDificil.cs",
@@ -108,7 +109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Celda.cs",
               "DocumentMoniker": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Celda.cs",
               "RelativeDocumentMoniker": "Celda.cs",
@@ -120,15 +121,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Laberinto.cs",
               "DocumentMoniker": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Laberinto.cs",
               "RelativeDocumentMoniker": "Laberinto.cs",
               "ToolTip": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Laberinto.cs",
               "RelativeToolTip": "Laberinto.cs",
-              "ViewState": "AQIAAIIAAAAAAAAAAAAQwHsAAAAJAAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAowHsAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T17:07:01.424Z"
+              "WhenOpened": "2025-01-21T17:07:01.424Z",
+              "EditorCaption": ""
             }
           ]
         }
