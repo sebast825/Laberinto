@@ -64,13 +64,13 @@ namespace Laberinto
             if (VerificarVictoria())
             {
 
-                Console.WriteLine("Ganaste!!\n");
-                Console.WriteLine($"Duracion de la partida: {gameDuration} segundos.");
-
+                Console.WriteLine("YOU WIN!!\n");
+                Console.WriteLine($"Game duration: {gameDuration} seconds.");
             }
             else
             {
-                Console.WriteLine("Has fializado la partida");
+                Console.WriteLine("You have ended the game.");
+
 
             }
             Console.Write("\n");

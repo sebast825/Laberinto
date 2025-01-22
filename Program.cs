@@ -8,15 +8,17 @@ class Program
 {
   static void Main(string[] args)
   {
-        string textoGrande = "Laberintos Aleatorios \n";
+        Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+
+        string textoGrande = "Random Mazes \n";
         string textoAscii = Figgle.FiggleFonts.Standard.Render(textoGrande);
         Console.WriteLine(textoAscii);
-        Console.WriteLine("Desarrollado por Sebastián Molina \n\n\n");
+        Console.WriteLine("Developed by Sebastián Molina \n\n\n");
         do
         {
             // Console.WriteLine("\nPresiona cualquier tecla para reiniciar o 'Esc' para salir...");
-            
-            Console.WriteLine("Para moverte utiliza las teclas W/A/S/D, si quieres finalizar la partida utiliza la letra 'R' \n");
+
+            Console.WriteLine("To move, use the W/A/S/D keys. If you want to end the game, press the 'R' key.\n");
             EjecutarApp();
 
         }
@@ -28,9 +30,9 @@ class Program
     {
         Console.OutputEncoding = Encoding.UTF8;//es necesario si se cambia a otros caracteres 
 
-        Console.WriteLine("Selecciona la dificultad: F (Fácil), M (Media), D (Difícil), G (God):\n");
+        Console.WriteLine("Select the difficulty: E (Easy), M (Medium), H (Hard), G (God):\n");
         string input = Console.ReadLine();
-        char dificultad = 'A';
+        char dificultad = 'E';
         if (!string.IsNullOrEmpty(input))
         {
             dificultad = input.ToUpper()[0];
@@ -42,15 +44,15 @@ class Program
 
         switch (dificultad)
         {
-            case 'F':
+            case 'E':
                 filas = 10;
-                columnas = 10;
+                columnas = 20;
                 break;
             case 'M':
                 filas = 20;
                 columnas = 30;
                 break;
-            case 'D':
+            case 'H':
                 filas = 30;
                 columnas = 40;
                 break;

@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\partida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|solutionrelative:partida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\partida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|solutionrelative:partida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{25079C64-0E5C-4F08-8287-244D1A27BE0C}|Laberinto.csproj|c:\\users\\sebastian\\desktop\\laberinto\\personaje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,26 +46,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Partida.cs",
               "DocumentMoniker": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Partida.cs",
               "RelativeDocumentMoniker": "Partida.cs",
               "ToolTip": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Partida.cs",
               "RelativeToolTip": "Partida.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAowC0AAAA8AAAA",
+              "ViewState": "AQIAACsAAAAAAAAAAAAowDwAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-21T20:22:12.964Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Sebastian\\Desktop\\Laberinto\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAowEIAAAAYAAAA",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAowCkAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-21T17:07:07.547Z",
               "EditorCaption": ""
@@ -80,8 +80,7 @@
               "RelativeToolTip": "Personaje.cs",
               "ViewState": "AQIAABQAAAAAAAAAAAAIwCoAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T20:21:52.817Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T20:21:52.817Z"
             },
             {
               "$type": "Document",
