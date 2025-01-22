@@ -55,8 +55,8 @@ class Program
                 columnas = 40;
                 break;
             case 'G':
-                filas = 50;
-                columnas = 60;
+                filas = 40;
+                columnas = 50;
                 break;
             default:
                 filas = 10;
@@ -64,8 +64,7 @@ class Program
                 break;
         }
         //a partir de las 20 filas se habilita la opcion de zig zag
-        Console.Clear();
-    
+        Console.Clear();    
 
         LaberintoDificil unLaberintoDificil = new LaberintoDificil(columnas, filas);
         unLaberintoDificil.CrearSeccionesHorizontal();

@@ -38,11 +38,11 @@ namespace Laberinto
             bool cancelarPartida = false;
             personaje.SetPosiX(celdaInicio.GetFila());
             personaje.SetPosiY(celdaInicio.GetColumna());
+            laberinto.MostrarMatriz();
 
             bool validarMovimiento = false;
             do
             {
-                laberinto.MostrarMatriz();
                 char movimiento = personaje.ElegirMovimiento();
 
                 if (movimiento == 'r')
